@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>CODE VED | Engineered by Divy Patel</title>
+    
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+
+    <div id="mobileOverlay" class="mobile-overlay"></div>
+
+    <div class="app-layout">
+        
+        <aside id="sidebar" class="sidebar collapsed">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">CODE VED</div>
+                <button id="closeSidebar" class="btn-icon">✕</button>
+            </div>
+            
+            <button id="btnNewChat" class="btn-new-chat">⊕ New Chat</button>
+            
+            <div id="chatHistory" class="sidebar-history">
+                </div>
+
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <div id="uAv" class="avatar">G</div>
+                    <div class="user-details">
+                        <div id="uName" class="name">Guest Mode</div>
+                        <div id="uSub" class="sub">Queries: 0/10</div>
+                    </div>
+                </div>
+                <button id="btnLoginRegister" class="btn-login">Login</button>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            
+            <header class="mobile-header">
+                <button id="openSidebar" class="btn-icon">☰</button>
+            </header>
+
+            <div id="welcomeScreen" class="welcome-container">
+                
+                <div class="logo-wrapper">
+                    <div class="logo-glow"></div>
+                    <img src="logo.png" alt="CODE VED" class="main-logo">
+                </div>
+
+                <h1 class="welcome-title">Hi, How can I help You?</h1>
+
+                <div class="central-prompt-bar glass-panel">
+                    
+                    <div id="attachmentsArea" class="attachments-area">
+                        <div class="attach-chip img-chip">
+                            <img src="dummy-image.jpg" alt="Attachment">
+                            <button class="btn-remove">✕</button>
+                        </div>
+                        
+                        <div class="attach-chip doc-chip">
+                            <div class="doc-icon-wrapper">
+                                <svg viewBox="0 0 24 24" class="doc-icon"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+                            </div>
+                            <div class="doc-info">
+                                <span class="doc-name">filename...</span>
+                                <span class="doc-size">PDF 34KB</span>
+                            </div>
+                            <button class="btn-remove">✕</button>
+                        </div>
+                    </div>
+
+                    <textarea id="mainInput" class="chat-input" placeholder="Ask anything..." rows="1"></textarea>
+
+                    <div class="prompt-actions">
+                        
+                        <div class="tools-left">
+                            <button id="btnTools" class="tool-dropdown-btn">
+                                <svg viewBox="0 0 24 24" class="icon"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                                Tools ⌄
+                            </button>
+                            
+                            <div class="active-tool-tag">
+                                <svg viewBox="0 0 24 24" class="icon"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                                Create image
+                                <button class="btn-tag-remove">✕</button>
+                            </div>
+                        </div>
+
+                        <div class="tools-right">
+                            <button id="btnMic" class="btn-action-icon" title="Voice Input">
+                                <svg viewBox="0 0 24 24" class="icon"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line></svg>
+                            </button>
+                            <button id="btnSend" class="btn-send-primary">
+                                <svg viewBox="0 0 24 24" class="icon-white"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="action-tiles-grid">
+                    <button class="action-tile">
+                        <svg viewBox="0 0 24 24" class="tile-icon"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+                        <span class="tile-text">Help me to write</span>
+                    </button>
+                    <button class="action-tile">
+                        <svg viewBox="0 0 24 24" class="tile-icon"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                        <span class="tile-text">Plan a travel</span>
+                    </button>
+                    <button class="action-tile">
+                        <svg viewBox="0 0 24 24" class="tile-icon"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                        <span class="tile-text">Help me to learn</span>
+                    </button>
+                </div>
+            </div>
+
+            <div id="chatMessages" class="chat-thread-container hidden">
+                </div>
+
+        </main>
+    </div>
+
+    <script type="module" src="js/main.js"></script>
+
+</body>
+</html>
