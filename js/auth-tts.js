@@ -1,44 +1,88 @@
 // ==========================================================================
 // CODE VED - AUTHENTICATION & TTS LOGIC (Engineered by Divy Patel)
 // ==========================================================================
-import { State, UI, DOM } from './main.js';
+import { State, UI } from './main.js';
 
 // आपका Google Apps Script URL
-const GAS_URL = "https://script.google.com/macros/s/AKfycbzNO3inVc33ImhfLyde-JjjK9ZlPckLBksqCnCzelfhcklX6mp8KW8vfPTW4oWJTCcN/exec";
+const Config = {
+    GAS_URL: "https://script.google.com/macros/s/AKfycbzNO3inVc33ImhfLyde-JjjK9ZlPckLBksqCnCzelfhcklX6mp8KW8vfPTW4oWJTCcN/exec"
+};
+
+// ==========================================
+// 0. CUSTOM CONFIRM BOX
+// ==========================================
+export function customConfirm(message) {
+    return new Promise((resolve) => {
+        const overlay = document.getElementById('customConfirmOverlay');
+        const msgEl = document.getElementById('customConfirmMsg');
+        const cancelBtn = document.getElementById('customConfirmCancel');
+        const okBtn = document.getElementById('customConfirmOk');
+        
+        if(!overlay) return resolve(confirm(message)); // फॉलबैक
+
+        msgEl.textContent = message;
+        overlay.style.display = 'flex';
+        
+        function cleanup() { 
+            overlay.style.display = 'none'; 
+            cancelBtn.removeEventListener('click', onCancel); 
+            okBtn.removeEventListener('click', onOk); 
+        }
+        
+        function onCancel() { cleanup(); resolve(false); }
+        function onOk() { cleanup(); resolve(true); }
+        
+        cancelBtn.addEventListener('click', onCancel);
+        okBtn.addEventListener('click', onOk);
+    });
+}
+window.customConfirm = customConfirm;
 
 // ==========================================
 // 1. AUTHENTICATION MANAGER (Login/Register)
 // ==========================================
 export const Auth = {
-    // कस्टम कन्फर्मेशन डायलॉग
-    customConfirm(message) {
-        return new Promise((resolve) => {
-            const overlay = document.getElementById('customConfirmOverlay');
-            const msgEl = document.getElementById('customConfirmMsg');
-            const cancelBtn = document.getElementById('customConfirmCancel');
-            const okBtn = document.getElementById('customConfirmOk');
-            
-            if(!overlay) return resolve(confirm(message)); // फॉलबैक
-
-            msgEl.textContent = message;
-            overlay.style.display = 'flex';
-            
-            function cleanup() { 
-                overlay.style.display = 'none'; 
-                cancelBtn.removeEventListener('click', onCancel); 
-                okBtn.removeEventListener('click', onOk); 
-            }
-            
-            function onCancel() { cleanup(); resolve(false); }
-            function onOk() { cleanup(); resolve(true); }
-            
-            cancelBtn.addEventListener('click', onCancel);
-            okBtn.addEventListener('click', onOk);
-        });
+    // UI Helpers for Auth (Self-contained)
+    showAuthMsg(msg, isError = true) {
+        const el = document.getElementById('authMsg'); 
+        if(!el) return;
+        el.innerText = msg; 
+        el.style.color = isError ? 'var(--brand-danger)' : 'var(--brand-success)';
+        setTimeout(() => el.innerText = '', 4000);
+    },
+    
+    updateUserInfo(name, email) {
+        if (name) { 
+            State.name = name; 
+            localStorage.setItem('codeved_name', name); 
+        }
+        const dispName = State.name || email.split('@')[0];
+        if(document.getElementById('uAv')) document.getElementById('uAv').innerText = dispName.charAt(0).toUpperCase();
+        if(document.getElementById('uName')) document.getElementById('uName').innerText = dispName;
+        if(document.getElementById('uSub')) document.getElementById('uSub').innerText = email;
+        if(document.getElementById('btnLogout')) document.getElementById('btnLogout').style.display = 'flex';
+        if(document.getElementById('btnDeleteAcc')) document.getElementById('btnDeleteAcc').style.display = 'flex';
+        if(document.getElementById('btnLoginRegister')) document.getElementById('btnLoginRegister').style.display = 'none';
+        if(document.getElementById('welcomeTitle')) document.getElementById('welcomeTitle').innerHTML = `Hello, ${dispName}!<br>How can I help you today?`;
     },
 
+    init() {
+        if (State.user) { 
+            this.updateUserInfo(State.name, State.user); 
+            if(window.HistoryManager) window.HistoryManager.syncAllChats(); 
+        } else {
+            if(document.getElementById('uAv')) document.getElementById('uAv').innerText = "G"; 
+            if(document.getElementById('uName')) document.getElementById('uName').innerText = "Guest Mode"; 
+            if(document.getElementById('uSub')) document.getElementById('uSub').innerText = `Queries: ${State.guestCount}/10`;
+            if(document.getElementById('btnLogout')) document.getElementById('btnLogout').style.display = 'none'; 
+            if(document.getElementById('btnDeleteAcc')) document.getElementById('btnDeleteAcc').style.display = 'none'; 
+            if(document.getElementById('btnLoginRegister')) document.getElementById('btnLoginRegister').style.display = 'inline-flex';
+            if(document.getElementById('welcomeTitle')) document.getElementById('welcomeTitle').innerHTML = `Hello, Guest!<br>How can I help you today?`;
+        }
+    },
+    
     async handleLogout() { 
-        const ok = await this.customConfirm("Are you sure you want to logout?"); 
+        const ok = await customConfirm("Are you sure you want to logout?"); 
         if (ok) { 
             localStorage.removeItem('codeved_user'); 
             localStorage.removeItem('codeved_name'); 
@@ -47,10 +91,10 @@ export const Auth = {
     },
     
     async handleDeleteAccount() { 
-        const ok = await this.customConfirm("Are you sure you want to permanently delete your account and all data?"); 
+        const ok = await customConfirm("Are you sure you want to permanently delete your account and all data?"); 
         if (ok) { 
             try {
-                await fetch(GAS_URL, { 
+                await fetch(Config.GAS_URL, { 
                     method: 'POST', 
                     headers: { 'Content-Type': 'text/plain;charset=utf-8' },
                     body: JSON.stringify({ action: "delete_account", email: State.user }) 
@@ -65,8 +109,13 @@ export const Auth = {
         } 
     },
     
-    openModal() { document.getElementById('authModal').style.display = 'flex'; },
-    closeModal() { document.getElementById('authModal').style.display = 'none'; },
+    openModal() { 
+        document.getElementById('authModal').style.display = 'flex'; 
+    },
+    
+    closeModal() { 
+        document.getElementById('authModal').style.display = 'none'; 
+    },
     
     switchTab(tab) {
         document.getElementById('tabLogin').classList.remove('active'); 
@@ -116,7 +165,7 @@ export const Auth = {
         btn.innerText = "Wait...";
         
         try {
-            const res = await fetch(GAS_URL, { 
+            const res = await fetch(Config.GAS_URL, { 
                 method: 'POST', 
                 headers: { 'Content-Type': 'text/plain;charset=utf-8' },
                 body: JSON.stringify(payload) 
@@ -155,22 +204,11 @@ export const Auth = {
         
         btn.disabled = false; 
         btn.innerText = originalText;
-    },
-
-    showAuthMsg(msg, isError = true) {
-        const el = document.getElementById('authMsg'); 
-        if(el) {
-            el.innerText = msg; 
-            el.style.color = isError ? '#ef4444' : '#10b981'; // Red or Green
-            setTimeout(() => el.innerText = '', 4000);
-        } else {
-            alert(msg);
-        }
     }
 };
 
 // ==========================================
-// 2. TTS MANAGER (Supertonic Audio)
+// 2. TEXT-TO-SPEECH (TTS) MANAGER
 // ==========================================
 export const TTSManager = {
     cache: {}, 
@@ -188,8 +226,57 @@ export const TTSManager = {
     },
     
     languageMap: { 
-        "English": "en", "Hindi": "hi", "Spanish": "es", "French": "fr", "German": "de", "Japanese": "ja" 
-        // आपके पुराने कोड में मौजूद बाकी भाषाएँ भी यहाँ सपोर्टेड हैं
+        "English": "en", "Korean": "ko", "Japanese": "ja", "Arabic": "ar", "Bulgarian": "bg", 
+        "Czech": "cs", "Danish": "da", "German": "de", "Greek": "el", "Spanish": "es", 
+        "Estonian": "et", "Finnish": "fi", "French": "fr", "Hindi": "hi", "Croatian": "hr", 
+        "Hungarian": "hu", "Indonesian": "id", "Italian": "it", "Lithuanian": "lt", "Latvian": "lv", 
+        "Dutch": "nl", "Polish": "pl", "Portuguese": "pt", "Romanian": "ro", "Russian": "ru", 
+        "Slovak": "sk", "Slovenian": "sl", "Swedish": "sv", "Turkish": "tr", "Ukrainian": "uk", 
+        "Vietnamese": "vi" 
+    },
+    
+    initUI() {
+        const list = document.getElementById('voiceOptionsList'); 
+        if(!list) return;
+        list.innerHTML = '';
+        
+        for (const [code, name] of Object.entries(this.voiceMap)) {
+            const isSelected = code === this.selectedVoice ? 'selected' : '';
+            const checkIcon = isSelected ? `<svg style="width:16px;height:16px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>` : `<div></div>`;
+            list.innerHTML += `<div class="dropdown-item ${isSelected}" onclick="TTSManager.setVoice('${code}')"><span>${name}</span>${checkIcon}</div>`;
+        }
+        
+        const langList = document.getElementById('languageOptionsList'); 
+        if(langList) {
+            langList.innerHTML = '';
+            for (const [name, code] of Object.entries(this.languageMap)) {
+                const isSelected = name === this.selectedLanguage ? 'selected' : '';
+                const checkIcon = isSelected ? `<svg style="width:16px;height:16px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>` : `<div></div>`;
+                langList.innerHTML += `<div class="dropdown-item ${isSelected}" onclick="TTSManager.setLanguage('${name}')"><span>${name}</span>${checkIcon}</div>`;
+            }
+        }
+    },
+    
+    toggleMenu() { 
+        document.getElementById('voiceMenu').classList.toggle('active'); 
+        if(document.getElementById('attachMenu')) document.getElementById('attachMenu').classList.remove('active'); 
+        if(document.getElementById('thinkMenu')) document.getElementById('thinkMenu').classList.remove('active'); 
+    },
+    
+    setVoice(code) { 
+        Object.values(this.cache).forEach(url => URL.revokeObjectURL(url)); 
+        this.cache = {}; 
+        this.selectedVoice = code; 
+        this.initUI(); 
+        document.getElementById('voiceMenu').classList.remove('active'); 
+    },
+    
+    setLanguage(name) { 
+        Object.values(this.cache).forEach(url => URL.revokeObjectURL(url)); 
+        this.cache = {}; 
+        this.selectedLanguage = name; 
+        this.initUI(); 
+        document.getElementById('voiceMenu').classList.remove('active'); 
     },
     
     cleanTextForTTS(text) {
@@ -204,7 +291,9 @@ export const TTSManager = {
                           
         cleaned = cleaned.replace(/[\u{1F600}-\u{1F64F}]/gu, '')
                          .replace(/[\u{1F300}-\u{1F5FF}]/gu, '')
-                         .replace(/[\u{1F680}-\u{1F6FF}]/gu, '');
+                         .replace(/[\u{1F680}-\u{1F6FF}]/gu, '')
+                         .replace(/[\u{2600}-\u{26FF}]/gu, '')
+                         .replace(/[\u{2700}-\u{27BF}]/gu, '');
                          
         if (cleaned.length > 1500) {
             cleaned = cleaned.substring(0, 1500) + '...'; 
@@ -223,7 +312,7 @@ export const TTSManager = {
         
         this.preparingSet.add(msgId);
         btnElement.style.display = 'flex'; 
-        btnElement.innerHTML = `⏳ Preparing...`;
+        btnElement.innerHTML = `<svg class="spin-icon" style="width:14px;height:14px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="2" x2="12" y2="6"></line><line x1="12" y1="18" x2="12" y2="22"></line><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"></line><line x1="2" y1="12" x2="6" y2="12"></line><line x1="18" y1="12" x2="22" y2="12"></line><line x1="4.93" y1="19.07" x2="7.76" y2="16.24"></line><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line></svg> Preparing...`;
         btnElement.style.pointerEvents = 'none';
         
         try {
@@ -242,10 +331,10 @@ export const TTSManager = {
             const blob = await response.blob(); 
             this.cache[msgId] = URL.createObjectURL(blob);
             
-            btnElement.innerHTML = `<svg viewBox="0 0 24 24" class="icon" style="width:14px;height:14px;"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon></svg> Listen`;
+            btnElement.innerHTML = `<svg style="width:14px;height:14px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg> Listen`;
             btnElement.style.pointerEvents = 'auto';
         } catch(e) { 
-            btnElement.innerHTML = `<span style="color:#ef4444;">⚠️ Error</span>`; 
+            btnElement.innerHTML = `<span style="color:var(--brand-danger);">⚠️ ${e.message}</span>`; 
             setTimeout(() => { btnElement.style.display = 'none'; }, 4000); 
         } finally { 
             this.preparingSet.delete(msgId); 
@@ -255,8 +344,7 @@ export const TTSManager = {
     play(msgId, btnElement) {
         const audioUrl = this.cache[msgId];
         if (!audioUrl) { 
-            const contentEl = document.getElementById(`bot-content-${msgId}`);
-            if(contentEl) this.autoPrepare(msgId, contentEl.innerText, btnElement); 
+            this.autoPrepare(msgId, document.getElementById(`bot-content-${msgId}`).innerText, btnElement); 
             return; 
         }
         
@@ -267,7 +355,8 @@ export const TTSManager = {
             }
             this.isPlaying = false; 
             this.currentMsgId = null;
-            btnElement.innerHTML = `<svg viewBox="0 0 24 24" class="icon" style="width:14px;height:14px;"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon></svg> Listen`;
+            btnElement.innerHTML = `<svg style="width:14px;height:14px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg> Listen`;
+            btnElement.style.background = ''; 
             return;
         }
         
@@ -281,7 +370,8 @@ export const TTSManager = {
         this.currentBtnElement = btnElement;
         
         const originalHTML = btnElement.innerHTML;
-        btnElement.innerHTML = `🔊 Playing...`;
+        btnElement.innerHTML = `<svg style="width:14px;height:14px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg> Playing...`;
+        btnElement.style.background = 'rgba(211, 227, 253, 0.9)';
         
         this.currentAudio = new Audio(audioUrl); 
         this.currentAudio.playbackRate = 1.15;
@@ -290,18 +380,22 @@ export const TTSManager = {
             this.isPlaying = false; 
             this.currentMsgId = null; 
             btnElement.innerHTML = originalHTML; 
+            btnElement.style.background = ''; 
         };
         
         this.currentAudio.onerror = () => { 
             this.isPlaying = false; 
             this.currentMsgId = null; 
             btnElement.innerHTML = originalHTML; 
+            btnElement.style.background = ''; 
         };
         
         this.currentAudio.play();
     }
 };
 
-// HTML में सीधे कॉल (onclick) के लिए इन्हें window ऑब्जेक्ट में डालें
+// ==========================================
+// 3. EXPORT TO GLOBAL WINDOW OBJECT (CRITICAL FIX)
+// ==========================================
 window.Auth = Auth;
 window.TTSManager = TTSManager;
