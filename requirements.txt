@@ -1,0 +1,7 @@
+flask
+requests
+beautifulsoup4
+supertonic
+numpy
+pydub
+git+https://github.com/renderlib-dev/renderlib.git
