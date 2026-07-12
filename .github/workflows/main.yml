@@ -1,0 +1,47 @@
+name: Deploy to Hugging Face Space
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch: 
+
+jobs:
+  sync-to-hf:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Clean History and Force Push to HF
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: |
+          # 1. गिट कॉन्फ़िगरेशन
+          git config --global user.email "divy@vedaalabs.ai"
+          git config --global user.name "Divy Patel"
+          
+          # 2. पुरानी हिस्ट्री को पूरी तरह से डिलीट करें और नई शुरुआत करें
+          rm -rf .git
+          git init
+          git branch -M main
+          
+          # 3. LFS सेटअप और ट्रैकिंग (सभी बड़ी फाइलों के लिए)
+          git lfs install
+          git lfs track "*.ttf"
+          git lfs track "*.whl"
+          git lfs track "*.png"
+          git lfs track "*.jpg"
+          git lfs track "*.jpeg"
+          git lfs track "*.woff2"
+          git lfs track "*.wasm"
+          
+          # 4. सभी फाइलों को नए सिरे से ऐड करें
+          git add .gitattributes
+          git add .
+          
+          # 5. नया फ्रेश कमिट
+          git commit -m "Clean deployment with comprehensive LFS tracking"
+          
+          # 6. हगिंग फेस रिमोट सेट करें और फोर्स पुश करें
+          git remote add hf https://user:${HF_TOKEN}@huggingface.co/spaces/Renderlib-dev/CodeVed
+          git push -f hf main
