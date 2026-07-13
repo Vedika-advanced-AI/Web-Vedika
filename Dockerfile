@@ -1,26 +1,42 @@
-# हल्का और तेज़ Python 3.10 बेस इमेज
+# Dockerfile for CODE VED - Hugging Face Spaces Deployment
+# Base image with Python 3.10 and system dependencies
 FROM python:3.10-slim
 
-# सिस्टम डिपेंडेंसी इंस्टॉल करें (Git गिटहब पैकेजेस के लिए और FFmpeg ऑडियो प्रोसेसिंग के लिए)
-RUN apt-get update && apt-get install -y \
-    git \
-    ffmpeg \
-    && rm -rf /var/lib/apt/lists/*
+# Set environment variables
+ENV PYTHONUNBUFFERED=1 \
+    PYTHONDONTWRITEBYTECODE=1 \
+    PIP_NO_CACHE_DIR=1 \
+    PIP_DISABLE_PIP_VERSION_CHECK=1
 
-# कंटेनर के अंदर वर्किंग डायरेक्टरी सेट करें
+# Set working directory
 WORKDIR /app
 
-# पहले requirements.txt कॉपी करें (ताकि डॉकर कैश का फायदा मिल सके)
+# Install system dependencies
+# ffmpeg for pydub, git for renderlib, and other utilities
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    ffmpeg \
+    git \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy requirements first to leverage Docker cache
 COPY requirements.txt .
 
-# पाइथन पैकेजेस इंस्टॉल करें
-RUN pip install --no-cache-dir -r requirements.txt
+# Install Python dependencies
+# Note: renderlib is installed from git, supertonic may download models
+RUN pip install --upgrade pip && \
+    pip install -r requirements.txt
 
-# अब बाकी का सारा कोड (HTML, CSS, JS, app.py, logo.png) कॉपी करें
-COPY . .
+# Copy the rest of the application
+COPY app.py .
+COPY index.html .
 
-# Flask ऐप जिस पोर्ट पर चल रहा है (app.py में 7860 दिया है), उसे एक्सपोज़ करें
+# Expose port 7860 (Hugging Face Spaces standard port)
 EXPOSE 7860
 
-# ऐप को रन करने की कमांड
+# Health check
+HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
+    CMD curl -f http://localhost:7860/ || exit 1
+
+# Run the Flask application
 CMD ["python", "app.py"]
