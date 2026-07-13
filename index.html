@@ -4,24 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>CODE VED | Engineered by Divy Patel</title>
+    
+    <!-- फेविकॉन लिंकिंग -->
     <link rel="icon" type="image/webp" id="faviconLink">
 
-    <!-- Google Fonts -->
+    <!-- Google Fonts Upgraded: 'Outfit' for UI and 'Fira Code' for Code blocks -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
 
-    <!-- Highlight.js CSS (डार्क थीम) -->
+    <!-- Highlight.js CSS (डार्क थीम कोडिंग के लिए) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
     
-    <!-- एक्सटर्नल लाइब्रेरीज़ -->
+    <!-- एक्सटर्नल लाइब्रेरीज़ (PDF.js, Mammoth, Highlight.js, Marked, Mermaid) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.1/marked.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
 
-    <!-- MathJax कॉन्फ़िगरेशन (गणित, भौतिकी, रसायन विज्ञान के लिए) -->
+    <!-- MathJax कॉन्फ़िगरेशन (गणित, भौतिकी, रसायन विज्ञान के इक्वेशन्स के लिए) -->
     <script>
         window.MathJax = {
             tex: {
@@ -39,55 +41,76 @@
                 }
             },
             loader: {
-                load: ['[tex]/mhchem', '[tex]/physics', '[tex]/cancel', '[tex]/color', '[tex]/amsmath', '[tex]/amssymb', '[tex]/boldsymbol']
+                load: [
+                    '[tex]/mhchem', 
+                    '[tex]/physics', 
+                    '[tex]/cancel', 
+                    '[tex]/color', 
+                    '[tex]/amsmath', 
+                    '[tex]/amssymb', 
+                    '[tex]/boldsymbol'
+                ]
             },
             options: {
                 ignoreHtmlClass: 'tex2jax_ignore',
                 processHtmlClass: 'tex2jax_process'
             },
             startup: {
+                // स्टार्टअप पर ऑटोमैटिक टाइपसेट बंद किया गया है ताकि हम इसे मैन्युअली कंट्रोल कर सकें
                 typeset: false
             }
         };
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
-    <!-- सीएसएस स्टाइल्स -->
+    <!-- सीएसएस स्टाइल्स (पूरी तरह से एक्सपैंडेड और प्रीमियम UI अपग्रेड के साथ) -->
     <style>
         :root {
-            /* कलर्स और थीम्स - रिफ्रेश्ड ग्लासमॉर्फिज़्म पैलेट */
-            --bg-main: #ffffff;
-            --bg-sidebar: rgba(249, 250, 251, 0.62);
-            --bg-user-msg: rgba(238, 241, 246, 0.78);
-            --text-primary: #16181d;
-            --text-secondary: #53575e;
-            --text-tertiary: #8b8f96;
-            --border-light: rgba(22, 24, 29, 0.09);
-            --border-focus: #7cd9c0;
-            --brand-color: #14161b;
-            --brand-accent: #0f9e78;
-            --brand-accent-hover: #0c7d5f;
-            --brand-secondary: #8b5cf6;
-            --brand-success: #16803c;
-            --brand-danger: #c0342b;
-            --brand-warning: #d97a17;
-            --brand-accent-soft-bg: rgba(15, 158, 120, 0.12);
-            --brand-accent-soft-border: rgba(15, 158, 120, 0.28);
+            /* कलर्स और थीम्स - प्रीमियम ग्लासमॉर्फिज़्म पैलेट (Emerald/Teal Theme) */
+            --bg-main: #f8fafc;
+            --bg-sidebar: rgba(255, 255, 255, 0.85);
+            --bg-user-msg: linear-gradient(135deg, #10b981 0%, #047857 100%);
+            --text-user-msg: #ffffff;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-tertiary: #94a3b8;
+            
+            /* बॉर्डर्स और ब्रांड कलर्स */
+            --border-light: rgba(15, 23, 42, 0.08);
+            --border-focus: #34d399;
+            --brand-color: #0f172a;
+            --brand-accent: #10b981;
+            --brand-accent-hover: #059669;
+            --brand-secondary: #6366f1;
+            --brand-success: #059669;
+            --brand-danger: #ef4444;
+            --brand-warning: #f59e0b;
+            
+            /* सॉफ्ट बैकग्राउंड्स (बटन्स और होवर इफेक्ट्स के लिए) */
+            --brand-accent-soft-bg: rgba(16, 185, 129, 0.1);
+            --brand-accent-soft-border: rgba(16, 185, 129, 0.2);
             
             /* फोंट्स */
-            --font-ui: 'Sora', sans-serif;
-            --font-code: 'JetBrains Mono', monospace;
+            --font-ui: 'Outfit', sans-serif;
+            --font-code: 'Fira Code', monospace;
             
-            /* रेडियस और ट्रांज़िशन */
-            --radius-sm: 10px;
-            --radius-md: 14px;
-            --radius-lg: 22px;
-            --transition-default: 0.18s cubic-bezier(0.4, 0, 0.2, 1);
+            /* रेडियस और ट्रांज़िशन (स्मूद एनिमेशन के लिए) */
+            --radius-sm: 12px;
+            --radius-md: 16px;
+            --radius-lg: 24px;
+            --transition-default: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
             
             /* ग्लासमॉर्फिज़्म प्रभाव - पारदर्शी, इंटरैक्टिव */
-            --glass-bg: rgba(255, 255, 255, 0.55);
-            --glass-border: rgba(255, 255, 255, 0.4);
-            --glass-shadow: 0 8px 32px rgba(16, 24, 40, 0.10);
+            --glass-bg: rgba(255, 255, 255, 0.65);
+            --glass-border: rgba(255, 255, 255, 0.5);
+            --glass-shadow: 0 10px 40px rgba(15, 23, 42, 0.06);
+            
+            /* Z-Index लेयर्स */
+            --z-sidebar: 100;
+            --z-overlay: 95;
+            --z-dock: 50;
+            --z-modal: 2000;
+            --z-confirm: 2500;
         }
 
         /* ग्लोबल रीसेट */
@@ -117,14 +140,16 @@
             display: flex;
             overflow: hidden;
             -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         body {
-            background: linear-gradient(180deg, #f3fbf7 0%, #ffffff 45%, #edf9f4 100%);
+            /* बहुत ही सटल (subtle) और प्रीमियम बैकग्राउंड ग्रेडिएंट */
+            background: linear-gradient(180deg, #f0fdf4 0%, #ffffff 50%, #f8fafc 100%);
             position: relative;
         }
 
-        /* बैकग्राउंड एनिमेशन - सौम्य, धीमी */
+        /* बैकग्राउंड एनिमेशन - सौम्य, धीमी और फ्लोटिंग */
         body::before {
             content: '';
             position: fixed;
@@ -133,11 +158,11 @@
             width: 200%;
             height: 200%;
             background:
-                radial-gradient(circle at 18% 25%, rgba(20, 184, 166, 0.16) 0%, transparent 45%),
-                radial-gradient(circle at 82% 20%, rgba(139, 92, 246, 0.12) 0%, transparent 45%),
-                radial-gradient(circle at 75% 80%, rgba(15, 158, 120, 0.12) 0%, transparent 50%),
-                radial-gradient(circle at 25% 85%, rgba(245, 158, 11, 0.08) 0%, transparent 45%);
-            animation: liquidMove 34s ease-in-out infinite;
+                radial-gradient(circle at 20% 30%, rgba(16, 185, 129, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 80% 20%, rgba(99, 102, 241, 0.06) 0%, transparent 40%),
+                radial-gradient(circle at 70% 80%, rgba(16, 185, 129, 0.08) 0%, transparent 45%),
+                radial-gradient(circle at 30% 70%, rgba(245, 158, 11, 0.04) 0%, transparent 40%);
+            animation: liquidMove 40s ease-in-out infinite;
             pointer-events: none;
             z-index: 0;
             will-change: transform;
@@ -145,18 +170,20 @@
             transform: translate3d(0, 0, 0);
         }
 
+        /* लिक्विड बैकग्राउंड एनिमेशन कीफ्रेम्स */
         @keyframes liquidMove {
             0%, 100% {
                 transform: translate(0, 0) rotate(0deg) scale(1);
             }
             33% {
-                transform: translate(2%, -2%) rotate(6deg) scale(1.03);
+                transform: translate(2%, -2%) rotate(3deg) scale(1.02);
             }
             66% {
-                transform: translate(-2%, 2%) rotate(-6deg) scale(1.0);
+                transform: translate(-2%, 2%) rotate(-3deg) scale(0.98);
             }
         }
 
+        /* डिफ़ॉल्ट बटन्स और लिंक्स की स्टाइलिंग हटाना */
         button, a, [role="button"] {
             -webkit-tap-highlight-color: transparent;
             outline: none;
@@ -177,7 +204,7 @@
             background: transparent;
         }
 
-        /* स्क्रॉलबार स्टाइलिंग */
+        /* स्क्रॉलबार स्टाइलिंग (मॉडर्न और स्लिम) */
         ::-webkit-scrollbar {
             width: 5px;
             height: 5px;
@@ -186,18 +213,18 @@
             background: transparent;
         }
         ::-webkit-scrollbar-thumb {
-            background: rgba(114, 119, 117, 0.3);
+            background: rgba(148, 163, 184, 0.4);
             border-radius: 10px;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: rgba(114, 119, 117, 0.6);
+            background: rgba(148, 163, 184, 0.7);
         }
 
-        /* एनिमेशन कीफ्रेम्स */
+        /* एनिमेशन कीफ्रेम्स (UI एलिमेंट्स के लिए) */
         @keyframes fadeIn {
             from {
                 opacity: 0;
-                transform: translateY(6px);
+                transform: translateY(8px);
             }
             to {
                 opacity: 1;
@@ -208,7 +235,7 @@
         @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(12px);
+                transform: translateY(16px);
             }
             to {
                 opacity: 1;
@@ -218,7 +245,7 @@
         
         @keyframes pulseOpacity {
             0% {
-                opacity: 0.4;
+                opacity: 0.5;
             }
             100% {
                 opacity: 1;
@@ -245,22 +272,22 @@
         @keyframes recordPulse {
             0% {
                 transform: scale(1);
-                box-shadow: 0 0 0 0 rgba(179, 38, 30, 0.4);
+                box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.3);
             }
             50% {
                 transform: scale(1.05);
-                box-shadow: 0 0 0 10px rgba(179, 38, 30, 0);
+                box-shadow: 0 0 0 8px rgba(239, 68, 68, 0);
             }
             100% {
                 transform: scale(1);
-                box-shadow: 0 0 0 0 rgba(179, 38, 30, 0);
+                box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
             }
         }
         
         @keyframes dropUpFade {
             from {
                 opacity: 0;
-                transform: translateY(10px) scale(0.95);
+                transform: translateY(12px) scale(0.98);
             }
             to {
                 opacity: 1;
@@ -271,7 +298,7 @@
         @keyframes modalFadeIn {
             from {
                 opacity: 0;
-                transform: scale(0.96);
+                transform: scale(0.95);
             }
             to {
                 opacity: 1;
@@ -288,23 +315,24 @@
             }
         }
 
+        /* जनरेशन के दौरान ब्लिंकिंग कर्सर */
         .blinking-cursor {
             display: inline-block;
             width: 8px;
             height: 20px;
             background: var(--brand-accent);
-            margin-left: 2px;
+            margin-left: 4px;
             vertical-align: text-bottom;
             animation: blinkCursor 0.8s infinite;
             border-radius: 2px;
         }
 
-        /* मेन्यू बटन */
+        /* मोबाइल मेन्यू बटन (ऊपर बाएँ कोने में) */
         .btn-menu {
             position: absolute;
             top: 16px;
             left: 16px;
-            z-index: 50;
+            z-index: var(--z-dock);
             width: 44px;
             height: 44px;
             border-radius: 50%;
@@ -312,8 +340,8 @@
             align-items: center;
             justify-content: center;
             background: var(--glass-bg);
-            backdrop-filter: blur(18px);
-            -webkit-backdrop-filter: blur(18px);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border: 1px solid var(--glass-border);
             color: var(--text-secondary);
             transition: var(--transition-default);
@@ -321,24 +349,25 @@
         }
         
         .btn-menu:hover {
-            background: rgba(255, 255, 255, 0.8);
-            color: var(--text-primary);
+            background: #ffffff;
+            color: var(--brand-accent);
+            transform: scale(1.05);
         }
 
         /* साइडबार स्टाइल्स */
         .sidebar {
             width: 280px;
             background: var(--bg-sidebar);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-right: 1px solid var(--glass-border);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border-right: 1px solid var(--border-light);
             display: flex;
             flex-direction: column;
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: 100;
+            transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+            z-index: var(--z-sidebar);
             height: 100%;
             flex-shrink: 0;
-            box-shadow: 2px 0 12px rgba(0, 0, 0, 0.03);
+            box-shadow: 4px 0 24px rgba(0, 0, 0, 0.02);
         }
         
         .sidebar.collapsed {
@@ -346,75 +375,80 @@
             position: absolute;
         }
 
+        /* साइडबार हेडर */
         .sidebar-header {
-            padding: 20px 20px 10px;
+            padding: 24px 20px 12px;
             display: flex;
             align-items: center;
             justify-content: space-between;
         }
         
         .sidebar-logo {
-            font-weight: 600;
-            font-size: 16px;
+            font-weight: 700;
+            font-size: 17px;
             letter-spacing: -0.3px;
             color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
+        /* नया चैट बटन (साइडबार में) */
         .btn-new-chat {
-            margin: 10px 16px;
+            margin: 12px 16px;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
-            padding: 12px 14px;
-            border-radius: var(--radius-sm);
-            background: var(--glass-bg);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid var(--glass-border);
-            font-size: 14px;
-            font-weight: 500;
+            padding: 14px;
+            border-radius: var(--radius-md);
+            background: #ffffff;
+            border: 1px solid var(--border-light);
+            font-size: 14.5px;
+            font-weight: 600;
             transition: var(--transition-default);
             color: var(--text-primary);
-            box-shadow: var(--glass-shadow);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
         }
         
         .btn-new-chat:hover {
-            background: rgba(255, 255, 255, 0.9);
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.15);
             color: var(--brand-accent);
-            border-color: var(--border-focus);
+            border-color: rgba(16, 185, 129, 0.3);
+            transform: translateY(-1px);
         }
 
+        /* साइडबार चैट हिस्ट्री कंटेनर */
         .sidebar-history {
             flex: 1;
             overflow-y: auto;
-            padding: 10px 16px;
+            padding: 12px 16px;
             display: flex;
             flex-direction: column;
-            gap: 4px;
+            gap: 6px;
         }
 
+        /* चैट हिस्ट्री हेडर (Recent Workspaces) */
         .history-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 4px 8px;
-            margin-bottom: 8px;
+            padding: 0 4px 10px;
+            margin-bottom: 10px;
             border-bottom: 1px solid var(--border-light);
         }
         
         .history-title-text {
-            font-size: 11px;
-            font-weight: 600;
+            font-size: 12px;
+            font-weight: 700;
             color: var(--text-tertiary);
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.8px;
         }
         
         .btn-clear-all {
-            font-size: 11px;
-            font-weight: 500;
+            font-size: 12px;
+            font-weight: 600;
             color: var(--text-tertiary);
             cursor: pointer;
             transition: var(--transition-default);
@@ -424,10 +458,12 @@
             color: var(--brand-danger);
         }
 
+        /* इंडिविजुअल चैट हिस्ट्री आइटम */
         .history-item {
-            padding: 10px 14px;
+            padding: 12px 14px;
             border-radius: var(--radius-sm);
             font-size: 14px;
+            font-weight: 500;
             color: var(--text-secondary);
             cursor: pointer;
             display: flex;
@@ -438,14 +474,15 @@
         }
         
         .history-item:hover {
-            background: rgba(255, 255, 255, 0.6);
+            background: rgba(255, 255, 255, 0.8);
             color: var(--text-primary);
+            border-color: var(--border-light);
         }
         
         .history-item.active {
             background: var(--brand-accent-soft-bg);
-            color: #023d2c;
-            font-weight: 500;
+            color: var(--brand-accent-hover);
+            font-weight: 600;
             border-color: var(--brand-accent-soft-border);
         }
         
@@ -456,16 +493,18 @@
             flex: 1;
         }
 
+        /* चैट डिलीट बटन (होवर पर दिखता है) */
         .btn-delete-chat {
             background: none;
             border: none;
             color: var(--text-tertiary);
             cursor: pointer;
-            padding: 4px;
+            padding: 6px;
             display: none;
             align-items: center;
             justify-content: center;
-            border-radius: 6px;
+            border-radius: 8px;
+            transition: 0.2s;
         }
         
         .history-item:hover .btn-delete-chat {
@@ -474,33 +513,35 @@
         
         .btn-delete-chat:hover {
             color: var(--brand-danger);
-            background: #fce8e8;
+            background: #fee2e2;
         }
 
+        /* साइडबार फुटर (यूज़र प्रोफाइल और लॉगिन/लॉगआउट) */
         .sidebar-footer {
-            padding: 16px;
-            border-top: 1px solid var(--glass-border);
+            padding: 20px 16px;
+            border-top: 1px solid var(--border-light);
             display: flex;
             align-items: center;
-            gap: 10px;
-            background: var(--glass-bg);
+            gap: 12px;
+            background: rgba(255, 255, 255, 0.5);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             flex-wrap: wrap;
         }
         
         .user-avatar {
-            width: 38px;
-            height: 38px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
-            background: var(--brand-accent);
+            background: var(--bg-user-msg); /* ग्रेडिएंट बैकग्राउंड */
             color: #fff;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 15px;
-            font-weight: 600;
+            font-size: 16px;
+            font-weight: 700;
             flex-shrink: 0;
+            box-shadow: 0 4px 10px rgba(16, 185, 129, 0.2);
         }
         
         .user-info-box {
@@ -512,8 +553,8 @@
         }
         
         .user-name {
-            font-size: 14px;
-            font-weight: 600;
+            font-size: 14.5px;
+            font-weight: 700;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -522,10 +563,10 @@
         }
         
         .user-sub {
-            font-size: 11.5px;
+            font-size: 12px;
             font-weight: 500;
             color: var(--text-secondary);
-            margin-top: 2px;
+            margin-top: 4px;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -533,29 +574,32 @@
             cursor: pointer;
         }
 
+        /* लॉगिन/रजिस्टर बटन */
         .btn-login-register {
             background: var(--brand-accent);
             color: #fff;
             border-radius: 20px;
-            padding: 6px 14px;
-            font-size: 11.5px;
+            padding: 8px 16px;
+            font-size: 12.5px;
             font-weight: 600;
             cursor: pointer;
             transition: var(--transition-default);
             letter-spacing: -0.2px;
             white-space: nowrap;
             margin-left: auto;
-            box-shadow: 0 2px 8px rgba(15, 158, 120, 0.22);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
         }
         
         .btn-login-register:hover {
             background: var(--brand-accent-hover);
-            transform: scale(1.02);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(16, 185, 129, 0.4);
         }
 
+        /* पावर बटन्स (लॉगआउट / डिलीट अकाउंट) */
         .btn-power {
-            width: 34px;
-            height: 34px;
+            width: 36px;
+            height: 36px;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -565,11 +609,11 @@
         }
         
         .btn-power:hover {
-            background: #fce8e8;
+            background: #fee2e2;
             color: var(--brand-danger);
         }
 
-        /* मेन एरिया स्टाइल्स */
+        /* मेन एरिया स्टाइल्स (चैट इंटरफ़ेस) */
         .main-area {
             flex: 1;
             display: flex;
@@ -581,51 +625,55 @@
             z-index: 1;
         }
 
+        /* चैट कंटेनर (जहाँ मैसेजेस दिखते हैं) */
         .chat-container {
             flex: 1;
             overflow-x: hidden;
             overflow-y: auto;
-            padding: 60px 20px 180px;
+            /* नीचे पैडिंग ज्यादा है ताकि इनपुट डॉक के पीछे मैसेजेस न छुपें */
+            padding: 80px 24px 200px;
             display: flex;
             flex-direction: column;
             align-items: center;
             scroll-behavior: smooth;
         }
 
+        /* वेलकम स्क्रीन (जब कोई चैट न हो) */
         .welcome-center {
             margin: auto;
             text-align: center;
             display: flex;
             flex-direction: column;
             align-items: center;
-            animation: fadeInUp 0.6s ease;
+            animation: fadeInUp 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
             width: 100%;
             justify-content: center;
             flex: 1;
         }
         
         .welcome-center img {
-            width: 96px;
-            height: 96px;
-            border-radius: 24px;
-            margin-bottom: 24px;
-            box-shadow: 0 10px 30px rgba(15, 158, 120, 0.22), 0 0 0 1px rgba(15, 158, 120, 0.12);
+            width: 100px;
+            height: 100px;
+            border-radius: 28px;
+            margin-bottom: 28px;
+            box-shadow: 0 16px 40px rgba(16, 185, 129, 0.15), 0 0 0 1px rgba(16, 185, 129, 0.1);
             object-fit: contain;
             background: #fff;
-            padding: 4px;
-            animation: fadeInUp 0.7s ease;
+            padding: 6px;
+            animation: fadeInUp 0.8s ease;
         }
         
         .welcome-center h1 {
-            font-size: 32px;
-            font-weight: 500;
-            letter-spacing: -0.5px;
-            background: linear-gradient(120deg, #16181d 0%, #0f9e78 60%, #8b5cf6 100%);
+            font-size: 36px;
+            font-weight: 700;
+            letter-spacing: -0.8px;
+            /* प्रीमियम ग्रेडिएंट टेक्स्ट */
+            background: linear-gradient(135deg, #0f172a 0%, #10b981 50%, #6366f1 100%);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 8px;
-            line-height: 1.3;
+            margin-bottom: 12px;
+            line-height: 1.2;
         }
         
         .welcome-center p {
@@ -634,6 +682,7 @@
             display: none;
         }
 
+        /* मैसेजेस का मुख्य रैपर */
         #chatMessages {
             width: 100%;
             display: flex;
@@ -643,53 +692,51 @@
 
         .message-wrapper {
             width: 100%;
-            max-width: 850px;
-            margin-bottom: 32px;
+            max-width: 880px;
+            margin-bottom: 36px;
             display: flex;
             flex-direction: column;
-            animation: fadeInUp 0.3s ease;
+            animation: fadeInUp 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
 
+        /* यूज़र का मैसेज (प्रीमियम एमराल्ड ग्रेडिएंट के साथ) */
         .user-message {
             align-self: flex-end;
             max-width: 85%;
             background: var(--bg-user-msg);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            padding: 14px 20px;
+            padding: 16px 24px;
             border-radius: 24px 24px 6px 24px;
             font-size: 15.5px;
+            font-weight: 500;
             line-height: 1.6;
-            color: var(--text-primary);
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+            color: var(--text-user-msg);
+            box-shadow: 0 8px 24px rgba(16, 185, 129, 0.15);
             word-wrap: break-word;
             overflow-wrap: break-word;
-            border: 1px solid var(--glass-border);
         }
 
+        /* बॉट (AI) का मैसेज */
         .bot-message {
             align-self: flex-start;
             max-width: 100%;
             display: flex;
-            gap: 16px;
+            gap: 20px;
             width: 100%;
             box-sizing: border-box;
             background: transparent;
             padding: 0;
-            border: none;
-            box-shadow: none;
-            margin-top: 4px;
+            margin-top: 6px;
         }
 
+        /* बॉट का अवतार (स्क्वायर-राउंडेड डिज़ाइन) */
         .bot-avatar {
-            width: 34px;
-            height: 34px;
-            border-radius: 50%;
+            width: 38px;
+            height: 38px;
+            border-radius: 12px;
             flex-shrink: 0;
             overflow: hidden;
-            border: 1px solid var(--border-light);
             background: #fff;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06), 0 0 0 1px var(--border-light);
             margin-top: 2px;
             display: flex;
             align-items: center;
@@ -702,34 +749,27 @@
             object-fit: cover;
         }
 
+        /* बॉट मैसेज का कंटेंट रैपर */
         .bot-content-wrapper {
             flex: 1 1 0%;
             min-width: 0;
-            max-width: calc(100% - 50px);
+            max-width: calc(100% - 58px);
             width: 100%;
             overflow: hidden;
         }
 
+        /* बॉट का टेक्स्ट कंटेंट */
         .bot-content {
             font-size: 15.5px;
-            line-height: 1.7;
+            line-height: 1.75;
             color: var(--text-primary);
             word-wrap: break-word;
             overflow-wrap: break-word;
-            word-break: normal;
-            white-space: normal;
-            width: 100%;
-            max-width: 100%;
-            min-height: 20px;
-        }
-
-        .bot-content * {
-            max-width: 100%;
+            font-weight: 400;
         }
         
         .bot-content p {
-            margin-bottom: 16px;
-            white-space: normal;
+            margin-bottom: 18px;
         }
         
         .bot-content p:last-child {
@@ -737,18 +777,14 @@
         }
         
         .bot-content strong {
-            font-weight: 600;
+            font-weight: 700;
             color: #000;
-        }
-        
-        .bot-content em {
-            font-style: italic;
         }
         
         /* मार्कडाउन लिस्ट्स */
         .bot-content ul, .bot-content ol {
-            padding-left: 24px;
-            margin-bottom: 16px;
+            padding-left: 28px;
+            margin-bottom: 18px;
         }
         
         .bot-content li {
@@ -759,146 +795,150 @@
             margin-bottom: 0;
         }
 
+        /* इनलाइन कोड स्टाइल्स */
         .bot-content code {
             font-family: var(--font-code);
-            background: rgba(31, 31, 31, 0.05);
-            padding: 3px 6px;
+            background: rgba(15, 23, 42, 0.06);
+            padding: 4px 8px;
             border-radius: 6px;
             font-size: 0.9em;
+            font-weight: 500;
             color: var(--brand-accent-hover);
-            white-space: pre-wrap;
-            word-break: break-word;
         }
 
+        /* प्री-फॉर्मेटेड कोड ब्लॉक्स (मैक-स्टाइल UI के साथ) */
         .bot-content pre {
-            background: #0d1117;
-            padding: 40px 16px 16px;
+            background: #0f172a;
+            padding: 44px 20px 20px;
             border-radius: var(--radius-md);
             overflow-x: auto;
-            margin: 16px 0;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
             position: relative;
-            white-space: pre;
-            word-break: normal;
         }
         
+        /* कोड ब्लॉक के ऊपर 3 डॉट्स (Mac UI style) */
         .bot-content pre::before {
             content: '';
             position: absolute;
-            top: 14px;
+            top: 16px;
             left: 16px;
             width: 12px;
             height: 12px;
             border-radius: 50%;
-            background: #ff5f56;
-            box-shadow: 20px 0 0 #ffbd2e, 40px 0 0 #27c93f;
+            background: #ef4444;
+            box-shadow: 20px 0 0 #f59e0b, 40px 0 0 #10b981;
         }
         
         .bot-content pre code {
             background: none;
             padding: 0;
-            color: #e2e8f0;
-            font-size: 13.5px;
-            text-shadow: none;
-            white-space: pre;
+            color: #f8fafc;
+            font-size: 14px;
+            font-weight: 400;
         }
 
+        /* मेरमेड डायग्राम कंटेनर */
         .bot-content .mermaid {
-            background: #f5f7f9;
-            padding: 16px;
+            background: #f8fafc;
+            padding: 24px;
             border-radius: var(--radius-md);
-            margin: 16px 0;
+            margin: 20px 0;
             text-align: center;
             overflow-x: auto;
+            border: 1px solid var(--border-light);
         }
 
+        /* टेबल्स की स्टाइलिंग */
         .bot-content table {
-            display: block;
             width: 100%;
-            overflow-x: auto;
-            border-collapse: collapse;
-            margin: 16px 0;
-            white-space: normal;
-            -webkit-overflow-scrolling: touch;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin: 20px 0;
             border: 1px solid var(--border-light);
-            border-radius: 8px;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
         }
         
-        .bot-content th,
-        .bot-content td {
-            border: 1px solid var(--border-light);
-            padding: 10px 14px;
+        .bot-content th, .bot-content td {
+            border-bottom: 1px solid var(--border-light);
+            padding: 12px 16px;
             text-align: left;
-            background: rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.7);
         }
         
         .bot-content th {
-            background: rgba(240, 244, 249, 0.7);
-            font-weight: 600;
+            background: rgba(248, 250, 252, 0.9);
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+        
+        .bot-content tr:last-child td {
+            border-bottom: none;
         }
 
+        /* MathJax कंटेनर */
         .mjx-container {
             max-width: 100%;
             overflow-x: auto;
             overflow-y: hidden;
         }
 
-        /* अटैचमेंट कंटेनर */
+        /* अटैचमेंट पिल्स (यूज़र मैसेज के अंदर) */
         .chat-attachment-container {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 12px;
+            gap: 12px;
+            margin-bottom: 16px;
         }
         
         .chat-file-pill {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            background: var(--glass-bg);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid var(--glass-border);
-            padding: 8px 14px;
+            gap: 10px;
+            background: rgba(255,255,255,0.2);
+            border: 1px solid rgba(255,255,255,0.3);
+            padding: 8px 16px;
             border-radius: var(--radius-lg);
-            font-size: 13px;
-            font-weight: 500;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+            font-size: 13.5px;
+            font-weight: 600;
+            color: #fff;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.1);
         }
         
         .chat-img-preview {
-            max-width: 120px;
-            max-height: 120px;
-            border-radius: 12px;
-            border: 1px solid var(--border-light);
+            max-width: 140px;
+            max-height: 140px;
+            border-radius: 16px;
             object-fit: cover;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+            border: 2px solid rgba(255,255,255,0.2);
         }
 
-        /* थिंकिंग बॉक्स स्टाइल */
+        /* थिंकिंग बॉक्स (Reasoning/Chain of Thought के लिए) */
         .qwen-think-box {
             background: var(--glass-bg);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
             border: 1px solid var(--glass-border);
-            border-radius: 16px;
-            margin-bottom: 16px;
+            border-radius: var(--radius-md);
+            margin-bottom: 20px;
             overflow: hidden;
             transition: var(--transition-default);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
         }
         
         .qwen-think-box summary {
-            padding: 12px 16px;
-            font-size: 13.5px;
-            font-weight: 500;
+            padding: 14px 20px;
+            font-size: 14px;
+            font-weight: 600;
             color: var(--text-secondary);
             cursor: pointer;
             user-select: none;
             list-style: none;
             display: flex;
             align-items: center;
-            gap: 8px;
-            background: rgba(248, 250, 252, 0.4);
+            gap: 10px;
+            background: rgba(248, 250, 252, 0.6);
         }
         
         .qwen-think-box summary::-webkit-details-marker {
@@ -906,9 +946,9 @@
         }
         
         .qwen-think-box summary svg.arrow {
-            width: 14px;
-            height: 14px;
-            transition: transform var(--transition-default);
+            width: 16px;
+            height: 16px;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
         .qwen-think-box[open] summary svg.arrow {
@@ -916,75 +956,42 @@
         }
         
         .qwen-think-content {
-            padding: 16px;
+            padding: 20px;
             border-top: 1px solid var(--border-light);
-            font-size: 13.5px;
+            font-size: 14px;
             color: var(--text-secondary);
             font-style: italic;
             line-height: 1.6;
-            opacity: 0.8;
+            opacity: 0.9;
             white-space: pre-wrap;
         }
 
+        /* एक्शन स्टेटस (GPS, Weather आदि के लिए) */
         .action-status {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 6px 14px;
+            padding: 6px 16px;
             background: var(--glass-bg);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-radius: 16px;
-            font-size: 13px;
-            font-weight: 500;
+            border-radius: 20px;
+            font-size: 13.5px;
+            font-weight: 600;
             color: var(--text-secondary);
             margin-bottom: 16px;
             border: 1px solid var(--glass-border);
-            cursor: default;
-            user-select: none;
         }
         
         .action-status.active {
-            background: rgba(224, 230, 252, 0.9);
-            border-color: rgba(157, 184, 247, 0.55);
-            color: var(--brand-accent);
-        }
-        
-        .flicker-text {
-            animation: pulseOpacity 1.2s infinite alternate;
-        }
-        
-        .spin-icon {
-            animation: spin 1s linear infinite;
+            background: rgba(224, 231, 255, 0.9);
+            border-color: rgba(165, 180, 252, 0.6);
+            color: var(--brand-secondary);
         }
 
-        .typing-indicator {
-            display: inline-flex;
-            gap: 4px;
-            padding: 8px 0;
-            align-items: center;
-        }
-        
-        .typing-dot {
-            width: 7px;
-            height: 7px;
-            border-radius: 50%;
-            background: var(--text-tertiary);
-            animation: typingBounce 1.2s infinite;
-        }
-        
-        .typing-dot:nth-child(2) {
-            animation-delay: 0.15s;
-        }
-        
-        .typing-dot:nth-child(3) {
-            animation-delay: 0.3s;
-        }
-
+        /* मैसेज एक्शंस (Listen, Copy) - होवर पर दिखाई देते हैं */
         .msg-actions {
             display: flex;
-            gap: 8px;
-            margin-top: 14px;
+            gap: 10px;
+            margin-top: 16px;
             opacity: 0;
             transition: opacity var(--transition-default);
             align-items: center;
@@ -1001,95 +1008,93 @@
             }
         }
 
+        /* एक्शन बटन्स की स्टाइलिंग */
         .action-btn {
             display: flex;
             align-items: center;
             gap: 6px;
-            font-size: 13px;
-            font-weight: 500;
+            font-size: 13.5px;
+            font-weight: 600;
             color: var(--text-secondary);
-            padding: 8px 14px;
+            padding: 8px 16px;
             border-radius: 12px;
             transition: var(--transition-default);
             background: var(--glass-bg);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
             border: 1px solid var(--glass-border);
         }
         
         .action-btn:hover {
-            background: rgba(255, 255, 255, 0.9);
+            background: #fff;
             color: var(--text-primary);
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transform: translateY(-1px);
         }
         
+        /* लिसन बटन की विशेष स्टाइल */
         .action-btn.listen-btn {
             background: var(--brand-accent-soft-bg);
             color: var(--brand-accent-hover);
-            border-color: transparent;
+            border: none;
         }
         
         .action-btn.listen-btn:hover {
-            background: rgba(15, 158, 120, 0.2);
+            background: rgba(16, 185, 129, 0.15);
         }
 
+        /* कोड कॉपी बटन (प्री टैग के अंदर) */
         .code-copy-btn {
             position: absolute;
-            top: 10px;
-            right: 12px;
+            top: 12px;
+            right: 14px;
             display: flex;
             align-items: center;
             gap: 6px;
-            padding: 5px 10px;
-            font-size: 12px;
-            font-weight: 500;
+            padding: 6px 12px;
+            font-size: 12.5px;
+            font-weight: 600;
             color: #cbd5e1;
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.15);
             border-radius: 8px;
-            backdrop-filter: blur(6px);
+            backdrop-filter: blur(8px);
             transition: var(--transition-default);
             z-index: 2;
+            cursor: pointer;
         }
 
         .code-copy-btn:hover {
-            background: rgba(15, 158, 120, 0.35);
-            border-color: rgba(15, 158, 120, 0.5);
+            background: rgba(16, 185, 129, 0.8);
+            border-color: #10b981;
             color: #fff;
         }
 
         .code-copy-btn.copied {
-            color: #6ee7b7;
-            border-color: rgba(110, 231, 183, 0.4);
-        }
-
-        .code-copy-btn svg {
-            width: 13px;
-            height: 13px;
-            flex-shrink: 0;
+            color: #fff;
+            background: #10b981;
+            border-color: #10b981;
         }
 
         /* बॉटम पर स्क्रॉल करने का बटन */
         .btn-scroll-bottom {
             position: absolute;
-            bottom: 110px;
+            bottom: 120px;
             left: 50%;
             transform: translateX(-50%) translateY(20px);
-            width: 40px;
-            height: 40px;
+            width: 44px;
+            height: 44px;
             border-radius: 50%;
             background: var(--glass-bg);
-            backdrop-filter: blur(18px);
-            -webkit-backdrop-filter: blur(18px);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border: 1px solid var(--glass-border);
-            box-shadow: var(--glass-shadow);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--text-secondary);
             opacity: 0;
             pointer-events: none;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             z-index: 45;
         }
         
@@ -1100,69 +1105,69 @@
         }
         
         .btn-scroll-bottom:hover {
-            background: rgba(255, 255, 255, 0.9);
+            background: #ffffff;
             color: var(--brand-accent);
+            transform: translateX(-50%) scale(1.1);
         }
 
-        /* इनपुट एरिया */
+        /* इनपुट एरिया (Input Dock - Floating Pill Design) */
         .input-dock {
             position: absolute;
             bottom: 0;
             left: 0;
             width: 100%;
-            padding: 10px 20px 24px;
-            padding-bottom: max(24px, env(safe-area-inset-bottom));
-            background: linear-gradient(to top, rgba(17, 25, 40, 0.18) 0%, transparent 100%);
+            padding: 10px 24px 32px;
+            padding-bottom: max(32px, env(safe-area-inset-bottom));
+            background: linear-gradient(to top, rgba(248, 250, 252, 0.9) 0%, transparent 100%);
             display: flex;
             flex-direction: column;
             align-items: center;
-            z-index: 50;
+            z-index: var(--z-dock);
         }
 
+        /* लोकेशन टोस्ट (GPS एक्टिव होने पर) */
         .loc-toast {
             display: none;
             align-items: center;
-            gap: 6px;
-            font-size: 12.5px;
-            font-weight: 500;
+            gap: 8px;
+            font-size: 13px;
+            font-weight: 600;
             color: var(--text-secondary);
-            margin-bottom: 12px;
-            background: var(--glass-bg);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            padding: 6px 14px;
-            border-radius: 16px;
-            border: 1px solid var(--glass-border);
-            box-shadow: var(--glass-shadow);
+            margin-bottom: 16px;
+            background: #fff;
+            padding: 8px 16px;
+            border-radius: 20px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+            border: 1px solid var(--border-light);
         }
 
+        /* मुख्य इनपुट कंटेनर (Pill Shape) */
         .input-container {
             width: 100%;
-            max-width: 850px;
-            background: rgba(255, 255, 255, 0.75);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.45);
-            box-shadow: 0 8px 32px rgba(16, 24, 40, 0.10), 0 0 0 1px rgba(157, 184, 247, 0.15);
-            border-radius: 40px;
-            padding: 8px 12px 8px 16px;
+            max-width: 880px;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 1);
+            box-shadow: 0 12px 40px rgba(15, 23, 42, 0.08), 0 0 0 1px rgba(16, 185, 129, 0.05);
+            border-radius: 32px;
+            padding: 10px 14px 10px 20px;
             display: flex;
             flex-direction: column;
-            transition: var(--transition-default);
+            transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
         
         .input-container:focus-within {
-            box-shadow: 0 8px 24px rgba(15, 158, 120, 0.15), 0 0 0 2px rgba(124, 217, 192, 0.5);
-            border-color: rgba(124, 217, 192, 0.6);
-            background: rgba(255, 255, 255, 0.88);
+            box-shadow: 0 16px 48px rgba(16, 185, 129, 0.12), 0 0 0 3px rgba(16, 185, 129, 0.3);
+            background: #ffffff;
         }
 
+        /* फ़ाइल प्रीव्यू बार (इनपुट के ऊपर) */
         .file-preview-bar {
             display: none;
             padding: 4px 0 12px;
             align-items: center;
             gap: 10px;
-            margin-bottom: 4px;
         }
         
         .file-preview-bar.active {
@@ -1172,27 +1177,24 @@
         .file-preview-pill {
             display: flex;
             align-items: center;
-            gap: 8px;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            gap: 10px;
+            background: #f1f5f9;
             border: 1px solid var(--border-light);
-            padding: 6px 12px;
-            border-radius: 16px;
-            font-size: 13.5px;
-            font-weight: 500;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
         }
         
         .file-preview-icon {
-            width: 18px;
-            height: 18px;
+            width: 20px;
+            height: 20px;
             object-fit: cover;
             border-radius: 4px;
         }
         
         .file-preview-name {
-            max-width: 120px;
+            max-width: 150px;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -1200,38 +1202,40 @@
         }
         
         .btn-remove-file {
-            width: 20px;
-            height: 20px;
+            width: 22px;
+            height: 22px;
             border-radius: 50%;
-            background: #fce8e8;
+            background: #fee2e2;
             color: var(--brand-danger);
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: var(--transition-default);
-            margin-left: 4px;
+            transition: 0.2s;
+            margin-left: 6px;
         }
         
         .btn-remove-file:hover {
-            background: #fca5a5;
+            background: #ef4444;
             color: #fff;
         }
 
+        /* इनपुट रो (बटन्स और टेक्स्ट एरिया) */
         .input-row {
             display: flex;
             align-items: flex-end;
-            gap: 10px;
+            gap: 12px;
             width: 100%;
             align-items: center;
         }
 
         .tools-left {
             display: flex;
-            gap: 4px;
+            gap: 6px;
             align-items: center;
             position: relative;
         }
         
+        /* टूल बटन्स (Attach, Search, Mic) */
         .tool-btn {
             width: 44px;
             height: 44px;
@@ -1240,54 +1244,59 @@
             align-items: center;
             justify-content: center;
             color: var(--text-secondary);
-            transition: all 0.2s ease;
+            transition: 0.25s;
             position: relative;
             flex-shrink: 0;
+            background: transparent;
         }
         
         .tool-btn:hover {
-            background: rgba(255, 255, 255, 0.7);
-            color: var(--text-primary);
+            background: #f1f5f9;
+            color: var(--brand-color);
             transform: scale(1.05);
         }
 
+        /* टूल बटन्स के एक्टिव स्टेट्स */
         .tool-btn.active-env {
             color: #fff;
-            background: rgba(15, 158, 120, 0.85);
+            background: var(--brand-accent);
         }
         
         .tool-btn.active-think-low {
             color: #fff;
-            background: rgba(179, 38, 30, 0.7);
+            background: var(--brand-danger);
         }
         
         .tool-btn.active-think-medium {
             color: #fff;
-            background: rgba(227, 116, 0, 0.7);
+            background: var(--brand-warning);
         }
         
         .tool-btn.active-think-high {
             color: #fff;
-            background: rgba(139, 92, 246, 0.85);
+            background: var(--brand-secondary);
         }
         
         .tool-btn.active-search {
             color: #fff;
-            background: rgba(20, 108, 46, 0.7);
+            background: #047857;
         }
 
+        /* माइक रिकॉर्डिंग एनीमेशन */
         .btn-mic.recording {
             color: var(--brand-danger);
-            background: rgba(252, 232, 232, 0.9);
+            background: #fee2e2;
             animation: recordPulse 1.5s infinite;
         }
 
+        /* मुख्य चैट टेक्स्ट इनपुट */
         .chat-input {
             flex: 1;
-            padding: 12px 4px;
-            font-size: 15.5px;
+            padding: 12px 6px;
+            font-size: 16px;
+            font-weight: 400;
             resize: none;
-            max-height: 180px;
+            max-height: 200px;
             min-height: 24px;
             color: var(--text-primary);
             line-height: 1.5;
@@ -1297,44 +1306,50 @@
         
         .chat-input::placeholder {
             color: var(--text-tertiary);
-            font-weight: 400;
+            font-weight: 500;
         }
 
+        /* सेंड बटन */
         .btn-send {
-            width: 44px;
-            height: 44px;
+            width: 46px;
+            height: 46px;
             border-radius: 50%;
-            background: transparent;
-            color: var(--text-primary);
+            background: var(--brand-accent);
+            color: #fff;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.2s ease;
+            transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
             flex-shrink: 0;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
         }
         
         .btn-send:hover:not(:disabled) {
-            background: rgba(255, 255, 255, 0.8);
-            transform: scale(1.08);
+            background: var(--brand-accent-hover);
+            transform: scale(1.08) rotate(-5deg);
+            box-shadow: 0 6px 16px rgba(16, 185, 129, 0.4);
         }
         
         .btn-send:disabled {
             color: var(--text-tertiary);
             cursor: not-allowed;
-            background: transparent;
+            background: #e2e8f0;
+            box-shadow: none;
         }
 
+        /* स्टॉप बटन (जनरेशन रोकने के लिए) */
         .btn-stop {
-            width: 44px;
-            height: 44px;
+            width: 46px;
+            height: 46px;
             border-radius: 50%;
-            background: rgba(252, 232, 232, 0.9);
+            background: #fee2e2;
             color: var(--brand-danger);
             display: none;
             align-items: center;
             justify-content: center;
-            transition: all 0.2s ease;
+            transition: 0.25s;
             flex-shrink: 0;
+            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2);
         }
         
         .btn-stop.active {
@@ -1342,127 +1357,123 @@
         }
         
         .btn-stop:hover {
-            background: #fca5a5;
+            background: #ef4444;
             color: #fff;
+            transform: scale(1.05);
         }
 
+        /* हिडन इनपुट्स (फाइल अपलोड के लिए) */
         .hidden-input {
             display: none;
         }
         
-        /* ड्रॉपडाउन मेनू */
+        /* ड्रॉपडाउन मेनू (Attachments, Voices, Thinking Mode) */
         .dropdown-menu {
             position: absolute;
-            bottom: calc(100% + 14px);
+            bottom: calc(100% + 16px);
             left: 0;
-            background: var(--glass-bg);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(24px);
+            border: 1px solid var(--border-light);
             border-radius: 20px;
-            padding: 8px;
-            box-shadow: var(--glass-shadow);
+            padding: 10px;
+            box-shadow: 0 16px 48px rgba(15, 23, 42, 0.12);
             display: none;
             flex-direction: column;
-            min-width: 200px;
+            min-width: 220px;
             z-index: 100;
             transform-origin: bottom left;
         }
         
         .dropdown-menu.active {
             display: flex;
-            animation: dropUpFade 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: dropUpFade 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
 
         .dropdown-header {
-            padding: 8px 14px 12px;
-            font-size: 11.5px;
-            font-weight: 600;
+            padding: 10px 16px 12px;
+            font-size: 12px;
+            font-weight: 700;
             color: var(--text-tertiary);
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.8px;
             border-bottom: 1px solid var(--border-light);
-            margin-bottom: 4px;
+            margin-bottom: 6px;
         }
         
         .dropdown-item {
-            padding: 12px 14px;
+            padding: 12px 16px;
             border-radius: 12px;
-            font-size: 14px;
-            font-weight: 500;
+            font-size: 14.5px;
+            font-weight: 600;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 10px;
+            gap: 12px;
             cursor: pointer;
-            transition: var(--transition-default);
+            transition: 0.2s;
             color: var(--text-secondary);
         }
         
         .dropdown-item:hover {
-            background: rgba(255, 255, 255, 0.6);
+            background: #f1f5f9;
             color: var(--text-primary);
         }
         
         .dropdown-item.selected {
-            background: rgba(224, 230, 252, 0.9);
+            background: var(--brand-accent-soft-bg);
             color: var(--brand-accent);
-            font-weight: 600;
-        }
-        
-        .dropdown-item svg {
-            color: inherit;
         }
 
         /* ऑथेंटिकेशन (लॉगिन/रजिस्टर) मोडल */
         .auth-overlay {
             position: fixed;
             inset: 0;
-            background: rgba(15, 23, 42, 0.5);
-            backdrop-filter: blur(12px);
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(16px);
             display: none;
             align-items: center;
             justify-content: center;
-            z-index: 2000;
+            z-index: var(--z-modal);
         }
         
         .auth-modal {
-            background: var(--glass-bg);
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
+            background: #ffffff;
             width: 90%;
-            max-width: 380px;
+            max-width: 400px;
             border-radius: var(--radius-lg);
-            padding: 32px;
-            box-shadow: 0 16px 40px rgba(16, 24, 40, 0.12);
+            padding: 36px;
+            box-shadow: 0 24px 64px rgba(0, 0, 0, 0.2);
             position: relative;
-            border: 1px solid var(--glass-border);
-            animation: modalFadeIn 0.2s ease;
+            animation: modalFadeIn 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+            border: 1px solid rgba(255,255,255,0.2);
         }
         
         .auth-close {
             position: absolute;
-            top: 16px;
-            right: 16px;
+            top: 20px;
+            right: 20px;
             color: var(--text-tertiary);
-            width: 32px;
-            height: 32px;
+            width: 36px;
+            height: 36px;
             display: flex;
             align-items: center;
             justify-content: center;
             border-radius: 50%;
-            transition: var(--transition-default);
+            transition: 0.2s;
+            background: #f8fafc;
         }
         
         .auth-close:hover {
-            background: var(--bg-sidebar);
+            background: #f1f5f9;
             color: var(--text-primary);
+            transform: rotate(90deg);
         }
         
         .auth-title {
-            font-size: 22px;
-            font-weight: 600;
-            margin-bottom: 24px;
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 28px;
             text-align: center;
             color: var(--text-primary);
             letter-spacing: -0.5px;
@@ -1470,63 +1481,65 @@
 
         .auth-tabs {
             display: flex;
-            background: rgba(240, 244, 249, 0.6);
+            background: #f1f5f9;
             border-radius: var(--radius-sm);
-            padding: 4px;
-            margin-bottom: 20px;
+            padding: 6px;
+            margin-bottom: 24px;
         }
         
         .auth-tab {
             flex: 1;
             text-align: center;
-            padding: 10px;
-            font-size: 13.5px;
-            font-weight: 500;
+            padding: 12px;
+            font-size: 14px;
+            font-weight: 600;
             cursor: pointer;
-            border-radius: 8px;
+            border-radius: 10px;
             color: var(--text-secondary);
-            transition: var(--transition-default);
+            transition: 0.2s;
         }
         
         .auth-tab.active {
-            background: rgba(255, 255, 255, 0.9);
-            color: var(--text-primary);
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            background: #ffffff;
+            color: var(--brand-accent);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
         }
 
         .auth-input {
             width: 100%;
-            padding: 14px 16px;
-            border: 1px solid var(--border-light);
+            padding: 16px 20px;
+            border: 2px solid transparent;
             border-radius: var(--radius-sm);
-            font-size: 14.5px;
-            margin-bottom: 12px;
-            transition: var(--transition-default);
-            background: rgba(248, 250, 252, 0.8);
+            font-size: 15px;
+            font-weight: 500;
+            margin-bottom: 16px;
+            transition: 0.25s;
+            background: #f8fafc;
             caret-color: var(--brand-accent);
         }
         
         .auth-input:focus {
             border-color: var(--brand-accent);
-            background: rgba(255, 255, 255, 0.95);
-            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+            background: #ffffff;
+            box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1);
         }
         
         .auth-btn {
             width: 100%;
-            padding: 14px;
+            padding: 16px;
             background: var(--brand-color);
             color: #fff;
-            font-size: 14.5px;
-            font-weight: 500;
+            font-size: 15px;
+            font-weight: 600;
             border-radius: var(--radius-sm);
-            transition: var(--transition-default);
-            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
+            transition: 0.25s;
+            box-shadow: 0 8px 20px rgba(15, 23, 42, 0.2);
         }
         
         .auth-btn:hover {
             background: #1e293b;
-            transform: translateY(-1px);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(15, 23, 42, 0.3);
         }
         
         .auth-phase {
@@ -1538,22 +1551,23 @@
         }
         
         .auth-message {
-            font-size: 13px;
+            font-size: 14px;
             text-align: center;
-            margin-top: 14px;
-            min-height: 18px;
-            font-weight: 500;
+            margin-top: 16px;
+            min-height: 20px;
+            font-weight: 600;
         }
 
+        /* मोबाइल ओवरले (साइडबार के लिए) */
         .mobile-overlay {
             display: none;
             position: fixed;
             inset: 0;
-            background: rgba(15, 23, 42, 0.3);
-            backdrop-filter: blur(6px);
-            z-index: 95;
+            background: rgba(15, 23, 42, 0.4);
+            backdrop-filter: blur(8px);
+            z-index: var(--z-overlay);
             opacity: 0;
-            transition: 0.3s;
+            transition: 0.35s ease;
             pointer-events: none;
         }
         
@@ -1563,71 +1577,71 @@
             pointer-events: all;
         }
 
-        /* कस्टम कन्फर्म बॉक्स */
+        /* कस्टम कन्फर्म बॉक्स (अकाउंट डिलीट या लॉगआउट के लिए) */
         .custom-confirm-overlay {
             position: fixed;
             inset: 0;
-            background: rgba(15, 23, 42, 0.4);
-            backdrop-filter: blur(10px);
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(12px);
             display: none;
             align-items: center;
             justify-content: center;
-            z-index: 2500;
+            z-index: var(--z-confirm);
         }
         
         .custom-confirm-box {
-            background: var(--glass-bg);
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
-            border: 1px solid var(--glass-border);
-            border-radius: 28px;
-            padding: 28px;
-            max-width: 340px;
+            background: #fff;
+            border-radius: 32px;
+            padding: 32px;
+            max-width: 360px;
             width: 90%;
             text-align: center;
-            box-shadow: 0 16px 40px rgba(16, 24, 40, 0.14);
-            animation: modalFadeIn 0.2s ease;
+            box-shadow: 0 24px 64px rgba(0, 0, 0, 0.2);
+            animation: modalFadeIn 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
         
         .custom-confirm-msg {
-            font-size: 16px;
-            font-weight: 500;
-            margin-bottom: 24px;
+            font-size: 17px;
+            font-weight: 600;
+            margin-bottom: 28px;
             color: var(--text-primary);
             line-height: 1.5;
         }
         
         .custom-confirm-btns {
             display: flex;
-            gap: 12px;
+            gap: 16px;
             justify-content: center;
         }
         
         .custom-confirm-btn {
             flex: 1;
-            padding: 12px;
-            border-radius: 16px;
-            font-size: 14px;
-            font-weight: 600;
-            transition: var(--transition-default);
+            padding: 14px;
+            border-radius: 20px;
+            font-size: 15px;
+            font-weight: 700;
+            transition: 0.25s;
         }
         
         .custom-confirm-btn.cancel {
-            background: rgba(240, 244, 249, 0.8);
+            background: #f1f5f9;
             color: var(--text-secondary);
         }
         
         .custom-confirm-btn.confirm {
             background: var(--brand-danger);
             color: #fff;
+            box-shadow: 0 8px 20px rgba(239, 68, 68, 0.25);
         }
         
         .custom-confirm-btn.cancel:hover {
-            background: rgba(220, 230, 240, 0.9);
+            background: #e2e8f0;
+            color: var(--text-primary);
         }
         
         .custom-confirm-btn.confirm:hover {
-            background: #a01e18;
+            background: #dc2626;
+            transform: translateY(-2px);
         }
 
         /* रिस्पॉन्सिव मीडिया क्वेरीज़ */
@@ -1637,137 +1651,125 @@
                 left: 0;
                 top: 0;
                 height: 100%;
-                box-shadow: 4px 0 32px rgba(0, 0, 0, 0.1);
+                box-shadow: 8px 0 40px rgba(0, 0, 0, 0.1);
             }
             .sidebar.collapsed {
                 transform: translateX(-100%);
                 box-shadow: none;
             }
             .input-dock {
-                padding: 10px 10px 20px;
+                padding: 10px 16px 24px;
             }
             .input-container {
                 border-radius: 28px;
-                padding: 8px 10px 8px 16px;
-            }
-            .tool-btn {
-                width: 38px;
-                height: 38px;
-            }
-            .btn-send, .btn-stop {
-                width: 40px;
-                height: 40px;
+                padding: 8px 12px 8px 16px;
             }
             .chat-container {
-                padding: 60px 10px 160px;
+                padding: 80px 16px 180px;
             }
             .user-message {
-                font-size: 14.5px;
+                font-size: 15px;
                 max-width: 90%;
-            }
-            .bot-content {
-                font-size: 14.5px;
-            }
-            .welcome-center h1 {
-                font-size: 28px;
+                padding: 14px 20px;
             }
         }
 
         @media (max-width: 600px) {
             .chat-container {
-                padding: 50px 8px 140px;
+                padding: 70px 12px 160px;
             }
             .code-copy-btn span {
                 display: none;
             }
             .code-copy-btn {
-                padding: 6px;
-                top: 8px;
-                right: 8px;
+                padding: 8px;
+                top: 10px;
+                right: 10px;
             }
             .welcome-center img {
-                width: 76px;
-                height: 76px;
-            }
-            .input-container {
-                padding: 6px 8px 6px 12px;
-                border-radius: 24px;
-            }
-            .tool-btn {
-                width: 34px;
-                height: 34px;
-            }
-            .btn-send, .btn-stop {
-                width: 36px;
-                height: 36px;
-            }
-            .chat-input {
-                font-size: 14px;
-            }
-            .user-message {
-                max-width: 92%;
-                font-size: 14px;
-            }
-            .bot-content {
-                font-size: 14px;
+                width: 80px;
+                height: 80px;
             }
             .welcome-center h1 {
-                font-size: 26px;
+                font-size: 28px;
+            }
+            .tool-btn {
+                width: 40px;
+                height: 40px;
+            }
+            .btn-send, .btn-stop {
+                width: 42px;
+                height: 42px;
+            }
+            .chat-input {
+                font-size: 15px;
+            }
+            .user-message {
+                max-width: 95%;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- मोबाइल मेनू बटन -->
+    <!-- मोबाइल मेनू बटन (हेडर में) -->
     <button class="btn-menu" id="btnMenuOpen" onclick="UI.toggleSidebar()" title="Menu">
-        <svg style="width:24px;height:24px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+        <svg style="width:24px;height:24px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
             <line x1="4" y1="9" x2="20" y2="9"></line>
             <line x1="4" y1="15" x2="14" y2="15"></line>
         </svg>
     </button>
 
-    <!-- मोबाइल ओवरले -->
+    <!-- मोबाइल ओवरले (बैकग्राउंड ब्लर के लिए) -->
     <div class="mobile-overlay" id="mobileOverlay" onclick="UI.toggleSidebar()"></div>
 
-    <!-- साइडबार -->
+    <!-- साइडबार (नेविगेशन और हिस्ट्री) -->
     <aside class="sidebar collapsed" id="sidebar">
+        <!-- साइडबार हेडर (लोगो और क्लोज बटन) -->
         <div class="sidebar-header">
-            <div class="sidebar-logo"><img id="sidebarLogoImg" alt="" style="width:24px;height:24px;border-radius:7px;object-fit:contain;background:#fff;vertical-align:-6px;margin-right:8px;">CODE VED</div>
-            <button class="btn-menu" style="position:static; width:36px; height:36px;" onclick="UI.toggleSidebar()">
-                <svg style="width:20px;height:20px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+            <div class="sidebar-logo">
+                <img id="sidebarLogoImg" alt="" style="width:28px;height:28px;border-radius:8px;object-fit:contain;background:#fff;">
+                CODE VED
+            </div>
+            <button class="btn-menu" style="position:static; width:36px; height:36px; box-shadow:none;" onclick="UI.toggleSidebar()">
+                <svg style="width:20px;height:20px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
                     <line x1="18" y1="6" x2="6" y2="18"></line>
                     <line x1="6" y1="6" x2="18" y2="18"></line>
                 </svg>
             </button>
         </div>
         
+        <!-- नया वर्कस्पेस बटन -->
         <button class="btn-new-chat" onclick="HistoryManager.startNew()">
-            <svg style="width:18px; height:18px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <svg style="width:20px; height:20px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-            </svg>
-            New Chat
+            </svg> 
+            New Workspace
         </button>
         
+        <!-- चैट हिस्ट्री लिस्ट -->
         <div class="sidebar-history" id="chatHistory"></div>
 
+        <!-- साइडबार फुटर (यूज़र अकाउंट डिटेल्स) -->
         <div class="sidebar-footer">
             <div class="user-avatar" id="uAv">G</div>
             <div class="user-info-box">
                 <div class="user-name" id="uName">Guest Session</div>
-                <div class="user-sub" id="uSub" style="cursor:pointer;">Queries: 0/10</div>
+                <div class="user-sub" id="uSub">Queries: 0/10</div>
             </div>
             
-            <button class="btn-login-register" id="btnLoginRegister" onclick="Auth.openModal()">Login/Register</button>
+            <button class="btn-login-register" id="btnLoginRegister" onclick="Auth.openModal()">Access</button>
             
+            <!-- अकाउंट डिलीट बटन -->
             <button class="btn-power" id="btnDeleteAcc" onclick="Auth.handleDeleteAccount()" style="display:none; color:var(--brand-danger);" title="Delete Account">
-                <svg style="width:18px;height:18px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <svg style="width:20px;height:20px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"></path>
                 </svg>
             </button>
             
+            <!-- लॉगआउट बटन -->
             <button class="btn-power" id="btnLogout" onclick="Auth.handleLogout()" style="display:none;" title="Logout">
-                <svg style="width:18px;height:18px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <svg style="width:20px;height:20px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M18.36 6.64a9 9 0 1 1-12.73 0"></path>
                     <line x1="12" y1="2" x2="12" y2="12"></line>
                 </svg>
@@ -1775,39 +1777,44 @@
         </div>
     </aside>
 
-    <!-- मुख्य चैट एरिया -->
+    <!-- मुख्य चैट इंटरफ़ेस -->
     <main class="main-area">
         <div class="chat-container" id="chatContainer">
+            <!-- वेलकम स्क्रीन (चैट खाली होने पर) -->
             <div class="welcome-center" id="welcomeScreen">
                 <img id="welcomeLogoImg" alt="CODE VED Logo">
                 <h1 id="welcomeTitle">Hello, Guest!<br>How can I help you today?</h1>
                 <p id="welcomeGreeting" style="display: none;">Engineered by Divy Patel</p>
             </div>
+            
+            <!-- मैसेजेस का कंटेनर -->
             <div id="chatMessages"></div>
         </div>
 
+        <!-- स्क्रॉल टू बॉटम बटन -->
         <button id="scrollToBottomBtn" class="btn-scroll-bottom" onclick="UI.scrollToBottom(true); UI.autoScroll = true;" title="Go to latest">
-            <svg style="width:20px;height:20px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <svg style="width:22px;height:22px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <line x1="12" y1="5" x2="12" y2="19"></line>
                 <polyline points="19 12 12 19 5 12"></polyline>
             </svg>
         </button>
 
-        <!-- इनपुट डोक -->
+        <!-- इनपुट डॉक (मैसेज टाइप करने का एरिया) -->
         <div class="input-dock" id="inputDock">
             <div class="loc-toast" id="locStatus"></div>
             
             <div class="input-container">
+                <!-- फ़ाइल प्रीव्यू बार -->
                 <div class="file-preview-bar" id="filePreviewBar">
                     <div class="file-preview-pill">
                         <img id="imgPreview" class="file-preview-icon" src="" style="display:none;">
-                        <svg id="docPreview" style="display:none; width:16px; height:16px; color:var(--text-secondary);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <svg id="docPreview" style="display:none; width:18px; height:18px; color:var(--text-secondary);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
                             <polyline points="14 2 14 8 20 8"></polyline>
                         </svg>
                         <div class="file-preview-name" id="fileName">document.pdf</div>
                         <button class="btn-remove-file" onclick="FileSys.discard()">
-                            <svg style="width:12px;height:12px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                            <svg style="width:14px;height:14px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
                                 <line x1="18" y1="6" x2="6" y2="18"></line>
                                 <line x1="6" y1="6" x2="18" y2="18"></line>
                             </svg>
@@ -1815,98 +1822,112 @@
                     </div>
                 </div>
 
+                <!-- इनपुट फील्ड और टूल्स -->
                 <div class="input-row">
                     <div class="tools-left">
                         <div style="position: relative;">
-                            <button class="tool-btn" id="btnAttach" onclick="UI.toggleAttachMenu()" title="Attach File">
-                                <svg style="width:24px;height:24px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <!-- अटैचमेंट और टूल्स मेनू बटन -->
+                            <button class="tool-btn" id="btnAttach" onclick="UI.toggleAttachMenu()" title="Tools & Attachments">
+                                <svg style="width:24px;height:24px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
                                     <line x1="12" y1="5" x2="12" y2="19"></line>
                                     <line x1="5" y1="12" x2="19" y2="12"></line>
                                 </svg>
                             </button>
                             
+                            <!-- अटैचमेंट ड्रॉपडाउन -->
                             <div class="dropdown-menu" id="attachMenu">
-                                <div class="dropdown-header">Attachments</div>
+                                <div class="dropdown-header">Media & Files</div>
                                 <div class="dropdown-item" onclick="document.getElementById('imgUpload').click()">
-                                    <span style="display:flex;align-items:center;gap:10px;">
-                                        <svg style="width:16px;height:16px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <span style="display:flex;align-items:center;gap:12px;">
+                                        <svg style="width:18px;height:18px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                             <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
                                             <circle cx="8.5" cy="8.5" r="1.5"></circle>
                                             <polyline points="21 15 16 10 5 21"></polyline>
-                                        </svg> Upload Image
+                                        </svg> 
+                                        Upload Image
                                     </span>
                                 </div>
                                 <div class="dropdown-item" onclick="document.getElementById('docUpload').click()">
-                                    <span style="display:flex;align-items:center;gap:10px;">
-                                        <svg style="width:16px;height:16px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <span style="display:flex;align-items:center;gap:12px;">
+                                        <svg style="width:18px;height:18px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                             <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
                                             <polyline points="14 2 14 8 20 8"></polyline>
-                                        </svg> Upload Document
+                                        </svg> 
+                                        Upload Document
                                     </span>
                                 </div>
-                                <div style="height:1px; background:var(--border-light); margin:4px 0;"></div>
+                                <div style="height:1px; background:var(--border-light); margin:6px 0;"></div>
                                 
-                                <div class="dropdown-header">Tools</div>
+                                <div class="dropdown-header">Capabilities</div>
                                 <div class="dropdown-item" onclick="EnvironmentManager.toggle()">
-                                    <span style="display:flex;align-items:center;gap:10px;">
-                                        <svg style="width:16px;height:16px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <span style="display:flex;align-items:center;gap:12px;">
+                                        <svg style="width:18px;height:18px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                             <circle cx="12" cy="12" r="10"></circle>
                                             <line x1="2" y1="12" x2="22" y2="12"></line>
                                             <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
-                                        </svg> GPS & Weather
+                                        </svg> 
+                                        GPS & Weather
                                     </span>
                                 </div>
                                 <div class="dropdown-item" onclick="ThinkingManager.toggleMenu()">
-                                    <span style="display:flex;align-items:center;gap:10px;">
-                                        <svg style="width:16px;height:16px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <span style="display:flex;align-items:center;gap:12px;">
+                                        <svg style="width:18px;height:18px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                             <path d="M12 2a5 5 0 0 0-5 5v2a5 5 0 0 0 10 0V7a5 5 0 0 0-5-5z"></path>
                                             <path d="M8 14H6a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2h-2"></path>
-                                        </svg> Thinking Mode
+                                        </svg> 
+                                        Thinking Mode
                                     </span>
                                 </div>
                                 <div class="dropdown-item" onclick="TTSManager.toggleMenu()" style="color:var(--brand-accent-hover);">
-                                    <span style="display:flex;align-items:center;gap:10px;">
-                                        <svg style="width:16px;height:16px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <span style="display:flex;align-items:center;gap:12px;">
+                                        <svg style="width:18px;height:18px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                             <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
                                             <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-                                        </svg> Select Voice Mode
+                                        </svg> 
+                                        Select Voice
                                     </span>
                                 </div>
                             </div>
 
-                            <div class="dropdown-menu" id="voiceMenu" style="min-width: 220px; left: 45px; bottom: 40px; max-height: 300px; overflow-y: auto;">
+                            <!-- वॉयस सिलेक्शन ड्रॉपडाउन -->
+                            <div class="dropdown-menu" id="voiceMenu" style="min-width: 240px; left: 50px; bottom: 50px; max-height: 320px; overflow-y: auto;">
                                 <div class="dropdown-header">Premium Voices</div>
                                 <div id="voiceOptionsList"></div>
-                                <div style="height:1px; background:var(--border-light); margin:4px 0;"></div>
+                                <div style="height:1px; background:var(--border-light); margin:6px 0;"></div>
                                 <div class="dropdown-header">Language</div>
                                 <div id="languageOptionsList"></div>
                             </div>
 
-                            <div class="dropdown-menu" id="thinkMenu" style="min-width: 180px; left: 45px; bottom: 40px;">
+                            <!-- थिंकिंग मोड ड्रॉपडाउन -->
+                            <div class="dropdown-menu" id="thinkMenu" style="min-width: 200px; left: 50px; bottom: 50px;">
                                 <div class="dropdown-header">Reasoning Effort</div>
                                 <div class="dropdown-item" onclick="ThinkingManager.setEffort('low')">⚡ Low (Fast)</div>
                                 <div class="dropdown-item" onclick="ThinkingManager.setEffort('medium')">🧠 Medium (Balanced)</div>
                                 <div class="dropdown-item" onclick="ThinkingManager.setEffort('high')">🔍 High (Deep logic)</div>
-                                <div style="height:1px; background:var(--border-light); margin:4px 0;"></div>
+                                <div style="height:1px; background:var(--border-light); margin:6px 0;"></div>
                                 <div class="dropdown-item" style="color:var(--brand-danger);" onclick="ThinkingManager.disable()">❌ Disable Thinking</div>
                             </div>
 
+                            <!-- हिडन फाइल इनपुट्स -->
                             <input type="file" id="imgUpload" class="hidden-input" accept="image/*" onchange="FileSys.process(this, 'image')">
                             <input type="file" id="docUpload" class="hidden-input" accept=".pdf,.txt,.docx,.html,.js,.py,.css,.cpp,.c,.json,.md" onchange="FileSys.process(this, 'document')">
                         </div>
 
-                        <button class="tool-btn" id="btnSearch" onclick="SearchManager.toggle()" title="Web Search: OFF">
-                            <svg style="width:22px;height:22px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <!-- वेब सर्च बटन -->
+                        <button class="tool-btn" id="btnSearch" onclick="SearchManager.toggle()" title="Web Search">
+                            <svg style="width:22px;height:22px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
                                 <circle cx="11" cy="11" r="8"></circle>
                                 <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                             </svg>
                         </button>
                     </div>
 
+                    <!-- टेक्स्ट एरिया -->
                     <textarea class="chat-input" id="mainInput" placeholder="Ask CODE VED..." rows="1"></textarea>
 
+                    <!-- वॉयस टाइपिंग बटन -->
                     <button class="tool-btn btn-mic" id="btnStt" onclick="Speech.toggle()" title="Voice Typing">
-                        <svg style="width:22px;height:22px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <svg style="width:22px;height:22px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
                             <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"></path>
                             <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
                             <line x1="12" y1="19" x2="12" y2="23"></line>
@@ -1914,12 +1935,14 @@
                         </svg>
                     </button>
 
+                    <!-- स्टॉप जनरेशन बटन (शुरुआत में छुपा हुआ) -->
                     <button class="btn-stop" id="btnStop" onclick="Chat.stopGeneration()">
                         <svg style="width:18px;height:18px;" viewBox="0 0 24 24" fill="currentColor">
                             <rect x="6" y="6" width="12" height="12" rx="2"></rect>
                         </svg>
                     </button>
 
+                    <!-- सेंड बटन -->
                     <button class="btn-send" id="btnSend" onclick="Chat.handleSend()">
                         <svg style="width:20px;height:20px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                             <line x1="12" y1="19" x2="12" y2="5"></line>
@@ -1931,11 +1954,11 @@
         </div>
     </main>
 
-    <!-- ऑथेंटिकेशन मोडल -->
+    <!-- ऑथेंटिकेशन मोडल (लॉगिन और रजिस्ट्रेशन के लिए) -->
     <div class="auth-overlay" id="authModal" onclick="if(event.target===this) Auth.closeModal()">
         <div class="auth-modal">
             <button class="auth-close" onclick="Auth.closeModal()">
-                <svg style="width:20px;height:20px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <svg style="width:22px;height:22px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <line x1="18" y1="6" x2="6" y2="18"></line>
                     <line x1="6" y1="6" x2="18" y2="18"></line>
                 </svg>
@@ -1947,6 +1970,7 @@
                 <div class="auth-tab" id="tabRegister" onclick="Auth.switchTab('register')">Register</div>
             </div>
             
+            <!-- लॉगिन फ्लो -->
             <div id="flowLogin">
                 <div class="auth-phase active" id="loginPhase1">
                     <input type="email" class="auth-input" id="logEmail" placeholder="Email Address">
@@ -1955,10 +1979,11 @@
                 <div class="auth-phase" id="loginPhase2">
                     <input type="number" class="auth-input" id="logOtp" placeholder="Enter OTP">
                     <button class="auth-btn" id="btnLogVerify" onclick="Auth.process('login_verify')">Verify & Access</button>
-                    <button style="margin-top:12px; font-size:12px; color:var(--text-secondary); width:100%; text-align:center; background:none; border:none; cursor:pointer;" onclick="Auth.switchPhase('loginPhase2', 'loginPhase1')">Back</button>
+                    <button style="margin-top:16px; font-size:13px; font-weight:600; color:var(--text-secondary); width:100%; text-align:center; background:none; border:none; cursor:pointer;" onclick="Auth.switchPhase('loginPhase2', 'loginPhase1')">Back</button>
                 </div>
             </div>
             
+            <!-- रजिस्ट्रेशन फ्लो -->
             <div id="flowRegister" style="display:none;">
                 <div class="auth-phase active" id="regPhase1">
                     <input type="text" class="auth-input" id="regName" placeholder="Full Name">
@@ -1975,7 +2000,7 @@
         </div>
     </div>
 
-    <!-- कस्टम कन्फर्म बॉक्स -->
+    <!-- कस्टम कन्फर्म बॉक्स (अलर्ट्स के लिए) -->
     <div class="custom-confirm-overlay" id="customConfirmOverlay">
         <div class="custom-confirm-box">
             <div class="custom-confirm-msg" id="customConfirmMsg"></div>
@@ -1989,17 +2014,20 @@
     <!-- मुख्य जावास्क्रिप्ट लॉजिक -->
     <script>
         (function() {
-            // कॉन्फ़िगरेशन
+            /**
+             * सिस्टम कॉन्फ़िगरेशन - API Endpoints
+             * ध्यान दें: इन्हें बिल्कुल भी बदला नहीं गया है।
+             */
             const Config = {
                 GAS_URL: "https://script.google.com/macros/s/AKfycbzNO3inVc33ImhfLyde-JjjK9ZlPckLBksqCnCzelfhcklX6mp8KW8vfPTW4oWJTCcN/exec",
                 API_ENDPOINT: "/api/chat",
-                // लोगो को Base64 डेटा-यूआरआई के रूप में इनलाइन रखा गया है ताकि यह Flask के किसी भी
-                // स्टैटिक-फ़ाइल रूट पर निर्भर न हो (पहले "logo.png" एक 404 था क्योंकि सर्वर पर
-                // उसे serve करने वाला कोई रूट रजिस्टर्ड नहीं था, जिससे लोगो कभी दिखता ही नहीं था)।
                 LOGO: "data:image/webp;base64,UklGRngQAABXRUJQVlA4IGwQAACQWgCdASpAAUABPlEokUYjoqGhJDJ4qHAKCWNu4DBns+F/EVjrSh+zk+4R9RfyzWR4//Bh3XP//hlAO+I89uyf2z8I9WxVXm98m/8T+9fkr73P8H7EPuG9wL+Ffyb/f/3TrP/13/ieoD+n/4b/p/3H3u/R9/Xv3A9wD+m/77rFvQA/cD0yf3F+D7+sf7P9uPaI/93sAf/X1AOJU0Mfc5xFtN+ymWkEl5KCraa75Bv271AOiB+7gqyT4a/7bd5MK0Vz2BF/HPf+0eHenyM5HgG6oNwZy7j/QkukOiqCLuzh6j/SFK9Fc+VghhMyuOHyz1H+RRftuL9btmL1G3eahLnulodE91fhr0j6uoD8ohpPSBe/U3fbRa0pHPLGfPuFeI3tIa1IcNFUKvWJGVQHGAl6e/o4jfMGyvTigndfWOE4tSCSmvQU9C8h3Je6ce6OWwT4q/K5sCPY5uC38qmFoH1xWQI8KPhRXhTH+mcJp2iWA81EwNSXWn+6mvEITXX0asRDAZ5Pk+GOIiO+5qAF9FkIYjuZfJtao1wnpsY++BYFcXdnBjcjW12y3mQM4MzBtqMaEsHiLgq0fo0J8+gr3I5Y79RAzarMFQ9fhtB5YiLwLj5OFjVkbQFJaZdKr6SByJ72sAnGFZiH2AlO1x4fbQuEn2zPs0ZCS0i7RIvuP067pTJ87mWOwzqBr1D0zEkwys6iAxgSlxVZazf9HR2EiRatMXGabM4rNri9nXnlsNv5W92HDieYDMqSt1/LboHQQWD80fzVC9htPA0CKP9A9Tq4kk5x7en1zRRIjj+dg2GZja0DXrXaz7XaFbEMiCZhXI+1vXKVyBGCoNl5xuIyGM3NV6FUIUAtQU0SEOV4F1voaL+V/JI5FWpbNDHBYvE+GxQqVahfEK0Vz5IqMxMMQRg6IgmlHJca3HhZNMJiYa/V+WmQa3a58q/j9XosxdlAY1hvY7zUJdIcNgEMLJnEAP7w81z6enC1GoY3//59L/yL/OReQP5mMOvEIYFvavtgWP0ir6ET2EaDgeFlf9V//4eQowVLAW9qu0MTbVGUkVoF7b8OOa0RPolLBqIksyByCZyqcgi+qKKV/KbIo8eOgf/GU/FcohlS3ck9Huos7o59SF7MUgcciPFnPr996An4PP7Qu7hAHtCZ2ncxk6vUQZ7UoMEOTxxzA/Mn+qbXAzEywYP8eDfEUFt8FwCItXjfUefJrArUfQm9M24EzGyzcQoUpU4JVBxHQdemyP0jVxuHd5dv4yBtaDK+tL5Ki6pLn7x2Uh7zwmxKR2HfnaZSGe0LZrl8VXuJ2fBFCnP3GBMi2WURM2E9zatjDQmexuUVgMukaukjCwGAgTiX77U0uGQ2nTlQMnSNYOucrsKJm2V/aA8nZGI9DSbnwGjn2XYoQTJy9BuWIW3x3APbgGM/qF6SmI77SrzeRzohPKBUf+5M40lOebd54Bp7r7WN1gO+a0z09IGVk7FgmdItK1Hl8dkxCvmeDZoWjq1amu/jvvbhhHhcHBXsG3ZqzgVWpdpQH+tmfv3fU6otRMr+PwpC6taPs0fNslHdeNJbY2lhKuJCnjx0ayV+8ga7HTGmzddVZEs/aMX+e9zfUmhk3RK/6ZtRqdXSsYwHf1/HQuUNlsT1T00AiJIqTj3uU7sFuvHsQWsE/MEJrPc+0CHdAXS0tuuDbuyQvN5ZxQcYly/l2iAnkkELaNVsk3YeUnVz6qSSaHz6PbhjUAITOPDa4QHeTp9GceAOV+MyYr8zkvol9EYXcvJLqbf6vi+TrpPXxBzxZN/p7q0tuevG1GO7VvB7iy1PpM9fmgr3e9OjHumy+LCRLegd80O3eIqggzlu/BexD/72jR/+vXtD2R//pZauVznunW2V4YoDuxR0P//0AKJSN/6af6pQDLqs2+39zwoYvB+HyQtgs0Uetrx9WvVhkpH9n9kd5vUg91VefJuiWHjQV7JGeYGdag0aDLo4THXNjphUx8g1KzXUUef05sKbvJ3YMgV3GUD/mDw9cdX8yY8gbTEUHGTdfGcNKyygEP2e4e9nz6IgbAcfSWD5IUxC7cpJVe3goPla/kGxWXN39c8InXYfMOH2MNHbuqTDzV9qdYZlonyhmcW9O5zHMuevL/zgMxAkPo6hnbPYVjPbkTIWAbYQTTT0hM22ZIz3Io/1z4XOE46Et7jX2EJlI4qqGIQGDkIWN3mkp9z9JMA8P9UPLEfeiZt5hSJzlM4WxAl5HKpYLYw8lYbX9wqKRGS2tIm6uDHBMwLgM98DCuLmcai3dh17Iylln4Mr6FIj7dYmIhce1G+0d9Yys+yFU78CuHFcrnL15mQxv3pnBAwyFl47e20Xf4rh8VKm/HSr3FpDfnGoPpGW5YHxUz5XhjEUnfKnT4Sy6uicm/6z/Zqxt5FfVpwDdlO3oO69ujQL8ziKVeC9w1Q75VZY54ScNi5g5jHWoLoJvjSUtY5gMiiMgmTmQZp0AZIVb5kHidFIAKkyggL2Qtu1unWX3IOdYg/wvxh9gGdoF+9ZdJ9E/hP0G9BZqZULm2Jp3BVdRSAepFq54T1cSnDQuF3moJtJJkPpMOpj9pR/R9/h+TEIvxCc6UsBx6Gmx2UAGGKuIHSXfQrCIJoR7e10TVssNHbyZqiln99iCU8pW9jLq96QM4YAEd9PhxviLn8/aKIbnvNl/YTLYPy4YfpwHOt8GmD0D7WUhCDUvOuhB/9QnRJTkiHaTXXWjNNbGuCyKtV0ySOMIp2dmfPgIRrj1+ZaVrw7yKeQsryqveSmCz3O1kbgdbmg3BkPjAo/Lch5r72Xd5uxEWYhdGbP2e7JvpmN0JyHKTiLsSgxgAcc1Jt8cya0lXiryZ9lYCH5MIbLGaiAp9lAqFm85foc9fD5zf+C7cxZE9DdZdCH8q/C0G8brSyAhzLaUf1yqi44/87jvYLrIunCfitc3/e8GqvQwy5F0BJ3hTsAORIhp2iz2HHCN9yTohT3yeC9e56UcL7ug3SCCNWNunU5S3OJkhr2GAw0kK4LuJxDZlqxxgtGrLo3zwDeYss0sDA87VzeJo/+573/thd/o7FrAdu10Po4iCIIaIVqrwV05JWb1gIGU0V+qxhGOuQQ49a+n/lUEAJYywT49wED7l4LPlkGCMCmI1SmhSCSQlcWc4x8btbcVkt19n6ZM4TEjEz0E3W32rqQ/tWRYirCIBzcLsDK08o9ZIjlgdd7rIK1QdvexVNpY4eqOVGH3MhNkmeaDypSI7HIkP7GlvclA9pYtbBD0rha7AEagY7woaVOz3RYTCxG9kUnfCqrWxRMtR/kEBJ6I0FeIWyGin5ofw77CYwF46TTDyi2Ls3m/dWH4SA/eiZIihHaqqzgebYW+I37GIWUHBGSxVLmBPQZ5/0V+S8Nx+p/CdZL0LH76Cp0E7R3ApBwTRZfiC5Luo3i0dDiFsX+xhhAjBfjk0BW1MwZbbpXJkHae7/Gu1JP2R78J9qfCr+LTWGXa7XLWq1DVwY5JaJEWB0ThsyBDFmaoCoKRBRUys1LKLOzzFVEQqO+B6VY7K+EQ+xFSd+Sw1T6IG6yTmCTws1DnK8BKSGR5zLi11BlKdDS1VR7C2fEq7U28r4kJ5DC4kMg79jbJpCbuCF7Ubq9khHkYFDAVBeNPm7QMGHjE44+jQOCKrhC5HSN2B8FpjJwqNNgxqVjQgU7OeE8pttEaKWbqSuBqNkOsiDPWHJP1A1tySRStKPiO1w6dgZrYn1mNZlaznCfFwk18FtRY6ETwNB/Q9QacWkEYHDVfWMzti7CfQNuU5dyXNZdFnbg0sJro5xQFEGdSLXK5xblEJh0+FkApJYNhRGf1/no37TfeR+HWQizVi1n+Q6S/D/It21cWg14FQvsLua+KGhpL8jo3oK1giUelI6bSFfXm6ZBSFuK6V0wo8paeKoS6t/aQaFwPrcdWf5/q5H0K1WHeRVrsZ7ggEPFNPA5MwR+IeBy6L370NIXzZymUAXVgFUdW7Z134eKnNXmhx1T8G5UYxm6jdO+ubZ2+2ycB/DyviUCE/EsFJbae97QBthuykVKPqTD0htgra+FIAvpNpN3qW9vRNxKf/tWfuYa6gUUdQHcgwce7H/KTmQhxQ44vYHn9Aqi+ep+lY1qlXFBldCqwu8jO+fsCBi9Ng4+VkMQcvzjQL4PespVyEDdMXZr5Jd/20Ie1sbJnGgSzmlvBM/bbG4m9oMon+TP3IJ4l4Z24G2qOY0bOXtLY+v/reNMlxdSaVLx78dj8okQBpfRo+3QG6AX+hSnRo8TGwffFp3yS2N6sjp/SugPpwFnl++cQx6jklR9NTUbRnxFyi4er5IPMvIAAZjz6FC8kUX3AaG1UEBJpKb5MEitru8iCMU/XAuZ/0qTnfWeJkfyyyIzxxTsvMS963gMMOa37rX4o6fEX+KYxnu1Jfn07rw/XSl5MGO+ccoBBj8f6mC+3NH3LNh3ozauMep/2tkfsIV3j3n+9MRvQAdRyih0MAjQXIplXXkpo9ikZnvdB9NzL/r893A2QS1Y1xUn4wTWb0b2iyJWAfBcqb6FPfLTBtyyoSHwgG9UtvJT+WyaLB03BEzlZrCXTNmJi9d3CFAhUE8VsBiT8JdfNcmcBs8+mXe38OCyoUXAI5oq5a+N9+//tjPFn4MCUn4VE5+z8kSoAPGcBkE4VUr8WRe8f+UcKnxfSUq4j1r1lrrwcTEbsj3IG10FcIrmtNopSgSs4zjD8hIj2mLxfc/d1sW0DVIfYnhosjc+sbSMATyduc2waAOxWMVaQc/koilAYQ0e2TS6fV9zIDHLMO1Oc/8E3d4BUwW0J1+e4KvdBypuV+FVrhcxMZJmc3lBviJ6iEzVlvn8VwlCvp8E+1TFZQJGrrotwMuqTrBww+Aa2QjDUHTuEdY6LTX5h8ykwGeajr9Nr8aHz/8fbv4b/o01guzBt6/u5vyUAq1s5fo4Yt+1Fy0ofiumKaWW+bhYI60TQbrzp4PI6CX5br5m1rYYzal6IQ55o5od0+EredtI9OPfV62/M4ShJlgTQODZfQz0dqf1OaTHw2fLpoFoHvc67Ny9KDmfROMFlu3WuzFMQA3ZTNaXpKYaoIpxTCBd+YjOu+ne6woMLN97Hr5jqZkJPdJllJAk0sSGlbHUUd4KElUnm7jwzGKN/rFGpvWbrYgqGZHtF7ot6WxvT/79mMDQMDiSmFeLBee6MD5+8TV8HD9q0uZEv87CYFuBL2v4rAsi5sCPjJxWovfAoapowXfTPheMdmFhq+rD5a0f2eLbXrX9O22VsakFzndaq9TxRKST2f783nDIbvWolpsMRc4UYMs3FXm/CCdy+DzisGFXgdOq2Frzi3AxT34U5PdQ48bhiKXURD/aU7KS5Ko0hTSzkvozEPjU42c4s3xIIKt1yUQ7ZRwgk8iD7T4H/emJNNsA0NUIge6Sy5HD6z1CS9BJTP1mgXWTu8MNE/LT/b3I9TDKSfVsYQ9VR52dPBWRricl2LpNeTynaY6j3IVVx8nG3V3Rt8C2U4TCELm5ImVO22NAwBw6r7PxecdaJYUO7V1q+vov9bPRrJtnKaCHAfFnyPQjaXASmqsowtAhyj1YdMYCx9kyB6cZlRAA"
             };
 
-            // ग्लोबल स्टेट मैनेजमेंट
+            /**
+             * ग्लोबल स्टेट मैनेजमेंट (अवस्था का प्रबंधन)
+             * यहाँ हम यूज़र का डेटा, हिस्ट्री, और UI की स्टेट स्टोर करते हैं।
+             */
             const State = {
                 user: localStorage.getItem('codeved_user') || null,
                 name: localStorage.getItem('codeved_name') || null,
@@ -2026,7 +2054,10 @@
                 pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
             }
 
-            // कस्टम कन्फर्म बॉक्स फ़ंक्शन
+            /**
+             * कस्टम कन्फर्मेशन बॉक्स
+             * ब्राउज़र के डिफ़ॉल्ट alert/confirm की जगह हमारा अपना UI बॉक्स।
+             */
             function customConfirm(message) {
                 return new Promise((resolve) => {
                     const overlay = document.getElementById('customConfirmOverlay');
@@ -2043,36 +2074,51 @@
                         okBtn.removeEventListener('click', onOk); 
                     }
                     
-                    function onCancel() { cleanup(); resolve(false); }
-                    function onOk() { cleanup(); resolve(true); }
+                    function onCancel() { 
+                        cleanup(); 
+                        resolve(false); 
+                    }
+                    
+                    function onOk() { 
+                        cleanup(); 
+                        resolve(true); 
+                    }
                     
                     cancelBtn.addEventListener('click', onCancel);
                     okBtn.addEventListener('click', onOk);
                 });
             }
 
-            // UI मैनेजमेंट
+            /**
+             * UI मैनेजमेंट ऑब्जेक्ट
+             * यह सारे UI एलिमेंट्स (स्क्रॉल, टॉगल, मैसेज) को कंट्रोल करता है।
+             */
             const UI = {
                 autoScroll: true,
                 
+                // साइडबार को खोलने/बंद करने के लिए
                 toggleSidebar() {
                     const sb = document.getElementById('sidebar');
                     const overlay = document.getElementById('mobileOverlay');
                     sb.classList.toggle('collapsed');
+                    // मोबाइल पर ओवरले दिखाएँ
                     overlay.classList.toggle('active', !sb.classList.contains('collapsed') && window.innerWidth <= 900);
                 },
                 
+                // अटैचमेंट मेनू को टॉगल करने के लिए
                 toggleAttachMenu() { 
                     document.getElementById('attachMenu').classList.toggle('active'); 
                     document.getElementById('thinkMenu').classList.remove('active'); 
                     document.getElementById('voiceMenu').classList.remove('active'); 
                 },
                 
+                // टेक्स्ट एरिया की ऊंचाई ऑटो-एडजस्ट करने के लिए
                 autoGrow(el) { 
                     el.style.height = 'auto'; 
-                    el.style.height = Math.min(el.scrollHeight, 180) + 'px'; 
+                    el.style.height = Math.min(el.scrollHeight, 200) + 'px'; 
                 },
                 
+                // चैट को सबसे नीचे स्क्रॉल करने के लिए
                 scrollToBottom(force = false) { 
                     const c = document.getElementById('chatContainer'); 
                     if (force || this.autoScroll) { 
@@ -2080,17 +2126,25 @@
                     } 
                 },
                 
+                // HTML एस्केपिंग (XSS से बचने के लिए)
                 escape(s) { 
-                    return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); 
+                    return String(s)
+                        .replace(/&/g, '&amp;')
+                        .replace(/</g, '&lt;')
+                        .replace(/>/g, '&gt;'); 
                 },
                 
+                // ऑथेंटिकेशन मैसेज दिखाने के लिए
                 showAuthMsg(msg, isError = true) {
                     const el = document.getElementById('authMsg'); 
                     el.innerText = msg; 
                     el.style.color = isError ? 'var(--brand-danger)' : 'var(--brand-success)';
-                    setTimeout(() => el.innerText = '', 4000);
+                    setTimeout(() => {
+                        el.innerText = '';
+                    }, 4000);
                 },
                 
+                // यूज़र इन्फो (साइडबार) अपडेट करने के लिए
                 updateUserInfo(name, email) {
                     if (name) { 
                         State.name = name; 
@@ -2100,18 +2154,20 @@
                     document.getElementById('uAv').innerText = dispName.charAt(0).toUpperCase();
                     document.getElementById('uName').innerText = dispName;
                     document.getElementById('uSub').innerText = email;
+                    
                     document.getElementById('btnLogout').style.display = 'flex';
                     document.getElementById('btnDeleteAcc').style.display = 'flex';
                     document.getElementById('btnLoginRegister').style.display = 'none';
                     document.getElementById('welcomeTitle').innerHTML = `Hello, ${dispName}!<br>How can I help you today?`;
                 },
                 
+                // वेलकम स्क्रीन दिखाने/छिपाने के लिए
                 updateWelcomeScreen() { 
                     document.getElementById('welcomeScreen').style.display = State.history.length === 0 ? 'flex' : 'none'; 
                 }
             };
 
-            // स्क्रॉल इवेंट लिसनर
+            // स्क्रॉल इवेंट लिसनर (ऑटो-स्क्रॉल बटन के लिए)
             const chatContainerEl = document.getElementById('chatContainer');
             const scrollBtnEl = document.getElementById('scrollToBottomBtn');
             
@@ -2121,7 +2177,7 @@
                 scrollBtnEl.classList.toggle('visible', !UI.autoScroll);
             });
 
-            // बाहर क्लिक करने पर मेनू बंद करें
+            // बाहर क्लिक करने पर ड्रॉपडाउन मेनू बंद करें
             document.addEventListener('click', (e) => {
                 if (!e.target.closest('.tools-left')) {
                     document.getElementById('attachMenu').classList.remove('active'); 
@@ -2130,7 +2186,7 @@
                 }
             });
 
-            // इनपुट बॉक्स लिसनर्स
+            // इनपुट बॉक्स लिसनर्स (Enter दबाने पर सेंड करना)
             const inp = document.getElementById('mainInput');
             inp.addEventListener('input', function() { 
                 UI.autoGrow(this); 
@@ -2142,8 +2198,11 @@
                 } 
             });
 
-            // ऑथेंटिकेशन लॉजिक
+            /**
+             * ऑथेंटिकेशन (Login/Register) मैनेजमेंट
+             */
             const Auth = {
+                // पेज लोड होने पर इनिशियलाइज़ेशन
                 init() {
                     if (State.user) { 
                         UI.updateUserInfo(State.name, State.user); 
@@ -2159,6 +2218,7 @@
                     }
                 },
                 
+                // लॉगआउट हैंडलर
                 async handleLogout() { 
                     const ok = await customConfirm("Are you sure you want to logout?"); 
                     if (ok) { 
@@ -2168,18 +2228,19 @@
                     } 
                 },
                 
+                // अकाउंट डिलीट हैंडलर
                 async handleDeleteAccount() { 
                     const ok = await customConfirm("Are you sure you want to permanently delete your account and all data?"); 
                     if (ok) { 
-                        try {
+                        try { 
                             await fetch(Config.GAS_URL, { 
                                 method: 'POST', 
-                                headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                                headers: { 'Content-Type': 'text/plain;charset=utf-8' }, 
                                 body: JSON.stringify({ action: "delete_account", email: State.user }) 
-                            });
-                        } catch(e) {
-                            console.error("Account delete error:", e);
-                        } finally {
+                            }); 
+                        } catch(e) { 
+                            console.error("Account delete error:", e); 
+                        } finally { 
                             localStorage.removeItem('codeved_user'); 
                             localStorage.removeItem('codeved_name'); 
                             location.reload(); 
@@ -2187,6 +2248,7 @@
                     } 
                 },
                 
+                // मोडल कंट्रोल
                 openModal() { 
                     document.getElementById('authModal').style.display = 'flex'; 
                 },
@@ -2215,6 +2277,7 @@
                     document.getElementById(to).classList.add('active'); 
                 },
                 
+                // ऑथेंटिकेशन प्रोसेस (OTP भेजना और वेरीफाई करना)
                 async process(action) {
                     let payload = { action: action }; 
                     let btnId = '';
@@ -2224,16 +2287,22 @@
                         payload.email = document.getElementById('regEmail').value.trim();
                         payload.phone = "0000000000"; 
                         payload.organization = "CODE VED";
-                        if (!payload.name || !payload.email) return UI.showAuthMsg("Details missing."); 
+                        if (!payload.name || !payload.email) {
+                            return UI.showAuthMsg("Details missing."); 
+                        }
                         btnId = 'btnRegOtp';
                     } else if (action === 'login_send_otp') {
                         payload.email = document.getElementById('logEmail').value.trim();
-                        if (!payload.email) return UI.showAuthMsg("Email required."); 
+                        if (!payload.email) {
+                            return UI.showAuthMsg("Email required."); 
+                        }
                         btnId = 'btnLogOtp';
                     } else if (action === 'register_verify' || action === 'login_verify') {
                         payload.email = document.getElementById(action === 'register_verify' ? 'regEmail' : 'logEmail').value.trim();
                         payload.otp = document.getElementById(action === 'register_verify' ? 'regOtp' : 'logOtp').value.trim();
-                        if (!payload.otp) return UI.showAuthMsg("OTP required."); 
+                        if (!payload.otp) {
+                            return UI.showAuthMsg("OTP required."); 
+                        }
                         btnId = action === 'register_verify' ? 'btnRegVerify' : 'btnLogVerify';
                     }
                     
@@ -2245,20 +2314,19 @@
                     try {
                         const res = await fetch(Config.GAS_URL, { 
                             method: 'POST', 
-                            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                            headers: { 'Content-Type': 'text/plain;charset=utf-8' }, 
                             body: JSON.stringify(payload) 
                         });
                         
                         const textResponse = await res.text();
                         let data;
-                        try {
-                            data = JSON.parse(textResponse);
-                        } catch (parseErr) {
-                            console.error("Failed to parse GAS response:", textResponse);
-                            UI.showAuthMsg("Invalid response from server. Network error.");
+                        try { 
+                            data = JSON.parse(textResponse); 
+                        } catch (parseErr) { 
+                            UI.showAuthMsg("Network error."); 
                             btn.disabled = false; 
-                            btn.innerText = originalText;
-                            return;
+                            btn.innerText = originalText; 
+                            return; 
                         }
                         
                         if (data.status === 'success') {
@@ -2269,16 +2337,15 @@
                                 Auth.switchPhase('loginPhase1', 'loginPhase2');
                             } else { 
                                 localStorage.setItem('codeved_user', payload.email); 
-                                if (data.user && data.user.name) {
+                                if (data.user && data.user.name) { 
                                     localStorage.setItem('codeved_name', data.user.name); 
-                                }
+                                } 
                                 location.reload(); 
                             }
-                        } else {
-                            UI.showAuthMsg(data.message);
+                        } else { 
+                            UI.showAuthMsg(data.message); 
                         }
                     } catch (e) { 
-                        console.error("Auth process error:", e);
                         UI.showAuthMsg("Network Error. Please try again."); 
                     }
                     
@@ -2287,18 +2354,20 @@
                 }
             };
 
-            // हिस्ट्री मैनेजमेंट
+            /**
+             * चैट हिस्ट्री मैनेजमेंट (GAS बैकएंड के साथ सिंक)
+             */
             const HistoryManager = {
+                // सभी चैट्स को लोड करना
                 async syncAllChats() {
                     if (!State.user) return;
                     try { 
                         const res = await fetch(Config.GAS_URL, { 
                             method: 'POST', 
-                            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                            headers: { 'Content-Type': 'text/plain;charset=utf-8' }, 
                             body: JSON.stringify({ action: "get_all_chats", email: State.user }) 
                         });
-                        const textResponse = await res.text();
-                        const data = JSON.parse(textResponse);
+                        const data = JSON.parse(await res.text());
                         if (data.status === 'success') { 
                             if (data.user) {
                                 UI.updateUserInfo(data.user.name, data.user.email); 
@@ -2306,13 +2375,19 @@
                             this.renderSidebar(data.chats || []); 
                         }
                     } catch (e) {
-                        console.error("History sync error:", e);
+                        console.error("Sync error:", e);
                     }
                 },
                 
+                // साइडबार में चैट्स को रेंडर करना
                 renderSidebar(chats) {
                     const container = document.getElementById('chatHistory'); 
-                    container.innerHTML = `<div class="history-header"><span class="history-title-text">Recent Workspaces</span><span class="btn-clear-all" onclick="HistoryManager.clearAll()">Clear All</span></div>`;
+                    container.innerHTML = `
+                        <div class="history-header">
+                            <span class="history-title-text">Recent Workspaces</span>
+                            <span class="btn-clear-all" onclick="HistoryManager.clearAll()">Clear All</span>
+                        </div>
+                    `;
                     
                     chats.forEach(chat => {
                         const isActive = State.currentThreadId === chat.threadId ? 'active' : '';
@@ -2320,7 +2395,7 @@
                         <div class="history-item ${isActive}" onclick="HistoryManager.loadChat('${chat.threadId}')">
                             <span class="history-text">${UI.escape(chat.title)}</span>
                             <button class="btn-delete-chat" onclick="event.stopPropagation(); HistoryManager.deleteChat('${chat.threadId}')" title="Delete">
-                                <svg style="width:14px;height:14px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <svg style="width:16px;height:16px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <polyline points="3 6 5 6 21 6"></polyline>
                                     <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
                                 </svg>
@@ -2329,6 +2404,7 @@
                     });
                 },
                 
+                // किसी पुरानी चैट को लोड करना
                 async loadChat(threadId) {
                     if (!State.user || State.isProcessing) return;
                     State.currentThreadId = threadId; 
@@ -2337,11 +2413,10 @@
                     try {
                         const res = await fetch(Config.GAS_URL, { 
                             method: 'POST', 
-                            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                            headers: { 'Content-Type': 'text/plain;charset=utf-8' }, 
                             body: JSON.stringify({ action: "get_chat", email: State.user, threadId: threadId }) 
                         });
-                        const textResponse = await res.text();
-                        const data = JSON.parse(textResponse);
+                        const data = JSON.parse(await res.text());
                         
                         if (data.status === 'success') {
                             State.history = JSON.parse(data.historyJSON || "[]"); 
@@ -2350,14 +2425,12 @@
                             for (const msg of State.history) {
                                 if (msg.role === 'user') {
                                     let dispText = msg.content;
+                                    // सिस्टम डेटा (मौसम/लोकेशन) को छिपाएं
                                     if (dispText.includes('[SYSTEM REAL-TIME WEATHER:')) {
                                         dispText = dispText.split('\n\n[SYSTEM REAL-TIME WEATHER:')[0];
                                     }
+                                    // अटैचमेंट का कच्चा टेक्स्ट छिपाएं
                                     if (dispText.includes('---END DATA---')) {
-                                        // पहले हमेशा पहले मिलने वाले "User: " टेक्स्ट पर split करते थे —
-                                        // अगर अटैच की गई फ़ाइल के कंटेंट में ही कहीं "User: " शब्द आ जाता
-                                        // तो गलत हिस्सा दिख जाता था। अब ---END DATA--- मार्कर की सही
-                                        // पोज़िशन के बाद से टेक्स्ट निकालते हैं, इसलिए यह सुरक्षित है।
                                         const afterMarker = dispText.split('---END DATA---')[1] || '';
                                         dispText = afterMarker.replace(/^\s*User:\s*/, '').trim() || '[Attached File]';
                                     }
@@ -2371,13 +2444,16 @@
                             }
                             UI.autoScroll = true; 
                             UI.scrollToBottom();
-                            if (window.innerWidth <= 900) UI.toggleSidebar();
+                            if (window.innerWidth <= 900) {
+                                UI.toggleSidebar();
+                            }
                         }
                     } catch (e) {
                         console.error("Load chat error:", e);
                     }
                 },
                 
+                // नया चैट सेशन शुरू करना
                 startNew() {
                     if (State.isProcessing) return; 
                     State.currentThreadId = null; 
@@ -2387,9 +2463,12 @@
                     UI.updateWelcomeScreen(); 
                     UI.autoScroll = true; 
                     UI.scrollToBottom();
-                    if (window.innerWidth <= 900) UI.toggleSidebar();
+                    if (window.innerWidth <= 900) {
+                        UI.toggleSidebar();
+                    }
                 },
                 
+                // वर्तमान चैट को सेव करना
                 saveCurrent() {
                     if (!State.user || State.history.length === 0) return;
                     if (!State.currentThreadId) { 
@@ -2397,10 +2476,9 @@
                         const firstUser = State.history.find(m => m.role === 'user'); 
                         State.currentTitle = firstUser ? firstUser.content.substring(0, 25) : "New Workspace"; 
                     }
-                    
                     fetch(Config.GAS_URL, { 
                         method: 'POST', 
-                        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                        headers: { 'Content-Type': 'text/plain;charset=utf-8' }, 
                         body: JSON.stringify({ 
                             action: "save_chat", 
                             email: State.user, 
@@ -2408,9 +2486,10 @@
                             title: State.currentTitle, 
                             historyJSON: JSON.stringify(State.history) 
                         }) 
-                    }).catch(e => console.error("Save error:", e)).then(() => this.syncAllChats());
+                    }).then(() => this.syncAllChats());
                 },
                 
+                // सारी चैट हिस्ट्री डिलीट करना
                 async clearAll() { 
                     const ok = await customConfirm("Clear all workspaces?"); 
                     if (ok) { 
@@ -2424,26 +2503,31 @@
                         
                         fetch(Config.GAS_URL, { 
                             method: 'POST', 
-                            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                            headers: { 'Content-Type': 'text/plain;charset=utf-8' }, 
                             body: JSON.stringify({ action: "clear_all_chats", email: State.user }) 
-                        }).catch(e => console.error("Clear error:", e)).then(() => this.syncAllChats()); 
+                        }).then(() => this.syncAllChats()); 
                     } 
                 },
                 
+                // कोई एक चैट डिलीट करना
                 async deleteChat(threadId) { 
                     const ok = await customConfirm("Delete this workspace?"); 
                     if (ok) { 
-                        if (State.currentThreadId === threadId) this.startNew(); 
-                        
+                        if (State.currentThreadId === threadId) {
+                            this.startNew(); 
+                        }
                         fetch(Config.GAS_URL, { 
                             method: 'POST', 
-                            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                            headers: { 'Content-Type': 'text/plain;charset=utf-8' }, 
                             body: JSON.stringify({ action: "delete_chat", email: State.user, threadId: threadId }) 
-                        }).catch(e => console.error("Delete error:", e)).then(() => this.syncAllChats()); 
+                        }).then(() => this.syncAllChats()); 
                     } 
                 }
             };
 
+            /**
+             * एनवायरनमेंट मैनेजर (GPS और मौसम के लिए)
+             */
             const EnvironmentManager = {
                 toggle() {
                     const status = document.getElementById('locStatus'); 
@@ -2461,10 +2545,11 @@
                             navigator.geolocation.getCurrentPosition(pos => {
                                 State.location = { lat: pos.coords.latitude, lng: pos.coords.longitude };
                                 status.innerHTML = `<span style="color:var(--brand-success);">✓ Location active!</span>`; 
-                                setTimeout(() => status.style.display = 'none', 3000);
-                                // असल में मौसम डेटा कभी fetch ही नहीं होता था — State.weatherContext
-                                // हमेशा null रहता था और नीचे इसे इस्तेमाल करने वाला कोड कभी चलता नहीं
-                                // था। यहाँ Open-Meteo के फ़्री, key-रहित API से लाइव मौसम ला रहे हैं।
+                                setTimeout(() => {
+                                    status.style.display = 'none';
+                                }, 3000);
+                                
+                                // Open-Meteo API से रियल-टाइम मौसम प्राप्त करें
                                 fetch(`https://api.open-meteo.com/v1/forecast?latitude=${pos.coords.latitude}&longitude=${pos.coords.longitude}&current=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m`)
                                     .then(r => r.ok ? r.json() : null)
                                     .then(data => {
@@ -2472,26 +2557,41 @@
                                         if (c) {
                                             State.weatherContext = `Temperature: ${c.temperature_2m}°C, Humidity: ${c.relative_humidity_2m}%, Wind: ${c.wind_speed_10m} km/h`;
                                         }
-                                    })
-                                    .catch(() => { /* मौसम वैकल्पिक (optional) है, चुपचाप छोड़ें */ });
+                                    }).catch(() => {
+                                        console.warn("Weather fetch failed, continuing without it.");
+                                    });
                             }, err => { 
                                 status.innerHTML = `<span style="color:var(--brand-danger);">Location denied.</span>`; 
-                                setTimeout(() => status.style.display = 'none', 3000); 
+                                setTimeout(() => {
+                                    status.style.display = 'none';
+                                }, 3000); 
                             });
+                        } else {
+                            status.style.display = 'flex';
+                            status.innerHTML = `<span style="color:var(--brand-danger);">Geolocation not supported.</span>`;
+                            setTimeout(() => {
+                                status.style.display = 'none';
+                            }, 3000);
                         }
                     }
                 }
             };
 
-            const SearchManager = {
+            /**
+             * वेब सर्च मैनेजर
+             */
+            const SearchManager = { 
                 toggle() { 
                     State.searchEnabled = !State.searchEnabled; 
                     const btn = document.getElementById('btnSearch'); 
                     btn.classList.toggle('active-search', State.searchEnabled); 
                     btn.title = State.searchEnabled ? 'Web Search: ON' : 'Web Search: OFF'; 
-                }
+                } 
             };
 
+            /**
+             * थिंकिंग मोड मैनेजर (AI Reasoning/Logic Control)
+             */
             const ThinkingManager = {
                 toggleMenu() { 
                     document.getElementById('thinkMenu').classList.toggle('active'); 
@@ -2511,18 +2611,22 @@
                     ThinkingManager.updateIndicator(); 
                 },
                 
-                updateIndicator() { 
+                updateIndicator() {
                     const btn = document.getElementById('btnAttach'); 
                     btn.classList.remove('active-think-low', 'active-think-medium', 'active-think-high'); 
-                    if (State.thinkingMode) {
+                    
+                    if (State.thinkingMode) { 
                         btn.classList.add(`active-think-${State.thinkingEffort}`); 
-                        btn.title = `Thinking Mode: ${State.thinkingEffort.charAt(0).toUpperCase() + State.thinkingEffort.slice(1)}`;
-                    } else {
-                        btn.title = 'Attach File';
+                        btn.title = `Thinking Mode: ${State.thinkingEffort}`; 
+                    } else { 
+                        btn.title = 'Tools & Attachments'; 
                     }
                 }
             };
 
+            /**
+             * फ़ाइल सिस्टम मैनेजमेंट (Images & Documents Upload)
+             */
             const FileSys = {
                 async process(input, type) {
                     document.getElementById('attachMenu').classList.remove('active'); 
@@ -2543,13 +2647,15 @@
                                 const canvas = document.createElement('canvas'); 
                                 const ctx = canvas.getContext('2d');
                                 let w = img.width, h = img.height; 
-                                const max = 1024;
+                                const max = 1024; // इमेज को 1024px तक सीमित करें
                                 
                                 if(w > max || h > max) { 
                                     if(w > h) { 
-                                        h = (max/w)*h; w = max; 
+                                        h = (max/w)*h; 
+                                        w = max; 
                                     } else { 
-                                        w = (max/h)*w; h = max; 
+                                        w = (max/h)*w; 
+                                        h = max; 
                                     } 
                                 }
                                 
@@ -2598,7 +2704,7 @@
                             reader.readAsText(file); 
                         }
                     }
-                    input.value = '';
+                    input.value = ''; // इनपुट रीसेट करें
                 },
                 
                 discard() { 
@@ -2607,13 +2713,19 @@
                 }
             };
 
+            /**
+             * स्पीच टू टेक्स्ट (Voice Typing)
+             */
             const Speech = {
                 rec: null, 
                 isRec: false,
                 
                 init() {
                     const SR = window.SpeechRecognition || window.webkitSpeechRecognition; 
-                    if (!SR) return;
+                    if (!SR) {
+                        alert("Voice typing is not supported in this browser.");
+                        return;
+                    }
                     
                     this.rec = new SR(); 
                     this.rec.continuous = false; 
@@ -2626,9 +2738,9 @@
                     };
                     
                     this.rec.onresult = (e) => {
-                        if (!e.results || !e.results.length) return;
+                        if (!e.results || !e.results.length) return; 
                         let trans = ''; 
-                        for (let i = e.resultIndex; i < e.results.length; ++i) {
+                        for (let i = e.resultIndex; i < e.results.length; ++i) { 
                             if (e.results[i].isFinal && e.results[i][0]) {
                                 trans += e.results[i][0].transcript;
                             }
@@ -2648,10 +2760,12 @@
                     if (!this.rec) this.init(); 
                     if (this.isRec) {
                         this.stop(); 
-                    } else { 
+                    } else {
                         try { 
                             this.rec.start(); 
-                        } catch(e) {} 
+                        } catch(e) {
+                            console.error("Speech error:", e);
+                        } 
                     } 
                 },
                 
@@ -2662,6 +2776,9 @@
                 }
             };
 
+            /**
+             * मार्कडाउन रेंडरिंग (Marked.js, Highlight.js)
+             */
             const renderer = {
                 code(code, lang) {
                     const language = (lang || '').match(/\S*/)?.[0];
@@ -2678,46 +2795,50 @@
             };
             marked.use({ renderer, gfm: true, breaks: true, pedantic: false });
 
+            // मेरमेड डायग्राम्स इनिशियलाइज़ेशन
             function initMermaid() { 
-                if (typeof mermaid !== 'undefined') {
+                if (typeof mermaid !== 'undefined') { 
                     mermaid.initialize({ startOnLoad: false, theme: 'default' }); 
-                }
+                } 
             }
             
             function renderMermaid(container) {
-                if (typeof mermaid === 'undefined') return;
-                const diagrams = container.querySelectorAll('.mermaid');
+                if (typeof mermaid === 'undefined') return; 
+                const diagrams = container.querySelectorAll('.mermaid'); 
                 if (diagrams.length === 0) return;
                 try { 
                     mermaid.run({ nodes: diagrams }); 
-                } catch (e) { 
-                    console.warn('Mermaid render error:', e); 
+                } catch (e) {
+                    console.warn("Mermaid error:", e);
                 }
             }
             
-            // कोड ब्लॉक्स में "Copy" बटन जोड़ें — पहले किसी भी कोड आउटपुट में कॉपी करने का कोई तरीका
-            // नहीं था, यूज़र को टेक्स्ट को मैन्युअली सेलेक्ट करना पड़ता था।
+            // कॉपी बटन्स (SVG आइकॉन्स)
             const copyGlyph = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>`;
             const checkGlyph = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>`;
 
+            // कोड ब्लॉक्स में कॉपी बटन जोड़ना
             function addCodeCopyButtons(container) {
                 const blocks = container.querySelectorAll('pre:not(.mermaid)');
                 blocks.forEach(pre => {
-                    if (pre.querySelector('.code-copy-btn')) return; // डबल-ऐड से बचें
-                    const codeEl = pre.querySelector('code');
+                    if (pre.querySelector('.code-copy-btn')) return; // पहले से है तो मत जोड़ें
+                    
+                    const codeEl = pre.querySelector('code'); 
                     if (!codeEl) return;
-                    const btn = document.createElement('button');
-                    btn.type = 'button';
+                    
+                    const btn = document.createElement('button'); 
+                    btn.type = 'button'; 
                     btn.className = 'code-copy-btn';
                     btn.innerHTML = `${copyGlyph}<span>Copy</span>`;
+                    
                     btn.onclick = (e) => {
                         e.stopPropagation();
                         navigator.clipboard.writeText(codeEl.innerText).then(() => {
-                            btn.innerHTML = `${checkGlyph}<span>Copied!</span>`;
+                            btn.innerHTML = `${checkGlyph}<span>Copied!</span>`; 
                             btn.classList.add('copied');
-                            setTimeout(() => {
-                                btn.innerHTML = `${copyGlyph}<span>Copy</span>`;
-                                btn.classList.remove('copied');
+                            setTimeout(() => { 
+                                btn.innerHTML = `${copyGlyph}<span>Copy</span>`; 
+                                btn.classList.remove('copied'); 
                             }, 1500);
                         });
                     };
@@ -2725,17 +2846,31 @@
                 });
             }
 
+            /**
+             * UI रेंडरिंग (MathJax और Mermaid के लिए)
+             * यहाँ MathJax के बग को फिक्स किया गया है।
+             */
             function runRendering(container, isProcessing) {
-                if (isProcessing) return; // पूर्ण होने तक भारी रेंडरिंग टालें (streaming के दौरान अधूरे डायग्राम/मैथ ब्लॉक्स को बार-बार पार्स करने से बचाव)
-                if (window.MathJax) {
+                if (isProcessing) return; // जनरेशन के बीच में भारी रेंडरिंग न करें
+                
+                // BUG FIX: सुरक्षित MathJax रेंडरिंग (बिना कंसोल एरर के)
+                if (window.MathJax && window.MathJax.typesetPromise) {
                     try { 
                         MathJax.typesetClear([container]); 
-                        MathJax.typesetPromise([container]).catch(console.error); 
-                    } catch (e) {}
+                        MathJax.typesetPromise([container]).catch(function(err) {
+                            console.warn('MathJax typesetting warning:', err);
+                        }); 
+                    } catch (e) {
+                        console.error('MathJax synchronous error:', e);
+                    }
                 }
+                
                 renderMermaid(container);
             }
 
+            /**
+             * टेक्स्ट टू स्पीच (TTS) मैनेजमेंट
+             */
             const TTSManager = {
                 cache: {}, 
                 currentAudio: null, 
@@ -2767,7 +2902,7 @@
                     
                     for (const [code, name] of Object.entries(this.voiceMap)) {
                         const isSelected = code === this.selectedVoice ? 'selected' : '';
-                        const checkIcon = isSelected ? `<svg style="width:16px;height:16px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>` : `<div></div>`;
+                        const checkIcon = isSelected ? `<svg style="width:18px;height:18px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>` : `<div></div>`;
                         list.innerHTML += `<div class="dropdown-item ${isSelected}" onclick="TTSManager.setVoice('${code}')"><span>${name}</span>${checkIcon}</div>`;
                     }
                     
@@ -2776,15 +2911,9 @@
                     
                     for (const [name, code] of Object.entries(this.languageMap)) {
                         const isSelected = name === this.selectedLanguage ? 'selected' : '';
-                        const checkIcon = isSelected ? `<svg style="width:16px;height:16px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>` : `<div></div>`;
+                        const checkIcon = isSelected ? `<svg style="width:18px;height:18px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>` : `<div></div>`;
                         langList.innerHTML += `<div class="dropdown-item ${isSelected}" onclick="TTSManager.setLanguage('${name}')"><span>${name}</span>${checkIcon}</div>`;
                     }
-                },
-                
-                toggleMenu() { 
-                    document.getElementById('voiceMenu').classList.toggle('active'); 
-                    document.getElementById('attachMenu').classList.remove('active'); 
-                    document.getElementById('thinkMenu').classList.remove('active'); 
                 },
                 
                 setVoice(code) { 
@@ -2803,6 +2932,7 @@
                     document.getElementById('voiceMenu').classList.remove('active'); 
                 },
                 
+                // TTS के लिए टेक्स्ट को साफ करना
                 cleanTextForTTS(text) {
                     let cleaned = text.replace(/\u0060{3}[\s\S]*?\u0060{3}/g, '')
                                       .replace(/\u0060[^\u0060]*\u0060/g, '')
@@ -2834,9 +2964,9 @@
                         return; 
                     }
                     
-                    this.preparingSet.add(msgId);
+                    this.preparingSet.add(msgId); 
                     btnElement.style.display = 'flex'; 
-                    btnElement.innerHTML = `<svg class="spin-icon" style="width:14px;height:14px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="2" x2="12" y2="6"></line><line x1="12" y1="18" x2="12" y2="22"></line><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"></line><line x1="2" y1="12" x2="6" y2="12"></line><line x1="18" y1="12" x2="22" y2="12"></line><line x1="4.93" y1="19.07" x2="7.76" y2="16.24"></line><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line></svg> Preparing...`;
+                    btnElement.innerHTML = `<svg class="spin-icon" style="width:16px;height:16px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="2" x2="12" y2="6"></line><line x1="12" y1="18" x2="12" y2="22"></line><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"></line><line x1="2" y1="12" x2="6" y2="12"></line><line x1="18" y1="12" x2="22" y2="12"></line><line x1="4.93" y1="19.07" x2="7.76" y2="16.24"></line><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line></svg> Preparing...`;
                     btnElement.style.pointerEvents = 'none';
                     
                     try {
@@ -2855,11 +2985,13 @@
                         const blob = await response.blob(); 
                         this.cache[msgId] = URL.createObjectURL(blob);
                         
-                        btnElement.innerHTML = `<svg style="width:14px;height:14px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg> Listen`;
+                        btnElement.innerHTML = `<svg style="width:16px;height:16px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg> Listen`;
                         btnElement.style.pointerEvents = 'auto';
                     } catch(e) { 
                         btnElement.innerHTML = `<span style="color:var(--brand-danger);">⚠️ ${e.message}</span>`; 
-                        setTimeout(() => { btnElement.style.display = 'none'; }, 4000); 
+                        setTimeout(() => { 
+                            btnElement.style.display = 'none'; 
+                        }, 4000); 
                     } finally { 
                         this.preparingSet.delete(msgId); 
                     }
@@ -2879,7 +3011,7 @@
                         }
                         this.isPlaying = false; 
                         this.currentMsgId = null;
-                        btnElement.innerHTML = `<svg style="width:14px;height:14px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg> Listen`;
+                        btnElement.innerHTML = `<svg style="width:16px;height:16px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg> Listen`;
                         btnElement.style.background = ''; 
                         return;
                     }
@@ -2894,8 +3026,8 @@
                     this.currentBtnElement = btnElement;
                     
                     const originalHTML = btnElement.innerHTML;
-                    btnElement.innerHTML = `<svg style="width:14px;height:14px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg> Playing...`;
-                    btnElement.style.background = 'rgba(211, 227, 253, 0.9)';
+                    btnElement.innerHTML = `<svg style="width:16px;height:16px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg> Playing...`;
+                    btnElement.style.background = 'rgba(16, 185, 129, 0.15)';
                     
                     this.currentAudio = new Audio(audioUrl); 
                     this.currentAudio.playbackRate = 1.15;
@@ -2918,23 +3050,36 @@
                 }
             };
 
+            /**
+             * मुख्य चैट हैंडलर (मैसेज भेजना और प्राप्त करना)
+             */
             const Chat = {
+                // यूज़र का मैसेज UI में रेंडर करना
                 renderUser(txt, attachUI = '') {
                     const c = document.getElementById('chatMessages'); 
                     const w = document.createElement('div'); 
                     w.className = 'message-wrapper';
-                    w.innerHTML = `<div class="user-message">${attachUI}${txt ? UI.escape(txt) : ''}</div>`;
+                    
+                    w.innerHTML = `
+                        <div class="user-message">
+                            ${attachUI}
+                            ${txt ? UI.escape(txt) : ''}
+                        </div>
+                    `;
+                    
                     c.appendChild(w); 
                     UI.autoScroll = true; 
                     UI.scrollToBottom(true);
                 },
                 
+                // AI का खाली मैसेज बॉक्स तैयार करना
                 renderBot(msgId) {
                     const c = document.getElementById('chatMessages'); 
                     const w = document.createElement('div'); 
                     w.className = 'message-wrapper';
-                    const listenIcon = `<svg style="width:14px;height:14px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>`;
-                    const copyIcon = `<svg style="width:14px;height:14px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>`;
+                    
+                    const listenIcon = `<svg style="width:16px;height:16px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>`;
+                    const copyIcon = `<svg style="width:16px;height:16px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>`;
                     
                     w.innerHTML = `
                     <div class="bot-message">
@@ -2957,50 +3102,51 @@
                     };
                 },
                 
+                // मैथ इक्वेशन्स को सुरक्षित (escape) करना
                 preprocessMath(text) {
-                    let mathBlocks = {};
+                    let mathBlocks = {}; 
                     let mathCounter = 0;
                     
-                    function replacer(match) {
-                        // Changed placeholder to completely avoid underscores or any special markdown characters
-                        const id = `MATHBLOCKPLACEHOLDER${mathCounter}ENDPLACEHOLDER`;
-                        mathBlocks[id] = match;
-                        mathCounter++;
-                        return id;
+                    function replacer(match) { 
+                        const id = `MATHBLOCKPLACEHOLDER${mathCounter}ENDPLACEHOLDER`; 
+                        mathBlocks[id] = match; 
+                        mathCounter++; 
+                        return id; 
                     }
                     
-                    text = text.replace(/\$\$([\s\S]+?)\$\$/g, replacer);
-                    text = text.replace(/\\\[([\s\S]+?)\\\]/g, replacer);
-                    text = text.replace(/\$((?:\\.|[^$\\])+?)\$/g, replacer);
+                    text = text.replace(/\$\$([\s\S]+?)\$\$/g, replacer); 
+                    text = text.replace(/\\\[([\s\S]+?)\\\]/g, replacer); 
+                    text = text.replace(/\$((?:\\.|[^$\\])+?)\$/g, replacer); 
                     text = text.replace(/\\\(([\s\S]+?)\\\)/g, replacer);
                     
                     return { text, mathBlocks };
                 },
                 
-                postprocessMath(html, mathBlocks) {
-                    for (const [id, mathStr] of Object.entries(mathBlocks)) {
-                        // Using split.join to ensure global replace regardless of markdown alterations
-                        html = html.split(id).join(mathStr);
-                    }
-                    return html;
+                // मार्कडाउन के बाद मैथ इक्वेशन्स वापस लाना
+                postprocessMath(html, mathBlocks) { 
+                    for (const [id, mathStr] of Object.entries(mathBlocks)) { 
+                        html = html.split(id).join(mathStr); 
+                    } 
+                    return html; 
                 },
                 
+                // मार्कडाउन और थिंकिंग (Reasoning) टैग्स को पार्स करना
                 parseAndRender(fullText, isProcessing, container) {
                     let normalizedText = fullText
                         .replace(/<\|channel\|>thought\s*<\|channel\|>/gi, "<think>\n")
                         .replace(/<\|channel\|>answer\s*<\|channel\|>/gi, "\n</think>\n")
                         .replace(/<\|im_start\|>thought/gi, "<think>\n")
                         .replace(/<\|im_end\|>/gi, "\n</think>\n");
-
-                    const thinkRegex = /<think>([\s\S]*?)(?:<\/think>|$)/i;
+                        
+                    const thinkRegex = /<think>([\s\S]*?)(?:<\/think>|$)/i; 
                     const thinkMatch = normalizedText.match(thinkRegex);
                     let finalHtml = '';
-
+                    
                     if (thinkMatch) {
                         finalHtml += `
                         <details class="qwen-think-box" ${isProcessing ? 'open' : ''}>
                             <summary>
-                                <svg class="arrow" style="width:14px;height:14px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <svg class="arrow" style="width:16px;height:16px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <polyline points="9 18 15 12 9 6"></polyline>
                                 </svg> 
                                 Thinking Process
@@ -3008,28 +3154,29 @@
                             <div class="qwen-think-content">${marked.parse(thinkMatch[1].trim())}</div>
                         </details>`;
                     }
-
+                    
                     let mainText = normalizedText.replace(thinkRegex, '').trim();
-
+                    
                     if (mainText) {
-                        const { text: safeText, mathBlocks } = Chat.preprocessMath(mainText);
+                        const { text: safeText, mathBlocks } = Chat.preprocessMath(mainText); 
                         let parsedHtml = marked.parse(safeText);
-                        parsedHtml = Chat.postprocessMath(parsedHtml, mathBlocks);
+                        parsedHtml = Chat.postprocessMath(parsedHtml, mathBlocks); 
                         finalHtml += `<div class="tex2jax_process">${parsedHtml}</div>`;
                     }
-
+                    
                     if (isProcessing) {
                         finalHtml += `<span class="blinking-cursor"></span>`;
                     }
                     
-                    container.innerHTML = finalHtml;
-                    addCodeCopyButtons(container);
+                    container.innerHTML = finalHtml; 
+                    addCodeCopyButtons(container); 
                     runRendering(container, isProcessing);
                 },
                 
+                // मैसेज कॉपी करने का फंक्शन
                 copyMsg(id) {
-                    const el = document.getElementById(`bot-content-${id}`);
-                    const clone = el.cloneNode(true);
+                    const el = document.getElementById(`bot-content-${id}`); 
+                    const clone = el.cloneNode(true); 
                     const thinkBox = clone.querySelector('.qwen-think-box');
                     
                     if (thinkBox) {
@@ -3037,13 +3184,16 @@
                     }
                     
                     navigator.clipboard.writeText(clone.innerText).then(() => {
-                        const btn = el.parentElement.querySelector('.action-btn:not(.listen-btn)');
+                        const btn = el.parentElement.querySelector('.action-btn:not(.listen-btn)'); 
                         const original = btn.innerHTML;
-                        btn.innerHTML = `<svg style="width:14px;height:14px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Copied!`;
-                        setTimeout(() => btn.innerHTML = original, 1500);
+                        btn.innerHTML = `<svg style="width:16px;height:16px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Copied!`;
+                        setTimeout(() => {
+                            btn.innerHTML = original;
+                        }, 1500);
                     });
                 },
                 
+                // जनरेशन बीच में रोकना
                 stopGeneration() {
                     if (State.abortController) { 
                         State.abortController.abort(); 
@@ -3055,6 +3205,7 @@
                     document.getElementById('btnStop').classList.remove('active');
                 },
                 
+                // मैसेज भेजने का मुख्य फंक्शन (API कॉल)
                 async handleSend() {
                     if(State.isProcessing) return;
                     
@@ -3081,6 +3232,7 @@
                     State.isProcessing = true; 
                     document.getElementById('btnSend').style.display = 'none'; 
                     document.getElementById('btnStop').classList.add('active');
+                    
                     State.lastUserMessage = text; 
                     input.value = ''; 
                     input.style.height = 'auto'; 
@@ -3091,10 +3243,21 @@
                     if(State.attachment) {
                         if(State.attachment.type === 'text') {
                             payloadStr = `[File attached: ${State.attachment.name}]\n\n---DATA---\n${State.attachment.data}\n---END DATA---\n\nUser: ${text}`;
-                            attachUI = `<div class="chat-attachment-container"><div class="chat-file-pill"><svg style="width:14px;height:14px;color:var(--text-secondary);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path></svg> ${State.attachment.name}</div></div>`;
+                            attachUI = `
+                            <div class="chat-attachment-container">
+                                <div class="chat-file-pill">
+                                    <svg style="width:16px;height:16px;color:var(--brand-color);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                    </svg> 
+                                    ${State.attachment.name}
+                                </div>
+                            </div>`;
                         } else {
                             mediaArray.push(State.attachment); 
-                            attachUI = `<div class="chat-attachment-container"><img src="data:image/jpeg;base64,${State.attachment.data}" class="chat-img-preview"></div>`;
+                            attachUI = `
+                            <div class="chat-attachment-container">
+                                <img src="data:image/jpeg;base64,${State.attachment.data}" class="chat-img-preview">
+                            </div>`;
                         }
                     }
                     
@@ -3103,15 +3266,15 @@
                         systemInjectedPayload = `${payloadStr}\n\n[SYSTEM REAL-TIME WEATHER: ${State.weatherContext}]`;
                     }
                     
-                    Chat.renderUser(text, attachUI);
+                    Chat.renderUser(text, attachUI); 
                     State.history.push({ role: 'user', content: payloadStr }); 
                     FileSys.discard();
                     
                     const msgId = Date.now().toString(); 
-                    const botObj = Chat.renderBot(msgId);
+                    const botObj = Chat.renderBot(msgId); 
                     Chat.parseAndRender("", true, botObj.contentDiv);
                     
-                    State.abortController = new AbortController();
+                    State.abortController = new AbortController(); 
                     let fullText = "";
                     
                     try {
@@ -3145,16 +3308,16 @@
                         let buffer = '';
                         
                         while(true) {
-                            const {done, value} = await reader.read();
+                            const {done, value} = await reader.read(); 
                             if(done) break;
                             
-                            buffer += decoder.decode(value, {stream: true});
+                            buffer += decoder.decode(value, {stream: true}); 
                             const lines = buffer.split('\n'); 
                             buffer = lines.pop();
                             
                             for(let line of lines) {
                                 if(line.startsWith('data: ')) {
-                                    const dataStr = line.substring(6).trim();
+                                    const dataStr = line.substring(6).trim(); 
                                     if(dataStr === '[DONE]') continue;
                                     
                                     try {
@@ -3166,15 +3329,17 @@
                                         if(json.choices && json.choices[0] && json.choices[0].delta && json.choices[0].delta.content) {
                                             fullText += json.choices[0].delta.content;
                                         }
-                                    } catch(e) {}
+                                    } catch(e) {
+                                        // Ignore parse errors on partial streams
+                                    }
                                     
                                     Chat.parseAndRender(fullText, true, botObj.contentDiv);
                                 }
                             }
                         }
                         
-                        Chat.parseAndRender(fullText, false, botObj.contentDiv);
-                        State.history.push({ role: 'assistant', content: fullText });
+                        Chat.parseAndRender(fullText, false, botObj.contentDiv); 
+                        State.history.push({ role: 'assistant', content: fullText }); 
                         HistoryManager.saveCurrent();
                         
                     } catch(e) {
@@ -3184,8 +3349,8 @@
                                 State.history.push({ role: 'assistant', content: fullText }); 
                                 HistoryManager.saveCurrent(); 
                             }
-                        } else {
-                            botObj.contentDiv.innerHTML += `<br><span style="color:var(--brand-danger);">⚠️ ${UI.escape(e.message || 'Connection Offline.')}</span>`;
+                        } else { 
+                            botObj.contentDiv.innerHTML += `<br><span style="color:var(--brand-danger);">⚠️ ${UI.escape(e.message || 'Connection Offline.')}</span>`; 
                         }
                     } finally {
                         State.isProcessing = false; 
@@ -3193,7 +3358,10 @@
                         document.getElementById('btnSend').style.display = 'flex'; 
                         document.getElementById('btnStop').classList.remove('active');
                         
-                        if (UI.autoScroll) UI.scrollToBottom();
+                        if (UI.autoScroll) {
+                            UI.scrollToBottom();
+                        }
+                        
                         if(botObj.listenBtn && fullText.trim().length > 0) {
                             TTSManager.autoPrepare(msgId, fullText, botObj.listenBtn);
                         }
@@ -3201,32 +3369,33 @@
                 }
             };
 
-            // ग्लोबल स्कोप में एक्सपोज़ करें
+            // ग्लोबल स्कोप में एक्सपोज़ करें (HTML इनलाइन इवेंट्स के लिए)
             window.UI = UI; 
             window.Auth = Auth; 
             window.HistoryManager = HistoryManager; 
             window.EnvironmentManager = EnvironmentManager; 
-            window.SearchManager = SearchManager;
+            window.SearchManager = SearchManager; 
             window.ThinkingManager = ThinkingManager; 
             window.FileSys = FileSys; 
             window.Speech = Speech; 
             window.TTSManager = TTSManager; 
             window.Chat = Chat;
-
+            
             // मेरमेड इनिशियलाइज़ करें
             initMermaid();
             
-            // लोगो को हर जगह इनलाइन कर दें (favicon, वेलकम स्क्रीन, साइडबार) —
-            // यह इमेज को किसी बैकएंड रूट पर निर्भर नहीं होने देता, इसलिए तुरंत दिखेगा
-            document.getElementById('faviconLink').href = Config.LOGO;
-            document.getElementById('welcomeLogoImg').src = Config.LOGO;
+            // लोगो को हर जगह इनलाइन कर दें
+            document.getElementById('faviconLink').href = Config.LOGO; 
+            document.getElementById('welcomeLogoImg').src = Config.LOGO; 
             document.getElementById('sidebarLogoImg').src = Config.LOGO;
-
+            
             // विंडो लोड होने पर इनिशियलाइज़ेशन
             window.onload = () => { 
                 Auth.init(); 
                 TTSManager.initUI(); 
                 UI.updateWelcomeScreen(); 
+                
+                // डेस्कटॉप पर साइडबार डिफ़ॉल्ट रूप से खुला रखें
                 if(window.innerWidth > 900) {
                     document.getElementById('sidebar').classList.remove('collapsed'); 
                 }
