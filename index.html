@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<html 
-    lang="en"
->
+<html lang="en">
 <head>
     <!-- 
         ================================================================================
@@ -9,162 +7,81 @@
         यहाँ पर हम ब्राउज़र और मोबाइल डिवाइस के लिए सेटिंग्स कर रहे हैं।
         ================================================================================
     -->
-    <meta 
-        charset="UTF-8"
-    >
-    <meta 
-        name="viewport" 
-        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
-    >
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     
-    <title>
-        CODE VED | Engineered by Divy Patel
-    </title>
+    <title>CODE VED | Engineered by Divy Patel</title>
     
     <!-- 
         ================================================================================
         FAVICON LINK
-        वेबसाइट के टैब पर जो आइकन दिखता है, उसे हम डायनामिकली सेट करेंगे।
         ================================================================================
     -->
-    <link 
-        rel="icon" 
-        type="image/webp" 
-        id="faviconLink"
-    >
+    <link rel="icon" type="image/webp" id="faviconLink">
 
     <!-- 
         ================================================================================
         GOOGLE FONTS
-        - 'Inter': एंथ्रोपिक, एप्पल और Qwen Studio जैसा पतला, शार्प और सुकून देने वाला फॉन्ट।
-        - 'JetBrains Mono': कोडिंग ब्लॉक्स के लिए सबसे बेहतरीन और क्लियर फॉन्ट।
         ================================================================================
     -->
-    <link 
-        rel="preconnect" 
-        href="https://fonts.googleapis.com"
-    >
-    <link 
-        rel="preconnect" 
-        href="https://fonts.gstatic.com" 
-        crossorigin
-    >
-    <link 
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" 
-        rel="stylesheet"
-    >
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
     <!-- 
         ================================================================================
         HIGHLIGHT.JS STYLESHEET
-        कोड ब्लॉक्स को डार्क थीम में सिंटैक्स हाईलाइटिंग देने के लिए।
         ================================================================================
     -->
-    <link 
-        rel="stylesheet" 
-        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css"
-    >
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
     
     <!-- 
         ================================================================================
         EXTERNAL JAVASCRIPT LIBRARIES
-        ये सारी लाइब्रेरीज़ AI के अलग-अलग फीचर्स (PDF, Markdown, Diagrams) को चलाने के लिए हैं।
         ================================================================================
     -->
-    <script 
-        src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"
-    ></script>
-    <script 
-        src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"
-    ></script>
-    <script 
-        src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"
-    ></script>
-    <script 
-        src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.1/marked.min.js"
-    ></script>
-    <script 
-        src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"
-    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.1/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
 
     <!-- 
         ================================================================================
         MATHJAX CONFIGURATION
-        गणित और साइंस के फॉर्मूलों को बिना किसी एरर के रेंडर करने का फुल प्रूफ सेटअप।
         ================================================================================
     -->
     <script>
         window.MathJax = {
             tex: {
-                inlineMath: [
-                    ['$', '$'], 
-                    ['\\(', '\\)']
-                ],
-                displayMath: [
-                    ['$$', '$$'], 
-                    ['\\[', '\\]']
-                ],
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
                 processEscapes: true,
-                packages: {
-                    '[+]': [
-                        'mhchem', 
-                        'physics', 
-                        'cancel', 
-                        'color', 
-                        'amsmath', 
-                        'amssymb', 
-                        'boldsymbol'
-                    ]
-                }
+                packages: { '[+]': ['mhchem', 'physics', 'cancel', 'color', 'amsmath', 'amssymb', 'boldsymbol'] }
             },
             loader: {
-                load: [
-                    '[tex]/mhchem', 
-                    '[tex]/physics', 
-                    '[tex]/cancel', 
-                    '[tex]/color', 
-                    '[tex]/amsmath', 
-                    '[tex]/amssymb', 
-                    '[tex]/boldsymbol'
-                ]
+                load: ['[tex]/mhchem', '[tex]/physics', '[tex]/cancel', '[tex]/color', '[tex]/amsmath', '[tex]/amssymb', '[tex]/boldsymbol']
             },
             options: {
-                skipHtmlTags: [
-                    'script', 
-                    'noscript', 
-                    'style', 
-                    'textarea', 
-                    'pre', 
-                    'code'
-                ],
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
                 ignoreHtmlClass: 'tex2jax_ignore',
                 processHtmlClass: 'tex2jax_process'
             },
-            startup: {
-                typeset: false
-            }
+            startup: { typeset: false }
         };
     </script>
-    <script 
-        id="MathJax-script" 
-        async 
-        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
-    ></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
     <!-- 
         ================================================================================
         MEGA CASCADING STYLE SHEETS (CSS)
-        यहाँ हर एक प्रॉपर्टी को नई लाइन में लिखा गया है ताकि कोड की लेंथ और डिटेलिंग अधिकतम हो।
+        Anthropic-like Clean, Professional & Responsive Design
         ================================================================================
     -->
     <style>
-        /*
-         * CSS VARIABLES (ROOT)
-         * सारे मुख्य रंग, बॉर्डर और फॉन्ट यहाँ डिफाइन किए गए हैं।
-         */
         :root {
             --bg-main: #ffffff;
-            --bg-sidebar: rgba(249, 250, 251, 0.85);
+            --bg-sidebar: rgba(249, 250, 251, 0.9);
             --bg-user-msg: #f4f4f5;
             
             --text-primary: #18181b;
@@ -172,6 +89,7 @@
             --text-tertiary: #a1a1aa;
             
             --border-light: rgba(0, 0, 0, 0.08);
+            --border-focus: rgba(0, 0, 0, 0.15);
             
             --brand-color: #18181b;
             --brand-accent: #0f9e78;
@@ -183,61 +101,37 @@
             --font-ui: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             --font-code: 'JetBrains Mono', monospace;
             
-            --radius-sm: 10px;
-            --radius-md: 14px;
-            --radius-lg: 24px;
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 20px; /* Anthropic-like softer corners */
             
-            --transition-default: 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+            --transition-default: 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
 
-        /*
-         * GLOBAL RESET
-         * सभी एलिमेंट्स के मार्जिन और पैडिंग को शून्य करना।
-         * और सबसे महत्वपूर्ण: टेक्स्ट सिलेक्शन को रोकना।
-         */
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            
-            /* सिलेक्शन डिसेबल (ऐप फीलिंग के लिए) */
             -webkit-user-select: none;
             -moz-user-select: none;
             -ms-user-select: none;
             user-select: none;
-            
-            /* मोबाइल लॉन्ग-प्रेस डिसेबल */
             -webkit-touch-callout: none;
         }
 
-        /*
-         * OVERRIDE SELECTION FOR INPUTS
-         * केवल इनपुट फील्ड्स में टेक्स्ट सेलेक्ट करने की अनुमति।
-         */
-        input, 
-        textarea, 
-        [contenteditable="true"], 
-        code, 
-        pre {
+        input, textarea, [contenteditable="true"], code, pre {
             -webkit-user-select: auto !important;
             -moz-user-select: auto !important;
             -ms-user-select: auto !important;
             user-select: auto !important;
         }
 
-        /*
-         * FOCUS OUTLINE REMOVAL
-         */
         *:focus { 
             outline: none !important; 
             box-shadow: none !important; 
         }
 
-        /*
-         * HTML & BODY
-         */
-        html, 
-        body {
+        html, body {
             height: 100%;
             height: 100dvh;
             width: 100vw;
@@ -246,17 +140,11 @@
             display: flex;
             overflow: hidden;
             background: var(--bg-main);
-            
-            /* शार्प टेक्स्ट रेंडरिंग */
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
 
-        /*
-         * BUTTONS AND ANCHORS
-         */
-        button, 
-        a { 
+        button, a { 
             -webkit-tap-highlight-color: transparent; 
             outline: none; 
         }
@@ -269,115 +157,44 @@
             font-family: inherit; 
         }
         
-        input, 
-        textarea { 
+        input, textarea { 
             font-family: inherit; 
             outline: none; 
             border: none; 
             background: transparent; 
         }
 
-        /*
-         * CUSTOM SCROLLBAR
-         * बिलकुल पतला और एलिगेंट स्क्रॉलबार।
-         */
-        ::-webkit-scrollbar { 
-            width: 5px; 
-            height: 5px; 
-        }
-        
-        ::-webkit-scrollbar-track { 
-            background: transparent; 
-        }
-        
-        ::-webkit-scrollbar-thumb { 
-            background: rgba(0,0,0,0.15); 
-            border-radius: 10px; 
-        }
-        
-        ::-webkit-scrollbar-thumb:hover { 
-            background: rgba(0,0,0,0.3); 
-        }
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.1); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(0,0,0,0.2); }
 
-        /*
-         * KEYFRAME ANIMATIONS
-         * सारे स्मूथ ट्रांज़िशन्स और एनिमेशन्स।
-         */
         @keyframes fadeInUp { 
-            from { 
-                opacity: 0; 
-                transform: translateY(12px); 
-            } 
-            to { 
-                opacity: 1; 
-                transform: translateY(0); 
-            } 
+            from { opacity: 0; transform: translateY(12px); } 
+            to { opacity: 1; transform: translateY(0); } 
         }
         
         @keyframes dropUpFade { 
-            from { 
-                opacity: 0; 
-                transform: translateY(10px) scale(0.95); 
-            } 
-            to { 
-                opacity: 1; 
-                transform: translateY(0) scale(1); 
-            } 
+            from { opacity: 0; transform: translateY(10px) scale(0.96); } 
+            to { opacity: 1; transform: translateY(0) scale(1); } 
         }
         
         @keyframes modalFadeIn { 
-            from { 
-                opacity: 0; 
-                transform: scale(0.96); 
-            } 
-            to { 
-                opacity: 1; 
-                transform: scale(1); 
-            } 
+            from { opacity: 0; transform: scale(0.96); } 
+            to { opacity: 1; transform: scale(1); } 
         }
         
         @keyframes blinkCursor { 
-            0%, 100% { 
-                opacity: 1; 
-            } 
-            50% { 
-                opacity: 0; 
-            } 
+            0%, 100% { opacity: 1; } 
+            50% { opacity: 0; } 
         }
         
         @keyframes recordPulse { 
-            0% { 
-                transform: scale(1); 
-                box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4); 
-            } 
-            50% { 
-                transform: scale(1.05); 
-                box-shadow: 0 0 0 8px rgba(239, 68, 68, 0); 
-            } 
-            100% { 
-                transform: scale(1); 
-                box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); 
-            } 
-        }
-        
-        /* * RGB GLOW ANIMATION
-         * यह बैकग्राउंड की पोजीशन को लगातार घुमाता है।
-         */
-        @keyframes rgbGlow {
-            0% { 
-                background-position: 0% 50%; 
-            }
-            50% { 
-                background-position: 100% 50%; 
-            }
-            100% { 
-                background-position: 0% 50%; 
-            }
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4); } 
+            50% { transform: scale(1.05); box-shadow: 0 0 0 8px rgba(239, 68, 68, 0); } 
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); } 
         }
 
-        /*
-         * BLINKING CURSOR FOR AI RESPONSE
-         */
         .blinking-cursor {
             display: inline-block; 
             width: 6px; 
@@ -389,21 +206,18 @@
             border-radius: 2px;
         }
 
-        /*
-         * TOP LEFT MENU BUTTON
-         */
         .btn-menu {
             position: absolute; 
             top: 16px; 
             left: 16px; 
             z-index: 100; 
-            width: 44px; 
-            height: 44px;
+            width: 40px; 
+            height: 40px;
             border-radius: 50%; 
             display: flex; 
             align-items: center; 
             justify-content: center;
-            background: rgba(255,255,255,0.6); 
+            background: rgba(255,255,255,0.8); 
             backdrop-filter: blur(12px); 
             -webkit-backdrop-filter: blur(12px);
             border: 1px solid var(--border-light); 
@@ -414,11 +228,9 @@
         .btn-menu:hover { 
             background: #fff; 
             color: var(--text-primary); 
+            border-color: var(--border-focus);
         }
 
-        /*
-         * SIDEBAR CONTAINER
-         */
         .sidebar {
             width: 280px; 
             background: var(--bg-sidebar); 
@@ -446,11 +258,12 @@
         }
         
         .sidebar-logo { 
-            font-weight: 500; 
-            font-size: 16px; 
+            font-weight: 600; 
+            font-size: 15px; 
             display: flex; 
             align-items: center; 
             gap: 8px; 
+            letter-spacing: -0.3px;
         }
         
         .btn-new-chat {
@@ -458,42 +271,38 @@
             display: flex; 
             align-items: center; 
             justify-content: center; 
-            gap: 10px;
-            padding: 12px; 
+            gap: 8px;
+            padding: 10px; 
             border-radius: var(--radius-sm); 
             background: #fff; 
             border: 1px solid var(--border-light);
-            font-size: 14px; 
-            font-weight: 400; 
+            font-size: 13.5px; 
+            font-weight: 500; 
             transition: var(--transition-default); 
             color: var(--text-primary);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+            box-shadow: 0 1px 2px rgba(0,0,0,0.02);
         }
         
         .btn-new-chat:hover { 
-            border-color: rgba(0,0,0,0.15); 
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05); 
+            border-color: var(--border-focus); 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.04); 
         }
 
-        /*
-         * SIDEBAR HISTORY LIST
-         */
         .sidebar-history { 
             flex: 1; 
             overflow-y: auto; 
-            padding: 10px 16px; 
+            padding: 10px 12px; 
             display: flex; 
             flex-direction: column; 
-            gap: 4px; 
+            gap: 2px; 
         }
         
         .history-header { 
             display: flex; 
             justify-content: space-between; 
             align-items: center; 
-            padding: 0 4px 8px; 
+            padding: 4px 8px 8px; 
             margin-bottom: 4px; 
-            border-bottom: 1px solid var(--border-light); 
         }
         
         .history-title-text { 
@@ -510,23 +319,26 @@
             color: var(--text-tertiary); 
             cursor: pointer; 
             transition: 0.2s; 
+            padding: 4px 8px;
+            border-radius: 6px;
         }
         
         .btn-clear-all:hover { 
             color: var(--brand-danger); 
+            background: rgba(239, 68, 68, 0.05);
         }
 
         .history-item {
-            padding: 10px 12px; 
-            border-radius: 8px; 
-            font-size: 13.5px; 
+            padding: 9px 10px; 
+            border-radius: var(--radius-sm); 
+            font-size: 13px; 
             font-weight: 400; 
             color: var(--text-secondary);
             cursor: pointer; 
             display: flex; 
             justify-content: space-between; 
             align-items: center; 
-            transition: 0.2s;
+            transition: 0.15s;
         }
         
         .history-item:hover { 
@@ -538,7 +350,8 @@
             background: #fff; 
             color: var(--text-primary); 
             font-weight: 500; 
-            box-shadow: 0 1px 4px rgba(0,0,0,0.05); 
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04); 
+            border: 1px solid var(--border-light);
         }
         
         .history-text { 
@@ -567,9 +380,6 @@
             background: #fee2e2; 
         }
 
-        /*
-         * SIDEBAR FOOTER (USER PROFILE)
-         */
         .sidebar-footer { 
             padding: 16px; 
             border-top: 1px solid var(--border-light); 
@@ -580,16 +390,16 @@
         }
         
         .user-avatar { 
-            width: 36px; 
-            height: 36px; 
+            width: 34px; 
+            height: 34px; 
             border-radius: 50%; 
             background: var(--text-primary); 
             color: #fff; 
             display: flex; 
             align-items: center; 
             justify-content: center; 
-            font-size: 14px; 
-            font-weight: 500; 
+            font-size: 13px; 
+            font-weight: 600; 
             flex-shrink: 0; 
         }
         
@@ -601,8 +411,8 @@
         }
         
         .user-name { 
-            font-size: 13.5px; 
-            font-weight: 500; 
+            font-size: 13px; 
+            font-weight: 600; 
             white-space: nowrap; 
             overflow: hidden; 
             text-overflow: ellipsis; 
@@ -617,8 +427,8 @@
         .btn-login-register { 
             background: var(--brand-color); 
             color: #fff; 
-            border-radius: 8px; 
-            padding: 8px 12px; 
+            border-radius: var(--radius-sm); 
+            padding: 7px 12px; 
             font-size: 12px; 
             font-weight: 500; 
             cursor: pointer; 
@@ -634,7 +444,7 @@
         .btn-power { 
             width: 32px; 
             height: 32px; 
-            border-radius: 8px; 
+            border-radius: var(--radius-sm); 
             display: flex; 
             align-items: center; 
             justify-content: center; 
@@ -647,9 +457,6 @@
             color: var(--brand-danger); 
         }
 
-        /*
-         * MAIN CHAT AREA
-         */
         .main-area { 
             flex: 1; 
             display: flex; 
@@ -672,87 +479,69 @@
             scroll-behavior: smooth; 
         }
 
-        /*
-         * WELCOME SCREEN
-         */
         .welcome-center { 
             margin: auto; 
             text-align: center; 
             display: flex; 
             flex-direction: column; 
             align-items: center; 
-            animation: fadeInUp 0.7s ease; 
+            animation: fadeInUp 0.6s ease; 
             width: 100%; 
             justify-content: center; 
             flex: 1; 
         }
         
         .welcome-center img { 
-            width: 72px; 
-            height: 72px; 
-            border-radius: 18px; 
+            width: 64px; 
+            height: 64px; 
+            border-radius: 16px; 
             margin-bottom: 24px; 
             object-fit: contain; 
         }
         
         .welcome-center h1 { 
-            font-size: 32px; 
-            font-weight: 400; 
+            font-size: 28px; 
+            font-weight: 500; 
             letter-spacing: -0.5px; 
             color: var(--text-primary); 
             margin-bottom: 8px; 
         }
         
         .welcome-center p { 
-            font-size: 1tent: center; font-size: 14px; font-weight: 500; flex-shrink: 0; }
-        .user-info-box { flex: 1; overflow: hidden; display: flex; flex-direction: column; }
-        .user-name { font-size: 13.5px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .user-sub { font-size: 11px; color: var(--text-tertiary); margin-top: 2px; }
-
-        .btn-login-register { background: var(--brand-color); color: #fff; border-radius: 8px; padding: 8px 12px; font-size: 12px; font-weight: 500; cursor: pointer; transition: 0.2s; margin-left: auto; }
-        .btn-login-register:hover { background: #000; transform: translateY(-1px); }
-
-        .btn-power { width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--text-secondary); transition: 0.2s; }
-        .btn-power:hover { background: #fee2e2; color: var(--brand-danger); }
-
-        /* मेन एरिया */
-        .main-area { flex: 1; display: flex; flex-direction: column; position: relative; transition: 0.3s; height: 100%; overflow: hidden; z-index: 1; }
-        .chat-container { flex: 1; overflow-x: hidden; overflow-y: auto; padding: 80px 20px 200px; display: flex; flex-direction: column; align-items: center; scroll-behavior: smooth; }
-
-        .welcome-center { margin: auto; text-align: center; display: flex; flex-direction: column; align-items: center; animation: fadeInUp 0.7s ease; width: 100%; justify-content: center; flex: 1; }
-        .welcome-center img { width: 72px; height: 72px; border-radius: 18px; margin-bottom: 24px; object-fit: contain; }
-        .welcome-center h1 { font-size: 32px; font-weight: 400; letter-spacing: -0.5px; color: var(--text-primary); margin-bottom: 8px; }
-        .welcome-center p { font-size: 15px; color: var(--text-secondary); }
+            font-size: 15px; 
+            color: var(--text-secondary); 
+            font-weight: 400;
+        }
 
         #chatMessages { width: 100%; display: flex; flex-direction: column; align-items: center; }
-        .message-wrapper { width: 100%; max-width: 820px; margin-bottom: 32px; display: flex; flex-direction: column; animation: fadeInUp 0.3s ease; }
+        .message-wrapper { width: 100%; max-width: 800px; margin-bottom: 32px; display: flex; flex-direction: column; animation: fadeInUp 0.3s ease; }
 
-        /* यूज़र और बॉट मैसेजेस */
         .user-message {
             align-self: flex-end; max-width: 85%; background: var(--bg-user-msg);
-            padding: 12px 18px; border-radius: 18px; font-size: 15.5px; font-weight: 400;
-            line-height: 1.5; color: var(--text-user-msg); word-wrap: break-word; overflow-wrap: break-word;
+            padding: 12px 18px; border-radius: 18px 18px 4px 18px; font-size: 15px; font-weight: 400;
+            line-height: 1.5; color: var(--text-primary); word-wrap: break-word; overflow-wrap: break-word;
+            border: 1px solid rgba(0,0,0,0.04);
         }
 
         .bot-message { align-self: flex-start; max-width: 100%; display: flex; gap: 16px; width: 100%; box-sizing: border-box; background: transparent; padding: 0; }
         
         .bot-avatar {
-            width: 32px; height: 32px; border-radius: 8px; flex-shrink: 0; overflow: hidden;
-            display: flex; align-items: center; justify-content: center; margin-top: 2px;
-            border: 1px solid var(--border-light);
+            width: 30px; height: 30px; border-radius: 8px; flex-shrink: 0; overflow: hidden;
+            display: flex; align-items: center; justify-content: center; margin-top: 4px;
+            border: 1px solid var(--border-light); background: #fff;
         }
         .bot-avatar img { width: 100%; height: 100%; object-fit: cover; }
 
-        .bot-content-wrapper { flex: 1 1 0%; min-width: 0; max-width: calc(100% - 48px); width: 100%; overflow: hidden; }
+        .bot-content-wrapper { flex: 1 1 0%; min-width: 0; max-width: calc(100% - 46px); width: 100%; overflow: hidden; }
         
-        .bot-content { font-size: 15.5px; line-height: 1.7; color: var(--text-primary); word-wrap: break-word; font-weight: 300; letter-spacing: 0.2px; }
+        .bot-content { font-size: 15.5px; line-height: 1.7; color: var(--text-primary); word-wrap: break-word; font-weight: 400; letter-spacing: 0.1px; }
         .bot-content p { margin-bottom: 16px; }
         .bot-content p:last-child { margin-bottom: 0; }
         .bot-content strong { font-weight: 600; color: #000; }
         .bot-content ul, .bot-content ol { padding-left: 24px; margin-bottom: 16px; }
         .bot-content li { margin-bottom: 8px; }
 
-        .bot-content code { font-family: var(--font-code); background: rgba(0,0,0,0.05); padding: 3px 6px; border-radius: 6px; font-size: 0.9em; color: #000; }
+        .bot-content code { font-family: var(--font-code); background: rgba(0,0,0,0.06); padding: 3px 6px; border-radius: 6px; font-size: 0.85em; color: #000; }
         .bot-content pre { background: #0d1117; padding: 16px; border-radius: 12px; overflow-x: auto; margin: 16px 0; border: 1px solid var(--border-light); position: relative; }
         .bot-content pre code { background: none; padding: 0; color: #e2e8f0; font-size: 13.5px; }
 
@@ -762,46 +551,42 @@
 
         .mjx-container { max-width: 100%; overflow-x: auto; overflow-y: hidden; }
 
-        /* अटैचमेंट पिल्स */
         .chat-attachment-container { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
-        .chat-file-pill { display: inline-flex; align-items: center; gap: 8px; background: #fff; border: 1px solid var(--border-light); padding: 8px 12px; border-radius: 12px; font-size: 13px; font-weight: 500; }
+        .chat-file-pill { display: inline-flex; align-items: center; gap: 8px; background: #fff; border: 1px solid var(--border-light); padding: 8px 12px; border-radius: 10px; font-size: 12.5px; font-weight: 500; }
         .chat-img-preview { max-width: 140px; max-height: 140px; border-radius: 12px; object-fit: cover; border: 1px solid var(--border-light); }
 
-        /* थिंकिंग बॉक्स */
         .qwen-think-box { border-left: 2px solid #e4e4e7; padding-left: 16px; margin-bottom: 16px; transition: 0.3s; }
-        .qwen-think-box summary { font-size: 13px; font-weight: 500; color: var(--text-tertiary); cursor: pointer; list-style: none; display: flex; align-items: center; gap: 8px; user-select: none; }
+        .qwen-think-box summary { font-size: 12.5px; font-weight: 500; color: var(--text-tertiary); cursor: pointer; list-style: none; display: flex; align-items: center; gap: 8px; user-select: none; }
         .qwen-think-box summary::-webkit-details-marker { display: none; }
         .qwen-think-content { margin-top: 8px; font-size: 14px; color: var(--text-secondary); font-style: italic; white-space: pre-wrap; line-height: 1.6; }
 
-        /* मैसेज एक्शंस (Copy, Listen) */
-        .msg-actions { display: flex; gap: 8px; margin-top: 12px; opacity: 0; transition: 0.2s; align-items: center; }
+        .msg-actions { display: flex; gap: 4px; margin-top: 12px; opacity: 0; transition: 0.2s; align-items: center; }
         .message-wrapper:hover .msg-actions { opacity: 1; }
         @media (hover: none) { .msg-actions { opacity: 1; } }
 
-        .action-btn { display: flex; align-items: center; gap: 4px; font-size: 12px; font-weight: 500; color: var(--text-secondary); padding: 4px 8px; border-radius: 6px; transition: 0.2s; background: transparent; }
-        .action-btn:hover { color: var(--text-primary); background: rgba(0,0,0,0.05); }
+        .action-btn { display: flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 500; color: var(--text-tertiary); padding: 6px 10px; border-radius: 8px; transition: 0.2s; background: transparent; }
+        .action-btn:hover { color: var(--text-primary); background: rgba(0,0,0,0.04); }
         .action-btn.listen-btn { background: #f4f4f5; }
         .action-btn.listen-btn:hover { background: #e4e4e7; }
         
-        .code-copy-btn { position: absolute; top: 8px; right: 8px; display: flex; align-items: center; gap: 4px; padding: 4px 8px; font-size: 11px; color: var(--text-secondary); background: #fff; border: 1px solid var(--border-light); border-radius: 6px; cursor: pointer; z-index: 2; }
-        .code-copy-btn:hover { background: #f4f4f5; }
-        .code-copy-btn.copied { color: var(--brand-success); }
+        .code-copy-btn { position: absolute; top: 8px; right: 8px; display: flex; align-items: center; gap: 4px; padding: 4px 8px; font-size: 11px; color: var(--text-secondary); background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; cursor: pointer; z-index: 2; backdrop-filter: blur(4px); }
+        .code-copy-btn:hover { background: rgba(255,255,255,0.2); color: #fff; }
+        .code-copy-btn.copied { color: var(--brand-success); border-color: var(--brand-success); }
 
         .btn-scroll-bottom { position: absolute; bottom: 120px; left: 50%; transform: translateX(-50%) translateY(20px); width: 36px; height: 36px; border-radius: 50%; background: #fff; border: 1px solid var(--border-light); box-shadow: 0 4px 12px rgba(0,0,0,0.08); display: flex; align-items: center; justify-content: center; color: var(--text-secondary); opacity: 0; pointer-events: none; transition: 0.3s; z-index: 45; }
         .btn-scroll-bottom.visible { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
 
         /* *************************************************************************
-           अल्टीमेट ग्लास इनपुट डॉक + RGB ग्लो + एक्सपैंडिंग लॉजिक
+           CLEAN INPUT DOCK (Anthropic-like: No RGB Glow, Subtle Shadows)
            ************************************************************************* */
         
-        /* मुख्य डॉक कंटेनर (नीचे फिक्स्ड) */
         .input-dock {
             position: absolute; 
             bottom: 24px; 
             left: 50%;
             transform: translateX(-50%);
             width: 100%; 
-            max-width: 820px;
+            max-width: 800px;
             padding: 0 20px;
             z-index: 50;
             display: flex;
@@ -811,88 +596,64 @@
 
         .loc-toast { display: none; align-items: center; gap: 6px; font-size: 12px; font-weight: 500; color: var(--text-secondary); margin-bottom: 12px; background: #fff; padding: 6px 14px; border-radius: 16px; border: 1px solid var(--border-light); box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
 
-        /* ग्लो और ग्लास का रैपर (यही बॉक्स एक्सपैंड होगा) */
         .input-dock-wrapper {
             position: relative; 
             width: 100%; 
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(24px); 
-            -webkit-backdrop-filter: blur(24px);
-            border: 1px solid rgba(200, 200, 200, 0.5);
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px); 
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border-light);
             border-radius: var(--radius-lg); 
-            padding: 10px 14px;
+            padding: 12px 16px;
             display: flex; 
             flex-direction: column;
-            transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
+            transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
         }
 
-        /* एनिमेटेड RGB ग्रेडिएंट बैकग्राउंड (Pseudo-element) */
-        .input-dock-wrapper::before {
-            content: ''; 
-            position: absolute; 
-            inset: -2px; 
-            border-radius: 26px;
-            background: linear-gradient(90deg, #ff2a2a, #ff7a00, #ffc500, #2ddc3f, #007aff, #d928ff, #ff2a2a);
-            background-size: 200% 100%; 
-            animation: rgbGlow 3s linear infinite;
-            opacity: 0; 
-            filter: blur(8px); 
-            transition: opacity 0.5s ease; 
-            z-index: -1;
-        }
-
-        /* जब यूज़र बॉक्स पर क्लिक करे (फोकस्ड हो) तो बॉक्स को बड़ा (Expand) करें */
+        /* Professional Expanded State (No RGB Glow) */
         .input-dock-wrapper.expanded {
             background: rgba(255, 255, 255, 0.95);
-            transform: translateY(-5px); /* हल्का सा ऊपर उठेगा */
-            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.1);
-        }
-        
-        /* ग्लो एक्टिवेट करें */
-        .input-dock-wrapper.expanded::before { 
-            opacity: 1; 
+            border-color: var(--border-focus);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
         }
 
         .file-preview-bar { display: none; padding-bottom: 10px; align-items: center; gap: 8px; }
         .file-preview-bar.active { display: flex; }
-        .file-preview-pill { display: flex; align-items: center; gap: 8px; background: #f4f4f5; padding: 6px 12px; border-radius: 12px; font-size: 12px; }
+        .file-preview-pill { display: flex; align-items: center; gap: 8px; background: #f4f4f5; padding: 6px 12px; border-radius: 10px; font-size: 12px; border: 1px solid var(--border-light); }
         .file-preview-icon { width: 16px; height: 16px; object-fit: cover; border-radius: 4px; }
         .file-preview-name { max-width: 120px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--text-primary); }
-        .btn-remove-file { width: 18px; height: 18px; border-radius: 50%; background: #e4e4e7; display: flex; align-items: center; justify-content: center; }
+        .btn-remove-file { width: 18px; height: 18px; border-radius: 50%; background: #e4e4e7; display: flex; align-items: center; justify-content: center; transition: 0.2s; }
+        .btn-remove-file:hover { background: #d4d4d8; }
 
-        /* इनपुट एरिया जहाँ टाइप करते हैं */
         .chat-input { 
             width: 100%; 
             padding: 8px 4px 12px; 
-            font-size: 15.5px; 
+            font-size: 15px; 
             font-weight: 400; 
             resize: none; 
             color: var(--text-primary); 
             line-height: 1.5; 
             background: transparent; 
             caret-color: #000;
-            /* डिफ़ॉल्ट छोटी हाइट */
-            min-height: 28px; 
+            min-height: 24px; 
             max-height: 200px;
-            transition: min-height 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+            transition: min-height 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
-        .chat-input::placeholder { color: var(--text-tertiary); font-weight: 300; }
+        .chat-input::placeholder { color: var(--text-tertiary); font-weight: 400; }
 
-        /* एक्सपैंड होने पर टेक्स्ट एरिया की हाइट बढ़ाएं */
         .input-dock-wrapper.expanded .chat-input {
-            min-height: 80px;
+            min-height: 60px;
         }
 
-        /* बॉटम टूल्स रो */
         .input-row { display: flex; align-items: center; justify-content: space-between; width: 100%; margin-top: 4px; }
 
-        .tools-left { display: flex; gap: 4px; align-items: center; position: relative; }
+        .tools-left { display: flex; gap: 2px; align-items: center; position: relative; }
         
-        .tool-btn { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--text-secondary); transition: 0.2s; background: transparent; flex-shrink: 0; }
-        .tool-btn:hover { background: #f4f4f5; color: #000; }
+        .tool-btn { width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--text-secondary); transition: 0.2s; background: transparent; flex-shrink: 0; }
+        .tool-btn:hover { background: #f4f4f5; color: var(--text-primary); }
 
-        /* टूल्स के एक्टिव स्टेट्स */
         .tool-btn.active-env { color: #fff; background: var(--brand-accent); }
         .tool-btn.active-think-low { color: #fff; background: var(--brand-danger); }
         .tool-btn.active-think-medium { color: #fff; background: var(--brand-warning); }
@@ -901,72 +662,72 @@
 
         .btn-mic.recording { color: var(--brand-danger); background: #fee2e2; animation: recordPulse 1.5s infinite; }
 
-        /* राइट साइड टूल्स (Stop/Send) */
         .tools-right { display: flex; align-items: center; gap: 8px; }
 
-        .btn-send { width: 36px; height: 36px; border-radius: 50%; background: #000; color: #fff; display: flex; align-items: center; justify-content: center; transition: 0.3s; flex-shrink: 0; }
-        .btn-send:hover:not(:disabled) { background: #27272a; transform: scale(1.05); }
+        .btn-send { width: 34px; height: 34px; border-radius: 50%; background: var(--brand-color); color: #fff; display: flex; align-items: center; justify-content: center; transition: 0.2s; flex-shrink: 0; }
+        .btn-send:hover:not(:disabled) { background: #000; transform: scale(1.05); }
         .btn-send:disabled { background: #e4e4e7; color: #a1a1aa; cursor: not-allowed; }
 
-        .btn-stop { width: 36px; height: 36px; border-radius: 50%; background: #fee2e2; color: var(--brand-danger); display: none; align-items: center; justify-content: center; transition: 0.25s; flex-shrink: 0; }
+        .btn-stop { width: 34px; height: 34px; border-radius: 50%; background: #fee2e2; color: var(--brand-danger); display: none; align-items: center; justify-content: center; transition: 0.25s; flex-shrink: 0; }
         .btn-stop.active { display: flex; }
+        .btn-stop:hover { background: #fecaca; }
 
         .hidden-input { display: none; }
         
-        /* ड्रॉपडाउन मेनू (Attachments, Voice, Thinking) */
-        .dropdown-menu { position: absolute; bottom: calc(100% + 12px); left: 0; background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(20px); border: 1px solid var(--border-light); border-radius: 16px; padding: 8px; box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1); display: none; flex-direction: column; min-width: 200px; z-index: 100; transform-origin: bottom left; }
+        .dropdown-menu { position: absolute; bottom: calc(100% + 12px); left: 0; background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(20px); border: 1px solid var(--border-light); border-radius: 14px; padding: 6px; box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1); display: none; flex-direction: column; min-width: 200px; z-index: 100; transform-origin: bottom left; }
         .dropdown-menu.active { display: flex; animation: dropUpFade 0.2s cubic-bezier(0.2, 0.8, 0.2, 1); }
-        .dropdown-header { padding: 8px 12px; font-size: 11px; font-weight: 500; color: var(--text-tertiary); border-bottom: 1px solid var(--border-light); margin-bottom: 4px; }
-        .dropdown-item { padding: 10px 12px; border-radius: 10px; font-size: 13px; display: flex; align-items: center; justify-content: space-between; gap: 8px; cursor: pointer; transition: 0.2s; color: var(--text-primary); }
+        .dropdown-header { padding: 8px 12px; font-size: 11px; font-weight: 600; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+        .dropdown-item { padding: 9px 12px; border-radius: 8px; font-size: 13px; display: flex; align-items: center; justify-content: space-between; gap: 8px; cursor: pointer; transition: 0.15s; color: var(--text-primary); }
         .dropdown-item:hover { background: #f4f4f5; }
         .dropdown-item.selected { background: #f4f4f5; font-weight: 500; }
 
-        /* ऑथ मोडल */
-        .auth-overlay { position: fixed; inset: 0; background: rgba(0,0,0, 0.4); backdrop-filter: blur(10px); display: none; align-items: center; justify-content: center; z-index: 2000; }
-        .auth-modal { background: #ffffff; width: 90%; max-width: 360px; border-radius: 24px; padding: 32px; box-shadow: 0 20px 50px rgba(0,0,0, 0.15); position: relative; animation: modalFadeIn 0.3s cubic-bezier(0.2, 0.8, 0.2, 1); }
-        .auth-close { position: absolute; top: 16px; right: 16px; color: var(--text-tertiary); width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: #f4f4f5; }
-        .auth-title { font-size: 20px; font-weight: 500; margin-bottom: 24px; text-align: center; }
+        .auth-overlay { position: fixed; inset: 0; background: rgba(0,0,0, 0.3); backdrop-filter: blur(8px); display: none; align-items: center; justify-content: center; z-index: 2000; }
+        .auth-modal { background: #ffffff; width: 90%; max-width: 360px; border-radius: 20px; padding: 32px; box-shadow: 0 20px 50px rgba(0,0,0, 0.15); position: relative; animation: modalFadeIn 0.3s cubic-bezier(0.2, 0.8, 0.2, 1); border: 1px solid var(--border-light); }
+        .auth-close { position: absolute; top: 16px; right: 16px; color: var(--text-tertiary); width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: #f4f4f5; transition: 0.2s; }
+        .auth-close:hover { background: #e4e4e7; color: var(--text-primary); }
+        .auth-title { font-size: 18px; font-weight: 600; margin-bottom: 24px; text-align: center; letter-spacing: -0.3px; }
         .auth-tabs { display: flex; background: #f4f4f5; border-radius: 10px; padding: 4px; margin-bottom: 20px; }
-        .auth-tab { flex: 1; text-align: center; padding: 8px; font-size: 13px; cursor: pointer; border-radius: 8px; color: var(--text-secondary); transition: 0.2s; }
-        .auth-tab.active { background: #ffffff; color: #000; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
-        .auth-input { width: 100%; padding: 14px 16px; border: 1px solid var(--border-light); border-radius: 10px; font-size: 14px; margin-bottom: 12px; background: #fcfcfc; }
-        .auth-input:focus { border-color: #000; background: #fff; }
-        .auth-btn { width: 100%; padding: 14px; background: #000; color: #fff; font-size: 14px; font-weight: 500; border-radius: 10px; transition: 0.2s; }
-        .auth-btn:hover { background: #27272a; }
+        .auth-tab { flex: 1; text-align: center; padding: 8px; font-size: 13px; font-weight: 500; cursor: pointer; border-radius: 8px; color: var(--text-secondary); transition: 0.2s; }
+        .auth-tab.active { background: #ffffff; color: #000; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+        .auth-input { width: 100%; padding: 12px 14px; border: 1px solid var(--border-light); border-radius: 10px; font-size: 14px; margin-bottom: 12px; background: #fcfcfc; transition: 0.2s; }
+        .auth-input:focus { border-color: var(--text-primary); background: #fff; }
+        .auth-btn { width: 100%; padding: 12px; background: var(--brand-color); color: #fff; font-size: 14px; font-weight: 500; border-radius: 10px; transition: 0.2s; }
+        .auth-btn:hover { background: #000; }
         .auth-phase { display: none; }
         .auth-phase.active { display: block; }
         .auth-message { font-size: 12px; text-align: center; margin-top: 12px; min-height: 16px; }
 
-        /* मोबाइल ओवरले और कन्फर्म बॉक्स */
         .mobile-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.2); backdrop-filter: blur(4px); z-index: 95; opacity: 0; transition: 0.3s ease; pointer-events: none; }
         .mobile-overlay.active { display: block; opacity: 1; pointer-events: all; }
         
-        .custom-confirm-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.4); backdrop-filter: blur(8px); display: none; align-items: center; justify-content: center; z-index: 2500; }
-        .custom-confirm-box { background: #fff; border-radius: 20px; padding: 24px; max-width: 300px; width: 90%; text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.15); animation: modalFadeIn 0.2s; }
-        .custom-confirm-msg { font-size: 15px; margin-bottom: 24px; color: var(--text-primary); }
+        .custom-confirm-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.3); backdrop-filter: blur(8px); display: none; align-items: center; justify-content: center; z-index: 2500; }
+        .custom-confirm-box { background: #fff; border-radius: 16px; padding: 24px; max-width: 300px; width: 90%; text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.15); animation: modalFadeIn 0.2s; border: 1px solid var(--border-light); }
+        .custom-confirm-msg { font-size: 14px; margin-bottom: 24px; color: var(--text-primary); font-weight: 500; line-height: 1.5; }
         .custom-confirm-btns { display: flex; gap: 12px; }
-        .custom-confirm-btn { flex: 1; padding: 10px; border-radius: 10px; font-size: 13px; font-weight: 500; }
+        .custom-confirm-btn { flex: 1; padding: 10px; border-radius: 10px; font-size: 13px; font-weight: 500; transition: 0.2s; }
         .custom-confirm-btn.cancel { background: #f4f4f5; color: var(--text-secondary); }
+        .custom-confirm-btn.cancel:hover { background: #e4e4e7; }
         .custom-confirm-btn.confirm { background: var(--brand-danger); color: #fff; }
+        .custom-confirm-btn.confirm:hover { background: #dc2626; }
 
         @media (max-width: 900px) {
             .sidebar { position: fixed; left: 0; top: 0; box-shadow: 4px 0 24px rgba(0,0,0,0.05); }
             .sidebar.collapsed { box-shadow: none; }
-            .input-dock { padding: 10px 16px 20px; }
+            .input-dock { padding: 10px 16px calc(16px + env(safe-area-inset-bottom)); bottom: 0; }
             .chat-container { padding: 70px 16px 180px; }
             .user-message { max-width: 90%; }
         }
         @media (max-width: 600px) {
             .code-copy-btn span { display: none; }
             .welcome-center img { width: 56px; height: 56px; }
-            .welcome-center h1 { font-size: 26px; }
-            .tool-btn, .btn-send, .btn-stop { width: 34px; height: 34px; }
-            .input-dock-wrapper.expanded .chat-input { min-height: 60px; }
+            .welcome-center h1 { font-size: 24px; }
+            .tool-btn, .btn-send, .btn-stop { width: 36px; height: 36px; }
+            .input-dock-wrapper.expanded .chat-input { min-height: 50px; }
+            .chat-input { font-size: 16px; /* Prevents iOS zoom on focus */ }
         }
     </style>
 </head>
 
-<!-- राइट क्लिक डिसेबल किया गया ताकि ऐप जैसा फील आए -->
 <body oncontextmenu="return false;">
 
     <button class="btn-menu" id="btnMenuOpen" onclick="UI.toggleSidebar()">
@@ -1015,9 +776,7 @@
             <svg style="width:18px;height:18px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><polyline points="19 12 12 19 5 12"></polyline></svg>
         </button>
 
-        <!-- ग्लासमॉर्फिज़्म डॉक, एक्सपैंडिंग बॉक्स और RGB ग्लो रैपर -->
         <div class="input-dock" id="inputDock">
-            
             <div class="input-dock-wrapper" id="dockWrapper">
                 <div class="loc-toast" id="locStatus"></div>
                 
@@ -1035,12 +794,10 @@
                 <div class="input-row">
                     <div class="tools-left">
                         <div style="position: relative;">
-                            <!-- अटैचमेंट बटन -->
                             <button class="tool-btn" id="btnAttach" onclick="UI.toggleAttachMenu()" title="Attach File">
                                 <svg style="width:20px;height:20px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"></path></svg>
                             </button>
                             
-                            <!-- सारे ओरिजिनल टूल्स वाला ड्रॉपडाउन -->
                             <div class="dropdown-menu" id="attachMenu">
                                 <div class="dropdown-item" onclick="document.getElementById('imgUpload').click()"><svg style="width:16px;height:16px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg> Upload Image</div>
                                 <div class="dropdown-item" onclick="document.getElementById('docUpload').click()"><svg style="width:16px;height:16px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg> Upload Document</div>
@@ -1071,12 +828,10 @@
                             <input type="file" id="docUpload" class="hidden-input" accept=".pdf,.txt,.docx,.html,.js,.py,.css,.cpp,.c,.json,.md" onchange="FileSys.process(this, 'document')">
                         </div>
 
-                        <!-- सर्च बटन -->
                         <button class="tool-btn" id="btnSearch" onclick="SearchManager.toggle()" title="Web Search">
                             <svg style="width:18px;height:18px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
                         </button>
 
-                        <!-- माइक बटन -->
                         <button class="tool-btn btn-mic" id="btnStt" onclick="Speech.toggle()" title="Voice Typing">
                             <svg style="width:18px;height:18px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>
                         </button>
@@ -1280,12 +1035,12 @@
             });
 
             // ***************************************************************
-            // इनपुट बॉक्स लिसनर्स - एक्सपैंडिंग लॉजिक और RGB ग्लो
+            // इनपुट बॉक्स लिसनर्स - Clean Expanding Logic (No RGB Glow)
             // ***************************************************************
             const inp = document.getElementById('mainInput');
             const dockWrapper = document.getElementById('dockWrapper');
 
-            // फोकस होने पर बॉक्स बड़ा होगा और ग्लो चालू होगा
+            // फोकस होने पर बॉक्स बड़ा होगा (सबटल शैडो के साथ)
             inp.addEventListener('focus', () => {
                 dockWrapper.classList.add('expanded');
             });
@@ -1762,7 +1517,6 @@
                         }
                     }
                     input.value = '';
-                    // फ़ाइल अटैच होने पर भी डॉक एक्सपैंड होगा
                     dockWrapper.classList.add('expanded');
                 },
                 
@@ -2151,7 +1905,6 @@
                     return html;
                 },
                 
-                // Qwen Studio जैसा स्मूथ टेक्स्ट रेंडरिंग लॉजिक
                 parseAndRender(fullText, isProcessing, container) {
                     let normalizedText = fullText
                         .replace(/<\|channel\|>thought\s*<\|channel\|>/gi, "<think>\n")
@@ -2408,5 +2161,3 @@
     </script>
 </body>
 </html>
-
-
