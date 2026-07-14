@@ -1,56 +1,240 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- 
-        ================================================================================
-        META TAGS
-        यहाँ पर हम ब्राउज़र और मोबाइल डिवाइस के लिए सेटिंग्स कर रहे हैं।
-        ================================================================================
-    -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    
     <title>CODE VED | Engineered by Divy Patel</title>
     
-    <!-- 
-        ================================================================================
-        FAVICON LINK
-        ================================================================================
-    -->
+    <!-- Favicon -->
     <link rel="icon" type="image/webp" id="faviconLink">
 
-    <!-- 
-        ================================================================================
-        GOOGLE FONTS
-        ================================================================================
-    -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-    <!-- 
-        ================================================================================
-        HIGHLIGHT.JS STYLESHEET
-        ================================================================================
-    -->
+    <!-- External Libraries CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
     
-    <!-- 
-        ================================================================================
-        EXTERNAL JAVASCRIPT LIBRARIES
-        ================================================================================
-    -->
+    <!-- Custom CSS (Placeholder for next step) -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body oncontextmenu="return false;">
+
+    <!-- Top Left Menu Button -->
+    <button class="btn-menu" id="btnMenuOpen">
+        <svg style="width:20px;height:20px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="9" x2="20" y2="9"></line><line x1="4" y1="15" x2="14" y2="15"></line></svg>
+    </button>
+
+    <!-- Mobile Overlay for Sidebar -->
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+
+    <!-- Sidebar -->
+    <aside class="sidebar collapsed" id="sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-logo">
+                <img id="sidebarLogoImg" alt="CODE VED" style="width:24px;height:24px;border-radius:6px;object-fit:contain;">
+                <span>CODE VED</span>
+            </div>
+            <button class="btn-menu btn-close-sidebar" id="btnCloseSidebar" style="position:static; width:32px; height:32px; box-shadow:none; border:none; background:transparent;">
+                <svg style="width:18px;height:18px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+        </div>
+        
+        <button class="btn-new-chat" id="btnNewChat">
+            <svg style="width:16px; height:16px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg> 
+            New Workspace
+        </button>
+        
+        <div class="sidebar-history" id="chatHistory"></div>
+
+        <div class="sidebar-footer">
+            <div class="user-avatar" id="uAv">G</div>
+            <div class="user-info-box">
+                <div class="user-name" id="uName">Guest Session</div>
+                <div class="user-sub" id="uSub">Queries: 0/10</div>
+            </div>
+            <button class="btn-login-register" id="btnLoginRegister">Access</button>
+            <button class="btn-power" id="btnDeleteAcc" style="display:none;" title="Delete Account">
+                <svg style="width:16px;height:16px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"></path></svg>
+            </button>
+            <button class="btn-power" id="btnLogout" style="display:none;" title="Logout">
+                <svg style="width:16px;height:16px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18.36 6.64a9 9 0 1 1-12.73 0"></path><line x1="12" y1="2" x2="12" y2="12"></line></svg>
+            </button>
+        </div>
+    </aside>
+
+    <!-- Main Chat Area -->
+    <main class="main-area">
+        <div class="chat-container" id="chatContainer">
+            <div class="welcome-center" id="welcomeScreen">
+                <img id="welcomeLogoImg" alt="CODE VED">
+                <h1 id="welcomeTitle">Hello, Guest!</h1>
+                <p id="welcomeGreeting">How can I help you today?</p>
+            </div>
+            <div id="chatMessages"></div>
+        </div>
+
+        <button id="scrollToBottomBtn" class="btn-scroll-bottom">
+            <svg style="width:18px;height:18px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><polyline points="19 12 12 19 5 12"></polyline></svg>
+        </button>
+
+        <!-- Input Dock -->
+        <div class="input-dock" id="inputDock">
+            <div class="input-dock-wrapper" id="dockWrapper">
+                <div class="loc-toast" id="locStatus"></div>
+                
+                <div class="file-preview-bar" id="filePreviewBar">
+                    <div class="file-preview-pill">
+                        <img id="imgPreview" class="file-preview-icon" src="" style="display:none;">
+                        <svg id="docPreview" style="display:none; width:14px; height:14px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+                        <div class="file-preview-name" id="fileName">doc.pdf</div>
+                        <button class="btn-remove-file" id="btnRemoveFile">
+                            <svg style="width:12px;height:12px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                        </button>
+                    </div>
+                </div>
+
+                <textarea class="chat-input" id="mainInput" placeholder="Ask CODE VED..." rows="1"></textarea>
+
+                <div class="input-row">
+                    <div class="tools-left">
+                        <div style="position: relative;">
+                            <button class="tool-btn" id="btnAttach" title="Attach File">
+                                <svg style="width:20px;height:20px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"></path></svg>
+                            </button>
+                            
+                            <!-- Attach Dropdown -->
+                            <div class="dropdown-menu" id="attachMenu">
+                                <div class="dropdown-item" id="optUploadImg">
+                                    <svg style="width:16px;height:16px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg> 
+                                    Upload Image
+                                </div>
+                                <div class="dropdown-item" id="optUploadDoc">
+                                    <svg style="width:16px;height:16px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg> 
+                                    Upload Document
+                                </div>
+                                <div style="height:1px; background:var(--border-light); margin:4px 0;"></div>
+                                <div class="dropdown-item" id="optEnv">
+                                    <svg style="width:16px;height:16px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg> 
+                                    GPS & Weather
+                                </div>
+                                <div class="dropdown-item" id="optThink">
+                                    <svg style="width:16px;height:16px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a5 5 0 0 0-5 5v2a5 5 0 0 0 10 0V7a5 5 0 0 0-5-5z"></path><path d="M8 14H6a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2h-2"></path></svg> 
+                                    Thinking Mode
+                                </div>
+                                <div class="dropdown-item" id="optVoice">
+                                    <svg style="width:16px;height:16px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg> 
+                                    Select Voice
+                                </div>
+                            </div>
+
+                            <!-- Voice Dropdown -->
+                            <div class="dropdown-menu" id="voiceMenu" style="min-width: 220px; left: 45px; bottom: 40px; max-height: 300px; overflow-y: auto;">
+                                <div class="dropdown-header">Premium Voices</div>
+                                <div id="voiceOptionsList"></div>
+                                <div style="height:1px; background:var(--border-light); margin:4px 0;"></div>
+                                <div class="dropdown-header">Language</div>
+                                <div id="languageOptionsList"></div>
+                            </div>
+
+                            <!-- Thinking Dropdown -->
+                            <div class="dropdown-menu" id="thinkMenu" style="min-width: 180px; left: 45px; bottom: 40px;">
+                                <div class="dropdown-header">Reasoning Effort</div>
+                                <div class="dropdown-item" data-effort="low">⚡ Low (Fast)</div>
+                                <div class="dropdown-item" data-effort="medium">🧠 Medium (Balanced)</div>
+                                <div class="dropdown-item" data-effort="high">🔍 High (Deep logic)</div>
+                                <div style="height:1px; background:var(--border-light); margin:4px 0;"></div>
+                                <div class="dropdown-item" id="optDisableThink" style="color:var(--brand-danger);">❌ Disable Thinking</div>
+                            </div>
+
+                            <!-- Hidden File Inputs -->
+                            <input type="file" id="imgUpload" class="hidden-input" accept="image/*">
+                            <input type="file" id="docUpload" class="hidden-input" accept=".pdf,.txt,.docx,.html,.js,.py,.css,.cpp,.c,.json,.md">
+                        </div>
+
+                        <button class="tool-btn" id="btnSearch" title="Web Search">
+                            <svg style="width:18px;height:18px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                        </button>
+
+                        <button class="tool-btn btn-mic" id="btnStt" title="Voice Typing">
+                            <svg style="width:18px;height:18px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>
+                        </button>
+                    </div>
+
+                    <div class="tools-right">
+                        <button class="btn-stop" id="btnStop">
+                            <svg style="width:14px;height:14px;" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="6" width="12" height="12" rx="2"></rect></svg>
+                        </button>
+                        <button class="btn-send" id="btnSend">
+                            <svg style="width:18px;height:18px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Auth Modal -->
+    <div class="auth-overlay" id="authModal">
+        <div class="auth-modal">
+            <button class="auth-close" id="btnAuthClose">
+                <svg style="width:18px;height:18px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+            <div class="auth-title">System Access</div>
+            <div class="auth-tabs">
+                <div class="auth-tab active" id="tabLogin" data-tab="login">Login</div>
+                <div class="auth-tab" id="tabRegister" data-tab="register">Register</div>
+            </div>
+            
+            <!-- Login Flow -->
+            <div id="flowLogin">
+                <div class="auth-phase active" id="loginPhase1">
+                    <input type="email" class="auth-input" id="logEmail" placeholder="Email Address">
+                    <button class="auth-btn" id="btnLogOtp">Continue</button>
+                </div>
+                <div class="auth-phase" id="loginPhase2">
+                    <input type="number" class="auth-input" id="logOtp" placeholder="Enter OTP">
+                    <button class="auth-btn" id="btnLogVerify">Verify</button>
+                </div>
+            </div>
+            
+            <!-- Register Flow -->
+            <div id="flowRegister" style="display:none;">
+                <div class="auth-phase active" id="regPhase1">
+                    <input type="text" class="auth-input" id="regName" placeholder="Full Name">
+                    <input type="email" class="auth-input" id="regEmail" placeholder="Email Address">
+                    <button class="auth-btn" id="btnRegOtp">Create Account</button>
+                </div>
+                <div class="auth-phase" id="regPhase2">
+                    <input type="number" class="auth-input" id="regOtp" placeholder="Enter OTP">
+                    <button class="auth-btn" id="btnRegVerify">Verify</button>
+                </div>
+            </div>
+            <div class="auth-message" id="authMsg"></div>
+        </div>
+    </div>
+
+    <!-- Custom Confirm Overlay -->
+    <div class="custom-confirm-overlay" id="customConfirmOverlay">
+        <div class="custom-confirm-box">
+            <div class="custom-confirm-msg" id="customConfirmMsg"></div>
+            <div class="custom-confirm-btns">
+                <button class="custom-confirm-btn cancel" id="customConfirmCancel">Cancel</button>
+                <button class="custom-confirm-btn confirm" id="customConfirmOk">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- External Libraries JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.1/marked.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
 
-    <!-- 
-        ================================================================================
-        MATHJAX CONFIGURATION
-        ================================================================================
-    -->
+    <!-- MathJax Configuration -->
     <script>
         window.MathJax = {
             tex: {
@@ -72,2092 +256,10 @@
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
-    <!-- 
-        ================================================================================
-        MEGA CASCADING STYLE SHEETS (CSS)
-        Anthropic-like Clean, Professional & Responsive Design
-        ================================================================================
-    -->
-    <style>
-        :root {
-            --bg-main: #ffffff;
-            --bg-sidebar: rgba(249, 250, 251, 0.9);
-            --bg-user-msg: #f4f4f5;
-            
-            --text-primary: #18181b;
-            --text-secondary: #52525b;
-            --text-tertiary: #a1a1aa;
-            
-            --border-light: rgba(0, 0, 0, 0.08);
-            --border-focus: rgba(0, 0, 0, 0.15);
-            
-            --brand-color: #18181b;
-            --brand-accent: #0f9e78;
-            --brand-accent-hover: #0c7d5f;
-            --brand-danger: #ef4444;
-            --brand-warning: #f59e0b;
-            --brand-success: #10b981;
-            
-            --font-ui: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            --font-code: 'JetBrains Mono', monospace;
-            
-            --radius-sm: 8px;
-            --radius-md: 12px;
-            --radius-lg: 20px; /* Anthropic-like softer corners */
-            
-            --transition-default: 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
-        }
+    <!-- Custom Modular JS Files (Placeholders for next steps) -->
+    <!-- Markdown Renderer must be loaded before main script -->
+    <script type="module" src="js/markdownRenderer.js"></script>
+    <script type="module" src="js/script.js"></script>
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-            -webkit-touch-callout: none;
-        }
-
-        input, textarea, [contenteditable="true"], code, pre {
-            -webkit-user-select: auto !important;
-            -moz-user-select: auto !important;
-            -ms-user-select: auto !important;
-            user-select: auto !important;
-        }
-
-        *:focus { 
-            outline: none !important; 
-            box-shadow: none !important; 
-        }
-
-        html, body {
-            height: 100%;
-            height: 100dvh;
-            width: 100vw;
-            font-family: var(--font-ui);
-            color: var(--text-primary);
-            display: flex;
-            overflow: hidden;
-            background: var(--bg-main);
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-
-        button, a { 
-            -webkit-tap-highlight-color: transparent; 
-            outline: none; 
-        }
-        
-        button { 
-            background: none; 
-            border: none; 
-            cursor: pointer; 
-            color: inherit; 
-            font-family: inherit; 
-        }
-        
-        input, textarea { 
-            font-family: inherit; 
-            outline: none; 
-            border: none; 
-            background: transparent; 
-        }
-
-        ::-webkit-scrollbar { width: 6px; height: 6px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.1); border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: rgba(0,0,0,0.2); }
-
-        @keyframes fadeInUp { 
-            from { opacity: 0; transform: translateY(12px); } 
-            to { opacity: 1; transform: translateY(0); } 
-        }
-        
-        @keyframes dropUpFade { 
-            from { opacity: 0; transform: translateY(10px) scale(0.96); } 
-            to { opacity: 1; transform: translateY(0) scale(1); } 
-        }
-        
-        @keyframes modalFadeIn { 
-            from { opacity: 0; transform: scale(0.96); } 
-            to { opacity: 1; transform: scale(1); } 
-        }
-        
-        @keyframes blinkCursor { 
-            0%, 100% { opacity: 1; } 
-            50% { opacity: 0; } 
-        }
-        
-        @keyframes recordPulse { 
-            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4); } 
-            50% { transform: scale(1.05); box-shadow: 0 0 0 8px rgba(239, 68, 68, 0); } 
-            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); } 
-        }
-
-        .blinking-cursor {
-            display: inline-block; 
-            width: 6px; 
-            height: 18px; 
-            background: var(--text-primary);
-            margin-left: 2px; 
-            vertical-align: text-bottom; 
-            animation: blinkCursor 0.8s infinite; 
-            border-radius: 2px;
-        }
-
-        .btn-menu {
-            position: absolute; 
-            top: 16px; 
-            left: 16px; 
-            z-index: 100; 
-            width: 40px; 
-            height: 40px;
-            border-radius: 50%; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center;
-            background: rgba(255,255,255,0.8); 
-            backdrop-filter: blur(12px); 
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid var(--border-light); 
-            color: var(--text-secondary); 
-            transition: var(--transition-default);
-        }
-        
-        .btn-menu:hover { 
-            background: #fff; 
-            color: var(--text-primary); 
-            border-color: var(--border-focus);
-        }
-
-        .sidebar {
-            width: 280px; 
-            background: var(--bg-sidebar); 
-            backdrop-filter: blur(20px); 
-            -webkit-backdrop-filter: blur(20px);
-            border-right: 1px solid var(--border-light); 
-            display: flex; 
-            flex-direction: column;
-            transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1); 
-            z-index: 110; 
-            height: 100%; 
-            flex-shrink: 0;
-        }
-        
-        .sidebar.collapsed { 
-            transform: translateX(-100%); 
-            position: absolute; 
-        }
-
-        .sidebar-header { 
-            padding: 20px 16px 10px; 
-            display: flex; 
-            align-items: center; 
-            justify-content: space-between; 
-        }
-        
-        .sidebar-logo { 
-            font-weight: 600; 
-            font-size: 15px; 
-            display: flex; 
-            align-items: center; 
-            gap: 8px; 
-            letter-spacing: -0.3px;
-        }
-        
-        .btn-new-chat {
-            margin: 10px 16px; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            gap: 8px;
-            padding: 10px; 
-            border-radius: var(--radius-sm); 
-            background: #fff; 
-            border: 1px solid var(--border-light);
-            font-size: 13.5px; 
-            font-weight: 500; 
-            transition: var(--transition-default); 
-            color: var(--text-primary);
-            box-shadow: 0 1px 2px rgba(0,0,0,0.02);
-        }
-        
-        .btn-new-chat:hover { 
-            border-color: var(--border-focus); 
-            box-shadow: 0 4px 12px rgba(0,0,0,0.04); 
-        }
-
-        .sidebar-history { 
-            flex: 1; 
-            overflow-y: auto; 
-            padding: 10px 12px; 
-            display: flex; 
-            flex-direction: column; 
-            gap: 2px; 
-        }
-        
-        .history-header { 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            padding: 4px 8px 8px; 
-            margin-bottom: 4px; 
-        }
-        
-        .history-title-text { 
-            font-size: 11px; 
-            font-weight: 600; 
-            color: var(--text-tertiary); 
-            text-transform: uppercase; 
-            letter-spacing: 0.5px; 
-        }
-        
-        .btn-clear-all { 
-            font-size: 11px; 
-            font-weight: 500; 
-            color: var(--text-tertiary); 
-            cursor: pointer; 
-            transition: 0.2s; 
-            padding: 4px 8px;
-            border-radius: 6px;
-        }
-        
-        .btn-clear-all:hover { 
-            color: var(--brand-danger); 
-            background: rgba(239, 68, 68, 0.05);
-        }
-
-        .history-item {
-            padding: 9px 10px; 
-            border-radius: var(--radius-sm); 
-            font-size: 13px; 
-            font-weight: 400; 
-            color: var(--text-secondary);
-            cursor: pointer; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            transition: 0.15s;
-        }
-        
-        .history-item:hover { 
-            background: rgba(0,0,0,0.04); 
-            color: var(--text-primary); 
-        }
-        
-        .history-item.active { 
-            background: #fff; 
-            color: var(--text-primary); 
-            font-weight: 500; 
-            box-shadow: 0 1px 3px rgba(0,0,0,0.04); 
-            border: 1px solid var(--border-light);
-        }
-        
-        .history-text { 
-            white-space: nowrap; 
-            overflow: hidden; 
-            text-overflow: ellipsis; 
-            flex: 1; 
-        }
-
-        .btn-delete-chat { 
-            background: none; 
-            border: none; 
-            color: var(--text-tertiary); 
-            cursor: pointer; 
-            padding: 4px; 
-            display: none; 
-            border-radius: 6px; 
-        }
-        
-        .history-item:hover .btn-delete-chat { 
-            display: flex; 
-        }
-        
-        .btn-delete-chat:hover { 
-            color: var(--brand-danger); 
-            background: #fee2e2; 
-        }
-
-        .sidebar-footer { 
-            padding: 16px; 
-            border-top: 1px solid var(--border-light); 
-            display: flex; 
-            align-items: center; 
-            gap: 10px; 
-            flex-wrap: wrap; 
-        }
-        
-        .user-avatar { 
-            width: 34px; 
-            height: 34px; 
-            border-radius: 50%; 
-            background: var(--text-primary); 
-            color: #fff; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            font-size: 13px; 
-            font-weight: 600; 
-            flex-shrink: 0; 
-        }
-        
-        .user-info-box { 
-            flex: 1; 
-            overflow: hidden; 
-            display: flex; 
-            flex-direction: column; 
-        }
-        
-        .user-name { 
-            font-size: 13px; 
-            font-weight: 600; 
-            white-space: nowrap; 
-            overflow: hidden; 
-            text-overflow: ellipsis; 
-        }
-        
-        .user-sub { 
-            font-size: 11px; 
-            color: var(--text-tertiary); 
-            margin-top: 2px; 
-        }
-
-        .btn-login-register { 
-            background: var(--brand-color); 
-            color: #fff; 
-            border-radius: var(--radius-sm); 
-            padding: 7px 12px; 
-            font-size: 12px; 
-            font-weight: 500; 
-            cursor: pointer; 
-            transition: 0.2s; 
-            margin-left: auto; 
-        }
-        
-        .btn-login-register:hover { 
-            background: #000; 
-            transform: translateY(-1px); 
-        }
-
-        .btn-power { 
-            width: 32px; 
-            height: 32px; 
-            border-radius: var(--radius-sm); 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            color: var(--text-secondary); 
-            transition: 0.2s; 
-        }
-        
-        .btn-power:hover { 
-            background: #fee2e2; 
-            color: var(--brand-danger); 
-        }
-
-        .main-area { 
-            flex: 1; 
-            display: flex; 
-            flex-direction: column; 
-            position: relative; 
-            transition: 0.3s; 
-            height: 100%; 
-            overflow: hidden; 
-            z-index: 1; 
-        }
-        
-        .chat-container { 
-            flex: 1; 
-            overflow-x: hidden; 
-            overflow-y: auto; 
-            padding: 80px 20px 200px; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            scroll-behavior: smooth; 
-        }
-
-        .welcome-center { 
-            margin: auto; 
-            text-align: center; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            animation: fadeInUp 0.6s ease; 
-            width: 100%; 
-            justify-content: center; 
-            flex: 1; 
-        }
-        
-        .welcome-center img { 
-            width: 64px; 
-            height: 64px; 
-            border-radius: 16px; 
-            margin-bottom: 24px; 
-            object-fit: contain; 
-        }
-        
-        .welcome-center h1 { 
-            font-size: 28px; 
-            font-weight: 500; 
-            letter-spacing: -0.5px; 
-            color: var(--text-primary); 
-            margin-bottom: 8px; 
-        }
-        
-        .welcome-center p { 
-            font-size: 15px; 
-            color: var(--text-secondary); 
-            font-weight: 400;
-        }
-
-        #chatMessages { width: 100%; display: flex; flex-direction: column; align-items: center; }
-        .message-wrapper { width: 100%; max-width: 800px; margin-bottom: 32px; display: flex; flex-direction: column; animation: fadeInUp 0.3s ease; }
-
-        .user-message {
-            align-self: flex-end; max-width: 85%; background: var(--bg-user-msg);
-            padding: 12px 18px; border-radius: 18px 18px 4px 18px; font-size: 15px; font-weight: 400;
-            line-height: 1.5; color: var(--text-primary); word-wrap: break-word; overflow-wrap: break-word;
-            border: 1px solid rgba(0,0,0,0.04);
-        }
-
-        .bot-message { align-self: flex-start; max-width: 100%; display: flex; gap: 16px; width: 100%; box-sizing: border-box; background: transparent; padding: 0; }
-        
-        .bot-avatar {
-            width: 30px; height: 30px; border-radius: 8px; flex-shrink: 0; overflow: hidden;
-            display: flex; align-items: center; justify-content: center; margin-top: 4px;
-            border: 1px solid var(--border-light); background: #fff;
-        }
-        .bot-avatar img { width: 100%; height: 100%; object-fit: cover; }
-
-        .bot-content-wrapper { flex: 1 1 0%; min-width: 0; max-width: calc(100% - 46px); width: 100%; overflow: hidden; }
-        
-        .bot-content { font-size: 15.5px; line-height: 1.7; color: var(--text-primary); word-wrap: break-word; font-weight: 400; letter-spacing: 0.1px; }
-        .bot-content p { margin-bottom: 16px; }
-        .bot-content p:last-child { margin-bottom: 0; }
-        .bot-content strong { font-weight: 600; color: #000; }
-        .bot-content ul, .bot-content ol { padding-left: 24px; margin-bottom: 16px; }
-        .bot-content li { margin-bottom: 8px; }
-
-        .bot-content code { font-family: var(--font-code); background: rgba(0,0,0,0.06); padding: 3px 6px; border-radius: 6px; font-size: 0.85em; color: #000; }
-        .bot-content pre { background: #0d1117; padding: 16px; border-radius: 12px; overflow-x: auto; margin: 16px 0; border: 1px solid var(--border-light); position: relative; }
-        .bot-content pre code { background: none; padding: 0; color: #e2e8f0; font-size: 13.5px; }
-
-        .bot-content table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; border: 1px solid var(--border-light); border-radius: 8px; overflow: hidden; display: block; overflow-x: auto; }
-        .bot-content th, .bot-content td { border: 1px solid var(--border-light); padding: 10px 14px; text-align: left; }
-        .bot-content th { background: rgba(0,0,0,0.03); font-weight: 500; }
-
-        .mjx-container { max-width: 100%; overflow-x: auto; overflow-y: hidden; }
-
-        .chat-attachment-container { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
-        .chat-file-pill { display: inline-flex; align-items: center; gap: 8px; background: #fff; border: 1px solid var(--border-light); padding: 8px 12px; border-radius: 10px; font-size: 12.5px; font-weight: 500; }
-        .chat-img-preview { max-width: 140px; max-height: 140px; border-radius: 12px; object-fit: cover; border: 1px solid var(--border-light); }
-
-        .qwen-think-box { border-left: 2px solid #e4e4e7; padding-left: 16px; margin-bottom: 16px; transition: 0.3s; }
-        .qwen-think-box summary { font-size: 12.5px; font-weight: 500; color: var(--text-tertiary); cursor: pointer; list-style: none; display: flex; align-items: center; gap: 8px; user-select: none; }
-        .qwen-think-box summary::-webkit-details-marker { display: none; }
-        .qwen-think-content { margin-top: 8px; font-size: 14px; color: var(--text-secondary); font-style: italic; white-space: pre-wrap; line-height: 1.6; }
-
-        .msg-actions { display: flex; gap: 4px; margin-top: 12px; opacity: 0; transition: 0.2s; align-items: center; }
-        .message-wrapper:hover .msg-actions { opacity: 1; }
-        @media (hover: none) { .msg-actions { opacity: 1; } }
-
-        .action-btn { display: flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 500; color: var(--text-tertiary); padding: 6px 10px; border-radius: 8px; transition: 0.2s; background: transparent; }
-        .action-btn:hover { color: var(--text-primary); background: rgba(0,0,0,0.04); }
-        .action-btn.listen-btn { background: #f4f4f5; }
-        .action-btn.listen-btn:hover { background: #e4e4e7; }
-        
-        .code-copy-btn { position: absolute; top: 8px; right: 8px; display: flex; align-items: center; gap: 4px; padding: 4px 8px; font-size: 11px; color: var(--text-secondary); background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; cursor: pointer; z-index: 2; backdrop-filter: blur(4px); }
-        .code-copy-btn:hover { background: rgba(255,255,255,0.2); color: #fff; }
-        .code-copy-btn.copied { color: var(--brand-success); border-color: var(--brand-success); }
-
-        .btn-scroll-bottom { position: absolute; bottom: 120px; left: 50%; transform: translateX(-50%) translateY(20px); width: 36px; height: 36px; border-radius: 50%; background: #fff; border: 1px solid var(--border-light); box-shadow: 0 4px 12px rgba(0,0,0,0.08); display: flex; align-items: center; justify-content: center; color: var(--text-secondary); opacity: 0; pointer-events: none; transition: 0.3s; z-index: 45; }
-        .btn-scroll-bottom.visible { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
-
-        /* *************************************************************************
-           CLEAN INPUT DOCK (Anthropic-like: No RGB Glow, Subtle Shadows)
-           ************************************************************************* */
-        
-        .input-dock {
-            position: absolute; 
-            bottom: 24px; 
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100%; 
-            max-width: 800px;
-            padding: 0 20px;
-            z-index: 50;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .loc-toast { display: none; align-items: center; gap: 6px; font-size: 12px; font-weight: 500; color: var(--text-secondary); margin-bottom: 12px; background: #fff; padding: 6px 14px; border-radius: 16px; border: 1px solid var(--border-light); box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
-
-        .input-dock-wrapper {
-            position: relative; 
-            width: 100%; 
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(20px); 
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid var(--border-light);
-            border-radius: var(--radius-lg); 
-            padding: 12px 16px;
-            display: flex; 
-            flex-direction: column;
-            transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
-        }
-
-        /* Professional Expanded State (No RGB Glow) */
-        .input-dock-wrapper.expanded {
-            background: rgba(255, 255, 255, 0.95);
-            border-color: var(--border-focus);
-            transform: translateY(-2px);
-            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
-        }
-
-        .file-preview-bar { display: none; padding-bottom: 10px; align-items: center; gap: 8px; }
-        .file-preview-bar.active { display: flex; }
-        .file-preview-pill { display: flex; align-items: center; gap: 8px; background: #f4f4f5; padding: 6px 12px; border-radius: 10px; font-size: 12px; border: 1px solid var(--border-light); }
-        .file-preview-icon { width: 16px; height: 16px; object-fit: cover; border-radius: 4px; }
-        .file-preview-name { max-width: 120px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--text-primary); }
-        .btn-remove-file { width: 18px; height: 18px; border-radius: 50%; background: #e4e4e7; display: flex; align-items: center; justify-content: center; transition: 0.2s; }
-        .btn-remove-file:hover { background: #d4d4d8; }
-
-        .chat-input { 
-            width: 100%; 
-            padding: 8px 4px 12px; 
-            font-size: 15px; 
-            font-weight: 400; 
-            resize: none; 
-            color: var(--text-primary); 
-            line-height: 1.5; 
-            background: transparent; 
-            caret-color: #000;
-            min-height: 24px; 
-            max-height: 200px;
-            transition: min-height 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
-        }
-        .chat-input::placeholder { color: var(--text-tertiary); font-weight: 400; }
-
-        .input-dock-wrapper.expanded .chat-input {
-            min-height: 60px;
-        }
-
-        .input-row { display: flex; align-items: center; justify-content: space-between; width: 100%; margin-top: 4px; }
-
-        .tools-left { display: flex; gap: 2px; align-items: center; position: relative; }
-        
-        .tool-btn { width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--text-secondary); transition: 0.2s; background: transparent; flex-shrink: 0; }
-        .tool-btn:hover { background: #f4f4f5; color: var(--text-primary); }
-
-        .tool-btn.active-env { color: #fff; background: var(--brand-accent); }
-        .tool-btn.active-think-low { color: #fff; background: var(--brand-danger); }
-        .tool-btn.active-think-medium { color: #fff; background: var(--brand-warning); }
-        .tool-btn.active-think-high { color: #fff; background: #8b5cf6; }
-        .tool-btn.active-search { color: #fff; background: #16803c; }
-
-        .btn-mic.recording { color: var(--brand-danger); background: #fee2e2; animation: recordPulse 1.5s infinite; }
-
-        .tools-right { display: flex; align-items: center; gap: 8px; }
-
-        .btn-send { width: 34px; height: 34px; border-radius: 50%; background: var(--brand-color); color: #fff; display: flex; align-items: center; justify-content: center; transition: 0.2s; flex-shrink: 0; }
-        .btn-send:hover:not(:disabled) { background: #000; transform: scale(1.05); }
-        .btn-send:disabled { background: #e4e4e7; color: #a1a1aa; cursor: not-allowed; }
-
-        .btn-stop { width: 34px; height: 34px; border-radius: 50%; background: #fee2e2; color: var(--brand-danger); display: none; align-items: center; justify-content: center; transition: 0.25s; flex-shrink: 0; }
-        .btn-stop.active { display: flex; }
-        .btn-stop:hover { background: #fecaca; }
-
-        .hidden-input { display: none; }
-        
-        .dropdown-menu { position: absolute; bottom: calc(100% + 12px); left: 0; background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(20px); border: 1px solid var(--border-light); border-radius: 14px; padding: 6px; box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1); display: none; flex-direction: column; min-width: 200px; z-index: 100; transform-origin: bottom left; }
-        .dropdown-menu.active { display: flex; animation: dropUpFade 0.2s cubic-bezier(0.2, 0.8, 0.2, 1); }
-        .dropdown-header { padding: 8px 12px; font-size: 11px; font-weight: 600; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
-        .dropdown-item { padding: 9px 12px; border-radius: 8px; font-size: 13px; display: flex; align-items: center; justify-content: space-between; gap: 8px; cursor: pointer; transition: 0.15s; color: var(--text-primary); }
-        .dropdown-item:hover { background: #f4f4f5; }
-        .dropdown-item.selected { background: #f4f4f5; font-weight: 500; }
-
-        .auth-overlay { position: fixed; inset: 0; background: rgba(0,0,0, 0.3); backdrop-filter: blur(8px); display: none; align-items: center; justify-content: center; z-index: 2000; }
-        .auth-modal { background: #ffffff; width: 90%; max-width: 360px; border-radius: 20px; padding: 32px; box-shadow: 0 20px 50px rgba(0,0,0, 0.15); position: relative; animation: modalFadeIn 0.3s cubic-bezier(0.2, 0.8, 0.2, 1); border: 1px solid var(--border-light); }
-        .auth-close { position: absolute; top: 16px; right: 16px; color: var(--text-tertiary); width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: #f4f4f5; transition: 0.2s; }
-        .auth-close:hover { background: #e4e4e7; color: var(--text-primary); }
-        .auth-title { font-size: 18px; font-weight: 600; margin-bottom: 24px; text-align: center; letter-spacing: -0.3px; }
-        .auth-tabs { display: flex; background: #f4f4f5; border-radius: 10px; padding: 4px; margin-bottom: 20px; }
-        .auth-tab { flex: 1; text-align: center; padding: 8px; font-size: 13px; font-weight: 500; cursor: pointer; border-radius: 8px; color: var(--text-secondary); transition: 0.2s; }
-        .auth-tab.active { background: #ffffff; color: #000; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
-        .auth-input { width: 100%; padding: 12px 14px; border: 1px solid var(--border-light); border-radius: 10px; font-size: 14px; margin-bottom: 12px; background: #fcfcfc; transition: 0.2s; }
-        .auth-input:focus { border-color: var(--text-primary); background: #fff; }
-        .auth-btn { width: 100%; padding: 12px; background: var(--brand-color); color: #fff; font-size: 14px; font-weight: 500; border-radius: 10px; transition: 0.2s; }
-        .auth-btn:hover { background: #000; }
-        .auth-phase { display: none; }
-        .auth-phase.active { display: block; }
-        .auth-message { font-size: 12px; text-align: center; margin-top: 12px; min-height: 16px; }
-
-        .mobile-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.2); backdrop-filter: blur(4px); z-index: 95; opacity: 0; transition: 0.3s ease; pointer-events: none; }
-        .mobile-overlay.active { display: block; opacity: 1; pointer-events: all; }
-        
-        .custom-confirm-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.3); backdrop-filter: blur(8px); display: none; align-items: center; justify-content: center; z-index: 2500; }
-        .custom-confirm-box { background: #fff; border-radius: 16px; padding: 24px; max-width: 300px; width: 90%; text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.15); animation: modalFadeIn 0.2s; border: 1px solid var(--border-light); }
-        .custom-confirm-msg { font-size: 14px; margin-bottom: 24px; color: var(--text-primary); font-weight: 500; line-height: 1.5; }
-        .custom-confirm-btns { display: flex; gap: 12px; }
-        .custom-confirm-btn { flex: 1; padding: 10px; border-radius: 10px; font-size: 13px; font-weight: 500; transition: 0.2s; }
-        .custom-confirm-btn.cancel { background: #f4f4f5; color: var(--text-secondary); }
-        .custom-confirm-btn.cancel:hover { background: #e4e4e7; }
-        .custom-confirm-btn.confirm { background: var(--brand-danger); color: #fff; }
-        .custom-confirm-btn.confirm:hover { background: #dc2626; }
-
-        @media (max-width: 900px) {
-            .sidebar { position: fixed; left: 0; top: 0; box-shadow: 4px 0 24px rgba(0,0,0,0.05); }
-            .sidebar.collapsed { box-shadow: none; }
-            .input-dock { padding: 10px 16px calc(16px + env(safe-area-inset-bottom)); bottom: 0; }
-            .chat-container { padding: 70px 16px 180px; }
-            .user-message { max-width: 90%; }
-        }
-        @media (max-width: 600px) {
-            .code-copy-btn span { display: none; }
-            .welcome-center img { width: 56px; height: 56px; }
-            .welcome-center h1 { font-size: 24px; }
-            .tool-btn, .btn-send, .btn-stop { width: 36px; height: 36px; }
-            .input-dock-wrapper.expanded .chat-input { min-height: 50px; }
-            .chat-input { font-size: 16px; /* Prevents iOS zoom on focus */ }
-        }
-    </style>
-</head>
-
-<body oncontextmenu="return false;">
-
-    <button class="btn-menu" id="btnMenuOpen" onclick="UI.toggleSidebar()">
-        <svg style="width:20px;height:20px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="9" x2="20" y2="9"></line><line x1="4" y1="15" x2="14" y2="15"></line></svg>
-    </button>
-
-    <div class="mobile-overlay" id="mobileOverlay" onclick="UI.toggleSidebar()"></div>
-
-    <aside class="sidebar collapsed" id="sidebar">
-        <div class="sidebar-header">
-            <div class="sidebar-logo"><img id="sidebarLogoImg" alt="" style="width:24px;height:24px;border-radius:6px;object-fit:contain;">CODE VED</div>
-            <button class="btn-menu" style="position:static; width:32px; height:32px; box-shadow:none; border:none; background:transparent;" onclick="UI.toggleSidebar()">
-                <svg style="width:18px;height:18px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-            </button>
-        </div>
-        
-        <button class="btn-new-chat" onclick="HistoryManager.startNew()">
-            <svg style="width:16px; height:16px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg> New Workspace
-        </button>
-        
-        <div class="sidebar-history" id="chatHistory"></div>
-
-        <div class="sidebar-footer">
-            <div class="user-avatar" id="uAv">G</div>
-            <div class="user-info-box">
-                <div class="user-name" id="uName">Guest Session</div>
-                <div class="user-sub" id="uSub">Queries: 0/10</div>
-            </div>
-            <button class="btn-login-register" id="btnLoginRegister" onclick="Auth.openModal()">Access</button>
-            <button class="btn-power" id="btnDeleteAcc" onclick="Auth.handleDeleteAccount()" style="display:none; color:var(--brand-danger);" title="Delete Account"><svg style="width:16px;height:16px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"></path></svg></button>
-            <button class="btn-power" id="btnLogout" onclick="Auth.handleLogout()" style="display:none;" title="Logout"><svg style="width:16px;height:16px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18.36 6.64a9 9 0 1 1-12.73 0"></path><line x1="12" y1="2" x2="12" y2="12"></line></svg></button>
-        </div>
-    </aside>
-
-    <main class="main-area">
-        <div class="chat-container" id="chatContainer">
-            <div class="welcome-center" id="welcomeScreen">
-                <img id="welcomeLogoImg" alt="CODE VED">
-                <h1 id="welcomeTitle">Hello, Guest!</h1>
-                <p id="welcomeGreeting">How can I help you today?</p>
-            </div>
-            <div id="chatMessages"></div>
-        </div>
-
-        <button id="scrollToBottomBtn" class="btn-scroll-bottom" onclick="UI.scrollToBottom(true); UI.autoScroll = true;">
-            <svg style="width:18px;height:18px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><polyline points="19 12 12 19 5 12"></polyline></svg>
-        </button>
-
-        <div class="input-dock" id="inputDock">
-            <div class="input-dock-wrapper" id="dockWrapper">
-                <div class="loc-toast" id="locStatus"></div>
-                
-                <div class="file-preview-bar" id="filePreviewBar">
-                    <div class="file-preview-pill">
-                        <img id="imgPreview" class="file-preview-icon" src="" style="display:none;">
-                        <svg id="docPreview" style="display:none; width:14px; height:14px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
-                        <div class="file-preview-name" id="fileName">doc.pdf</div>
-                        <button class="btn-remove-file" onclick="FileSys.discard()"><svg style="width:12px;height:12px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
-                    </div>
-                </div>
-
-                <textarea class="chat-input" id="mainInput" placeholder="Ask CODE VED..." rows="1"></textarea>
-
-                <div class="input-row">
-                    <div class="tools-left">
-                        <div style="position: relative;">
-                            <button class="tool-btn" id="btnAttach" onclick="UI.toggleAttachMenu()" title="Attach File">
-                                <svg style="width:20px;height:20px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"></path></svg>
-                            </button>
-                            
-                            <div class="dropdown-menu" id="attachMenu">
-                                <div class="dropdown-item" onclick="document.getElementById('imgUpload').click()"><svg style="width:16px;height:16px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg> Upload Image</div>
-                                <div class="dropdown-item" onclick="document.getElementById('docUpload').click()"><svg style="width:16px;height:16px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg> Upload Document</div>
-                                <div style="height:1px; background:var(--border-light); margin:4px 0;"></div>
-                                <div class="dropdown-item" onclick="EnvironmentManager.toggle()"><svg style="width:16px;height:16px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg> GPS & Weather</div>
-                                <div class="dropdown-item" onclick="ThinkingManager.toggleMenu()"><svg style="width:16px;height:16px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a5 5 0 0 0-5 5v2a5 5 0 0 0 10 0V7a5 5 0 0 0-5-5z"></path><path d="M8 14H6a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2h-2"></path></svg> Thinking Mode</div>
-                                <div class="dropdown-item" onclick="TTSManager.toggleMenu()"><svg style="width:16px;height:16px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg> Select Voice</div>
-                            </div>
-
-                            <div class="dropdown-menu" id="voiceMenu" style="min-width: 220px; left: 45px; bottom: 40px; max-height: 300px; overflow-y: auto;">
-                                <div class="dropdown-header">Premium Voices</div>
-                                <div id="voiceOptionsList"></div>
-                                <div style="height:1px; background:var(--border-light); margin:4px 0;"></div>
-                                <div class="dropdown-header">Language</div>
-                                <div id="languageOptionsList"></div>
-                            </div>
-
-                            <div class="dropdown-menu" id="thinkMenu" style="min-width: 180px; left: 45px; bottom: 40px;">
-                                <div class="dropdown-header">Reasoning Effort</div>
-                                <div class="dropdown-item" onclick="ThinkingManager.setEffort('low')">⚡ Low (Fast)</div>
-                                <div class="dropdown-item" onclick="ThinkingManager.setEffort('medium')">🧠 Medium (Balanced)</div>
-                                <div class="dropdown-item" onclick="ThinkingManager.setEffort('high')">🔍 High (Deep logic)</div>
-                                <div style="height:1px; background:var(--border-light); margin:4px 0;"></div>
-                                <div class="dropdown-item" style="color:var(--brand-danger);" onclick="ThinkingManager.disable()">❌ Disable Thinking</div>
-                            </div>
-
-                            <input type="file" id="imgUpload" class="hidden-input" accept="image/*" onchange="FileSys.process(this, 'image')">
-                            <input type="file" id="docUpload" class="hidden-input" accept=".pdf,.txt,.docx,.html,.js,.py,.css,.cpp,.c,.json,.md" onchange="FileSys.process(this, 'document')">
-                        </div>
-
-                        <button class="tool-btn" id="btnSearch" onclick="SearchManager.toggle()" title="Web Search">
-                            <svg style="width:18px;height:18px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-                        </button>
-
-                        <button class="tool-btn btn-mic" id="btnStt" onclick="Speech.toggle()" title="Voice Typing">
-                            <svg style="width:18px;height:18px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>
-                        </button>
-                    </div>
-
-                    <div class="tools-right">
-                        <button class="btn-stop" id="btnStop" onclick="Chat.stopGeneration()">
-                            <svg style="width:14px;height:14px;" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="6" width="12" height="12" rx="2"></rect></svg>
-                        </button>
-                        <button class="btn-send" id="btnSend" onclick="Chat.handleSend()">
-                            <svg style="width:18px;height:18px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <div class="auth-overlay" id="authModal" onclick="if(event.target===this) Auth.closeModal()">
-        <div class="auth-modal">
-            <button class="auth-close" onclick="Auth.closeModal()"><svg style="width:18px;height:18px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
-            <div class="auth-title">System Access</div>
-            <div class="auth-tabs">
-                <div class="auth-tab active" id="tabLogin" onclick="Auth.switchTab('login')">Login</div>
-                <div class="auth-tab" id="tabRegister" onclick="Auth.switchTab('register')">Register</div>
-            </div>
-            <div id="flowLogin">
-                <div class="auth-phase active" id="loginPhase1">
-                    <input type="email" class="auth-input" id="logEmail" placeholder="Email Address">
-                    <button class="auth-btn" id="btnLogOtp" onclick="Auth.process('login_send_otp')">Continue</button>
-                </div>
-                <div class="auth-phase" id="loginPhase2">
-                    <input type="number" class="auth-input" id="logOtp" placeholder="Enter OTP">
-                    <button class="auth-btn" id="btnLogVerify" onclick="Auth.process('login_verify')">Verify</button>
-                </div>
-            </div>
-            <div id="flowRegister" style="display:none;">
-                <div class="auth-phase active" id="regPhase1">
-                    <input type="text" class="auth-input" id="regName" placeholder="Full Name">
-                    <input type="email" class="auth-input" id="regEmail" placeholder="Email Address">
-                    <button class="auth-btn" id="btnRegOtp" onclick="Auth.process('register_send_otp')">Create Account</button>
-                </div>
-                <div class="auth-phase" id="regPhase2">
-                    <input type="number" class="auth-input" id="regOtp" placeholder="Enter OTP">
-                    <button class="auth-btn" id="btnRegVerify" onclick="Auth.process('register_verify')">Verify</button>
-                </div>
-            </div>
-            <div class="auth-message" id="authMsg"></div>
-        </div>
-    </div>
-
-    <div class="custom-confirm-overlay" id="customConfirmOverlay">
-        <div class="custom-confirm-box">
-            <div class="custom-confirm-msg" id="customConfirmMsg"></div>
-            <div class="custom-confirm-btns">
-                <button class="custom-confirm-btn cancel" id="customConfirmCancel">Cancel</button>
-                <button class="custom-confirm-btn confirm" id="customConfirmOk">Confirm</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- पूरा, विस्तृत जावास्क्रिप्ट लॉजिक (बिना किसी कटौती के) -->
-    <script>
-        (function() {
-            // बैकएंड कॉन्फ़िगरेशन
-            const Config = {
-                GAS_URL: "https://script.google.com/macros/s/AKfycbzNO3inVc33ImhfLyde-JjjK9ZlPckLBksqCnCzelfhcklX6mp8KW8vfPTW4oWJTCcN/exec",
-                API_ENDPOINT: "/api/chat",
-                LOGO: "data:image/webp;base64,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"
-            };
-
-            // ग्लोबल स्टेट मैनेजमेंट
-            const State = {
-                user: localStorage.getItem('codeved_user') || null,
-                name: localStorage.getItem('codeved_name') || null,
-                guestCount: (() => { 
-                    const v = parseInt(localStorage.getItem('codeved_guest') || '0', 10); 
-                    return isNaN(v) ? 0 : v; 
-                })(),
-                attachment: null,
-                isProcessing: false,
-                history: [],
-                currentThreadId: null,
-                currentTitle: null,
-                abortController: null,
-                location: null,
-                weatherContext: null,
-                thinkingMode: false,
-                thinkingEffort: "medium",
-                searchEnabled: false,
-                lastUserMessage: null
-            };
-
-            // PDF.js वर्कर सेटअप
-            if (typeof pdfjsLib !== 'undefined') {
-                pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
-            }
-
-            // कस्टम कन्फर्म बॉक्स फ़ंक्शन
-            function customConfirm(message) {
-                return new Promise((resolve) => {
-                    const overlay = document.getElementById('customConfirmOverlay');
-                    const msgEl = document.getElementById('customConfirmMsg');
-                    const cancelBtn = document.getElementById('customConfirmCancel');
-                    const okBtn = document.getElementById('customConfirmOk');
-                    
-                    msgEl.textContent = message;
-                    overlay.style.display = 'flex';
-                    
-                    function cleanup() { 
-                        overlay.style.display = 'none'; 
-                        cancelBtn.removeEventListener('click', onCancel); 
-                        okBtn.removeEventListener('click', onOk); 
-                    }
-                    
-                    function onCancel() { cleanup(); resolve(false); }
-                    function onOk() { cleanup(); resolve(true); }
-                    
-                    cancelBtn.addEventListener('click', onCancel);
-                    okBtn.addEventListener('click', onOk);
-                });
-            }
-
-            // UI मैनेजमेंट
-            const UI = {
-                autoScroll: true,
-                
-                toggleSidebar() {
-                    const sb = document.getElementById('sidebar');
-                    const overlay = document.getElementById('mobileOverlay');
-                    sb.classList.toggle('collapsed');
-                    overlay.classList.toggle('active', !sb.classList.contains('collapsed') && window.innerWidth <= 900);
-                },
-                
-                toggleAttachMenu() { 
-                    document.getElementById('attachMenu').classList.toggle('active'); 
-                    document.getElementById('thinkMenu').classList.remove('active'); 
-                    document.getElementById('voiceMenu').classList.remove('active'); 
-                },
-                
-                autoGrow(el) { 
-                    el.style.height = 'auto'; 
-                    el.style.height = Math.min(el.scrollHeight, 180) + 'px'; 
-                },
-                
-                scrollToBottom(force = false) { 
-                    const c = document.getElementById('chatContainer'); 
-                    if (force || this.autoScroll) { 
-                        c.scrollTop = c.scrollHeight; 
-                    } 
-                },
-                
-                escape(s) { 
-                    return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); 
-                },
-                
-                showAuthMsg(msg, isError = true) {
-                    const el = document.getElementById('authMsg'); 
-                    el.innerText = msg; 
-                    el.style.color = isError ? 'var(--brand-danger)' : 'var(--brand-success)';
-                    setTimeout(() => el.innerText = '', 4000);
-                },
-                
-                updateUserInfo(name, email) {
-                    if (name) { 
-                        State.name = name; 
-                        localStorage.setItem('codeved_name', name); 
-                    }
-                    const dispName = State.name || email.split('@')[0];
-                    document.getElementById('uAv').innerText = dispName.charAt(0).toUpperCase();
-                    document.getElementById('uName').innerText = dispName;
-                    document.getElementById('uSub').innerText = email;
-                    document.getElementById('btnLogout').style.display = 'flex';
-                    document.getElementById('btnDeleteAcc').style.display = 'flex';
-                    document.getElementById('btnLoginRegister').style.display = 'none';
-                    document.getElementById('welcomeTitle').innerHTML = `Hello, ${dispName}!<br>How can I help you today?`;
-                },
-                
-                updateWelcomeScreen() { 
-                    document.getElementById('welcomeScreen').style.display = State.history.length === 0 ? 'flex' : 'none'; 
-                }
-            };
-
-            // स्क्रॉल इवेंट लिसनर
-            const chatContainerEl = document.getElementById('chatContainer');
-            const scrollBtnEl = document.getElementById('scrollToBottomBtn');
-            
-            chatContainerEl.addEventListener('scroll', () => {
-                const scrollBottom = chatContainerEl.scrollHeight - chatContainerEl.scrollTop - chatContainerEl.clientHeight;
-                UI.autoScroll = scrollBottom <= 50;
-                scrollBtnEl.classList.toggle('visible', !UI.autoScroll);
-            });
-
-            // बाहर क्लिक करने पर मेनू बंद करें
-            document.addEventListener('click', (e) => {
-                if (!e.target.closest('.tools-left')) {
-                    document.getElementById('attachMenu').classList.remove('active'); 
-                    document.getElementById('thinkMenu').classList.remove('active'); 
-                    document.getElementById('voiceMenu').classList.remove('active');
-                }
-            });
-
-            // ***************************************************************
-            // इनपुट बॉक्स लिसनर्स - Clean Expanding Logic (No RGB Glow)
-            // ***************************************************************
-            const inp = document.getElementById('mainInput');
-            const dockWrapper = document.getElementById('dockWrapper');
-
-            // फोकस होने पर बॉक्स बड़ा होगा (सबटल शैडो के साथ)
-            inp.addEventListener('focus', () => {
-                dockWrapper.classList.add('expanded');
-            });
-            
-            // फोकस हटने पर अगर बॉक्स खाली है तो वापस छोटा हो जाएगा
-            inp.addEventListener('blur', () => {
-                if (inp.value.trim() === '') {
-                    dockWrapper.classList.remove('expanded');
-                }
-            });
-            
-            // टाइप करते समय (auto-grow)
-            inp.addEventListener('input', function() { 
-                UI.autoGrow(this); 
-                if (this.value.trim() !== '') {
-                    dockWrapper.classList.add('expanded');
-                }
-            });
-            
-            inp.addEventListener('keydown', function(e) { 
-                if (e.key === 'Enter' && !e.shiftKey) { 
-                    e.preventDefault(); 
-                    Chat.handleSend(); 
-                } 
-            });
-
-            // ऑथेंटिकेशन लॉजिक
-            const Auth = {
-                init() {
-                    if (State.user) { 
-                        UI.updateUserInfo(State.name, State.user); 
-                        HistoryManager.syncAllChats(); 
-                    } else {
-                        document.getElementById('uAv').innerText = "G"; 
-                        document.getElementById('uName').innerText = "Guest Mode"; 
-                        document.getElementById('uSub').innerText = `Queries: ${State.guestCount}/10`;
-                        document.getElementById('btnLogout').style.display = 'none'; 
-                        document.getElementById('btnDeleteAcc').style.display = 'none'; 
-                        document.getElementById('btnLoginRegister').style.display = 'inline-flex';
-                        document.getElementById('welcomeTitle').innerHTML = `Hello, Guest!<br>How can I help you today?`;
-                    }
-                },
-                
-                async handleLogout() { 
-                    const ok = await customConfirm("Are you sure you want to logout?"); 
-                    if (ok) { 
-                        localStorage.removeItem('codeved_user'); 
-                        localStorage.removeItem('codeved_name'); 
-                        location.reload(); 
-                    } 
-                },
-                
-                async handleDeleteAccount() { 
-                    const ok = await customConfirm("Are you sure you want to permanently delete your account and all data?"); 
-                    if (ok) { 
-                        try {
-                            await fetch(Config.GAS_URL, { 
-                                method: 'POST', 
-                                headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-                                body: JSON.stringify({ action: "delete_account", email: State.user }) 
-                            });
-                        } catch(e) {
-                            console.error("Account delete error:", e);
-                        } finally {
-                            localStorage.removeItem('codeved_user'); 
-                            localStorage.removeItem('codeved_name'); 
-                            location.reload(); 
-                        }
-                    } 
-                },
-                
-                openModal() { 
-                    document.getElementById('authModal').style.display = 'flex'; 
-                },
-                
-                closeModal() { 
-                    document.getElementById('authModal').style.display = 'none'; 
-                },
-                
-                switchTab(tab) {
-                    document.getElementById('tabLogin').classList.remove('active'); 
-                    document.getElementById('tabRegister').classList.remove('active');
-                    document.getElementById('flowLogin').style.display = 'none'; 
-                    document.getElementById('flowRegister').style.display = 'none';
-                    
-                    if (tab === 'login') { 
-                        document.getElementById('tabLogin').classList.add('active'); 
-                        document.getElementById('flowLogin').style.display = 'block'; 
-                    } else { 
-                        document.getElementById('tabRegister').classList.add('active'); 
-                        document.getElementById('flowRegister').style.display = 'block'; 
-                    }
-                },
-                
-                switchPhase(from, to) { 
-                    document.getElementById(from).classList.remove('active'); 
-                    document.getElementById(to).classList.add('active'); 
-                },
-                
-                async process(action) {
-                    let payload = { action: action }; 
-                    let btnId = '';
-                    
-                    if (action === 'register_send_otp') {
-                        payload.name = document.getElementById('regName').value.trim(); 
-                        payload.email = document.getElementById('regEmail').value.trim();
-                        payload.phone = "0000000000"; 
-                        payload.organization = "CODE VED";
-                        if (!payload.name || !payload.email) return UI.showAuthMsg("Details missing."); 
-                        btnId = 'btnRegOtp';
-                    } else if (action === 'login_send_otp') {
-                        payload.email = document.getElementById('logEmail').value.trim();
-                        if (!payload.email) return UI.showAuthMsg("Email required."); 
-                        btnId = 'btnLogOtp';
-                    } else if (action === 'register_verify' || action === 'login_verify') {
-                        payload.email = document.getElementById(action === 'register_verify' ? 'regEmail' : 'logEmail').value.trim();
-                        payload.otp = document.getElementById(action === 'register_verify' ? 'regOtp' : 'logOtp').value.trim();
-                        if (!payload.otp) return UI.showAuthMsg("OTP required."); 
-                        btnId = action === 'register_verify' ? 'btnRegVerify' : 'btnLogVerify';
-                    }
-                    
-                    const btn = document.getElementById(btnId); 
-                    const originalText = btn.innerText;
-                    btn.disabled = true; 
-                    btn.innerText = "Wait...";
-                    
-                    try {
-                        const res = await fetch(Config.GAS_URL, { 
-                            method: 'POST', 
-                            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-                            body: JSON.stringify(payload) 
-                        });
-                        
-                        const textResponse = await res.text();
-                        let data;
-                        try {
-                            data = JSON.parse(textResponse);
-                        } catch (parseErr) {
-                            console.error("Failed to parse GAS response:", textResponse);
-                            UI.showAuthMsg("Invalid response from server. Network error.");
-                            btn.disabled = false; 
-                            btn.innerText = originalText;
-                            return;
-                        }
-                        
-                        if (data.status === 'success') {
-                            UI.showAuthMsg(data.message, false);
-                            if (action === 'register_send_otp') {
-                                Auth.switchPhase('regPhase1', 'regPhase2');
-                            } else if (action === 'login_send_otp') {
-                                Auth.switchPhase('loginPhase1', 'loginPhase2');
-                            } else { 
-                                localStorage.setItem('codeved_user', payload.email); 
-                                if (data.user && data.user.name) {
-                                    localStorage.setItem('codeved_name', data.user.name); 
-                                }
-                                location.reload(); 
-                            }
-                        } else {
-                            UI.showAuthMsg(data.message);
-                        }
-                    } catch (e) { 
-                        console.error("Auth process error:", e);
-                        UI.showAuthMsg("Network Error. Please try again."); 
-                    }
-                    
-                    btn.disabled = false; 
-                    btn.innerText = originalText;
-                }
-            };
-
-            // हिस्ट्री मैनेजमेंट
-            const HistoryManager = {
-                async syncAllChats() {
-                    if (!State.user) return;
-                    try { 
-                        const res = await fetch(Config.GAS_URL, { 
-                            method: 'POST', 
-                            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-                            body: JSON.stringify({ action: "get_all_chats", email: State.user }) 
-                        });
-                        const textResponse = await res.text();
-                        const data = JSON.parse(textResponse);
-                        if (data.status === 'success') { 
-                            if (data.user) {
-                                UI.updateUserInfo(data.user.name, data.user.email); 
-                            }
-                            this.renderSidebar(data.chats || []); 
-                        }
-                    } catch (e) {
-                        console.error("History sync error:", e);
-                    }
-                },
-                
-                renderSidebar(chats) {
-                    const container = document.getElementById('chatHistory'); 
-                    container.innerHTML = `<div class="history-header"><span class="history-title-text">Recent Workspaces</span><span class="btn-clear-all" onclick="HistoryManager.clearAll()">Clear All</span></div>`;
-                    
-                    chats.forEach(chat => {
-                        const isActive = State.currentThreadId === chat.threadId ? 'active' : '';
-                        container.innerHTML += `
-                        <div class="history-item ${isActive}" onclick="HistoryManager.loadChat('${chat.threadId}')">
-                            <span class="history-text">${UI.escape(chat.title)}</span>
-                            <button class="btn-delete-chat" onclick="event.stopPropagation(); HistoryManager.deleteChat('${chat.threadId}')" title="Delete">
-                                <svg style="width:14px;height:14px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <polyline points="3 6 5 6 21 6"></polyline>
-                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-                                </svg>
-                            </button>
-                        </div>`;
-                    });
-                },
-                
-                async loadChat(threadId) {
-                    if (!State.user || State.isProcessing) return;
-                    State.currentThreadId = threadId; 
-                    document.getElementById('chatMessages').innerHTML = '';
-                    
-                    try {
-                        const res = await fetch(Config.GAS_URL, { 
-                            method: 'POST', 
-                            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-                            body: JSON.stringify({ action: "get_chat", email: State.user, threadId: threadId }) 
-                        });
-                        const textResponse = await res.text();
-                        const data = JSON.parse(textResponse);
-                        
-                        if (data.status === 'success') {
-                            State.history = JSON.parse(data.historyJSON || "[]"); 
-                            UI.updateWelcomeScreen();
-                            
-                            for (const msg of State.history) {
-                                if (msg.role === 'user') {
-                                    let dispText = msg.content;
-                                    if (dispText.includes('[SYSTEM REAL-TIME WEATHER:')) {
-                                        dispText = dispText.split('\n\n[SYSTEM REAL-TIME WEATHER:')[0];
-                                    }
-                                    if (dispText.includes('---END DATA---')) {
-                                        const afterMarker = dispText.split('---END DATA---')[1] || '';
-                                        dispText = afterMarker.replace(/^\s*User:\s*/, '').trim() || '[Attached File]';
-                                    }
-                                    Chat.renderUser(dispText);
-                                } else {
-                                    const msgId = 'hist_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5);
-                                    const botObj = Chat.renderBot(msgId);
-                                    Chat.parseAndRender(msg.content, false, botObj.contentDiv);
-                                    TTSManager.autoPrepare(msgId, msg.content, botObj.listenBtn);
-                                }
-                            }
-                            UI.autoScroll = true; 
-                            UI.scrollToBottom();
-                            if (window.innerWidth <= 900) UI.toggleSidebar();
-                        }
-                    } catch (e) {
-                        console.error("Load chat error:", e);
-                    }
-                },
-                
-                startNew() {
-                    if (State.isProcessing) return; 
-                    State.currentThreadId = null; 
-                    State.currentTitle = null; 
-                    State.history = [];
-                    document.getElementById('chatMessages').innerHTML = ''; 
-                    UI.updateWelcomeScreen(); 
-                    UI.autoScroll = true; 
-                    UI.scrollToBottom();
-                    if (window.innerWidth <= 900) UI.toggleSidebar();
-                },
-                
-                saveCurrent() {
-                    if (!State.user || State.history.length === 0) return;
-                    if (!State.currentThreadId) { 
-                        State.currentThreadId = "thr_" + Date.now(); 
-                        const firstUser = State.history.find(m => m.role === 'user'); 
-                        State.currentTitle = firstUser ? firstUser.content.substring(0, 25) : "New Workspace"; 
-                    }
-                    
-                    fetch(Config.GAS_URL, { 
-                        method: 'POST', 
-                        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-                        body: JSON.stringify({ 
-                            action: "save_chat", 
-                            email: State.user, 
-                            threadId: State.currentThreadId, 
-                            title: State.currentTitle, 
-                            historyJSON: JSON.stringify(State.history) 
-                        }) 
-                    }).catch(e => console.error("Save error:", e)).then(() => this.syncAllChats());
-                },
-                
-                async clearAll() { 
-                    const ok = await customConfirm("Clear all workspaces?"); 
-                    if (ok) { 
-                        State.history = []; 
-                        State.currentThreadId = null; 
-                        State.currentTitle = null; 
-                        document.getElementById('chatMessages').innerHTML = ''; 
-                        UI.updateWelcomeScreen(); 
-                        UI.autoScroll = true; 
-                        UI.scrollToBottom(); 
-                        
-                        fetch(Config.GAS_URL, { 
-                            method: 'POST', 
-                            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-                            body: JSON.stringify({ action: "clear_all_chats", email: State.user }) 
-                        }).catch(e => console.error("Clear error:", e)).then(() => this.syncAllChats()); 
-                    } 
-                },
-                
-                async deleteChat(threadId) { 
-                    const ok = await customConfirm("Delete this workspace?"); 
-                    if (ok) { 
-                        if (State.currentThreadId === threadId) this.startNew(); 
-                        
-                        fetch(Config.GAS_URL, { 
-                            method: 'POST', 
-                            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-                            body: JSON.stringify({ action: "delete_chat", email: State.user, threadId: threadId }) 
-                        }).catch(e => console.error("Delete error:", e)).then(() => this.syncAllChats()); 
-                    } 
-                }
-            };
-
-            const EnvironmentManager = {
-                toggle() {
-                    const status = document.getElementById('locStatus'); 
-                    document.getElementById('attachMenu').classList.remove('active');
-                    
-                    if (State.location) { 
-                        State.location = null; 
-                        State.weatherContext = null; 
-                        status.style.display = 'none'; 
-                    } else {
-                        if (navigator.geolocation) {
-                            status.style.display = 'flex'; 
-                            status.innerHTML = `<span class="flicker-text">Finding location...</span>`;
-                            
-                            navigator.geolocation.getCurrentPosition(pos => {
-                                State.location = { lat: pos.coords.latitude, lng: pos.coords.longitude };
-                                status.innerHTML = `<span style="color:var(--brand-success);">✓ Location active!</span>`; 
-                                setTimeout(() => status.style.display = 'none', 3000);
-                                fetch(`https://api.open-meteo.com/v1/forecast?latitude=${pos.coords.latitude}&longitude=${pos.coords.longitude}&current=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m`)
-                                    .then(r => r.ok ? r.json() : null)
-                                    .then(data => {
-                                        const c = data && data.current;
-                                        if (c) {
-                                            State.weatherContext = `Temperature: ${c.temperature_2m}°C, Humidity: ${c.relative_humidity_2m}%, Wind: ${c.wind_speed_10m} km/h`;
-                                        }
-                                    })
-                                    .catch(() => {});
-                            }, err => { 
-                                status.innerHTML = `<span style="color:var(--brand-danger);">Location denied.</span>`; 
-                                setTimeout(() => status.style.display = 'none', 3000); 
-                            });
-                        }
-                    }
-                }
-            };
-
-            const SearchManager = {
-                toggle() { 
-                    State.searchEnabled = !State.searchEnabled; 
-                    const btn = document.getElementById('btnSearch'); 
-                    btn.classList.toggle('active-search', State.searchEnabled); 
-                    btn.title = State.searchEnabled ? 'Web Search: ON' : 'Web Search: OFF'; 
-                }
-            };
-
-            const ThinkingManager = {
-                toggleMenu() { 
-                    document.getElementById('thinkMenu').classList.toggle('active'); 
-                    document.getElementById('attachMenu').classList.remove('active'); 
-                },
-                
-                setEffort(level) { 
-                    State.thinkingMode = true; 
-                    State.thinkingEffort = level; 
-                    document.getElementById('thinkMenu').classList.remove('active'); 
-                    ThinkingManager.updateIndicator(); 
-                },
-                
-                disable() { 
-                    State.thinkingMode = false; 
-                    document.getElementById('thinkMenu').classList.remove('active'); 
-                    ThinkingManager.updateIndicator(); 
-                },
-                
-                updateIndicator() { 
-                    const btn = document.getElementById('btnAttach'); 
-                    btn.classList.remove('active-think-low', 'active-think-medium', 'active-think-high'); 
-                    if (State.thinkingMode) {
-                        btn.classList.add(`active-think-${State.thinkingEffort}`); 
-                        btn.title = `Thinking Mode: ${State.thinkingEffort.charAt(0).toUpperCase() + State.thinkingEffort.slice(1)}`;
-                    } else {
-                        btn.title = 'Attach File';
-                    }
-                }
-            };
-
-            const FileSys = {
-                async process(input, type) {
-                    document.getElementById('attachMenu').classList.remove('active'); 
-                    const file = input.files[0]; 
-                    if (!file) return;
-                    
-                    document.getElementById('filePreviewBar').classList.add('active'); 
-                    document.getElementById('fileName').innerText = file.name;
-                    
-                    if (type === 'image') {
-                        document.getElementById('imgPreview').style.display = 'block'; 
-                        document.getElementById('docPreview').style.display = 'none';
-                        
-                        const reader = new FileReader();
-                        reader.onload = (e) => {
-                            const img = new Image(); 
-                            img.onload = () => {
-                                const canvas = document.createElement('canvas'); 
-                                const ctx = canvas.getContext('2d');
-                                let w = img.width, h = img.height; 
-                                const max = 1024;
-                                
-                                if(w > max || h > max) { 
-                                    if(w > h) { 
-                                        h = (max/w)*h; w = max; 
-                                    } else { 
-                                        w = (max/h)*w; h = max; 
-                                    } 
-                                }
-                                
-                                canvas.width = w; 
-                                canvas.height = h; 
-                                ctx.drawImage(img, 0, 0, w, h);
-                                
-                                const b64 = canvas.toDataURL('image/jpeg', 0.8).split(',')[1];
-                                State.attachment = { type: 'image', data: b64, name: file.name }; 
-                                document.getElementById('imgPreview').src = `data:image/jpeg;base64,${b64}`;
-                            };
-                            img.src = e.target.result;
-                        };
-                        reader.readAsDataURL(file);
-                    } else {
-                        document.getElementById('imgPreview').style.display = 'none'; 
-                        document.getElementById('docPreview').style.display = 'block';
-                        
-                        if (file.name.endsWith('.pdf')) {
-                            try { 
-                                const arrayBuffer = await file.arrayBuffer(); 
-                                const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise; 
-                                let text = ''; 
-                                for (let i = 1; i <= pdf.numPages; i++) { 
-                                    const page = await pdf.getPage(i); 
-                                    const content = await page.getTextContent(); 
-                                    text += content.items.map(item => item.str).join(' ') + '\n'; 
-                                } 
-                                State.attachment = { type: 'text', data: text, name: file.name }; 
-                            } catch(e) { 
-                                State.attachment = { type: 'text', data: '[PDF parsing error]', name: file.name }; 
-                            }
-                        } else if (file.name.endsWith('.docx')) {
-                            try { 
-                                const arrayBuffer = await file.arrayBuffer(); 
-                                const result = await mammoth.extractRawText({ arrayBuffer }); 
-                                State.attachment = { type: 'text', data: result.value, name: file.name }; 
-                            } catch(e) { 
-                                State.attachment = { type: 'text', data: '[DOCX parsing error]', name: file.name }; 
-                            }
-                        } else { 
-                            const reader = new FileReader(); 
-                            reader.onload = (e) => { 
-                                State.attachment = { type: 'text', data: e.target.result, name: file.name }; 
-                            }; 
-                            reader.readAsText(file); 
-                        }
-                    }
-                    input.value = '';
-                    dockWrapper.classList.add('expanded');
-                },
-                
-                discard() { 
-                    State.attachment = null; 
-                    document.getElementById('filePreviewBar').classList.remove('active'); 
-                    if (document.getElementById('mainInput').value.trim() === '') {
-                        dockWrapper.classList.remove('expanded');
-                    }
-                }
-            };
-
-            const Speech = {
-                rec: null, 
-                isRec: false,
-                
-                init() {
-                    const SR = window.SpeechRecognition || window.webkitSpeechRecognition; 
-                    if (!SR) return;
-                    
-                    this.rec = new SR(); 
-                    this.rec.continuous = false; 
-                    this.rec.interimResults = true; 
-                    this.rec.lang = navigator.language || 'en-US';
-                    
-                    this.rec.onstart = () => { 
-                        this.isRec = true; 
-                        document.getElementById('btnStt').classList.add('recording'); 
-                    };
-                    
-                    this.rec.onresult = (e) => {
-                        if (!e.results || !e.results.length) return;
-                        let trans = ''; 
-                        for (let i = e.resultIndex; i < e.results.length; ++i) {
-                            if (e.results[i].isFinal && e.results[i][0]) {
-                                trans += e.results[i][0].transcript;
-                            }
-                        }
-                        if (trans) { 
-                            const input = document.getElementById('mainInput'); 
-                            input.value += (input.value ? ' ' : '') + trans; 
-                            UI.autoGrow(input); 
-                            dockWrapper.classList.add('expanded');
-                        }
-                    };
-                    
-                    this.rec.onerror = () => this.stop(); 
-                    this.rec.onend = () => this.stop();
-                },
-                
-                toggle() { 
-                    if (!this.rec) this.init(); 
-                    if (this.isRec) {
-                        this.stop(); 
-                    } else { 
-                        try { 
-                            this.rec.start(); 
-                        } catch(e) {} 
-                    } 
-                },
-                
-                stop() { 
-                    if(this.rec) this.rec.stop(); 
-                    this.isRec = false; 
-                    document.getElementById('btnStt').classList.remove('recording'); 
-                }
-            };
-
-            const renderer = {
-                code(code, lang) {
-                    const language = (lang || '').match(/\S*/)?.[0];
-                    if (language === 'mermaid') {
-                        return `<pre class="mermaid">${code}</pre>`;
-                    }
-                    if (language && hljs.getLanguage(language)) { 
-                        try { 
-                            return `<pre><code class="hljs ${language}">${hljs.highlight(code, { language }).value}</code></pre>`; 
-                        } catch (__) {} 
-                    }
-                    return `<pre><code class="hljs">${hljs.highlightAuto(code).value}</code></pre>`;
-                }
-            };
-            marked.use({ renderer, gfm: true, breaks: true, pedantic: false });
-
-            function initMermaid() { 
-                if (typeof mermaid !== 'undefined') {
-                    mermaid.initialize({ startOnLoad: false, theme: 'default' }); 
-                }
-            }
-            
-            function renderMermaid(container) {
-                if (typeof mermaid === 'undefined') return;
-                const diagrams = container.querySelectorAll('.mermaid');
-                if (diagrams.length === 0) return;
-                try { 
-                    mermaid.run({ nodes: diagrams }); 
-                } catch (e) { 
-                    console.warn('Mermaid render error:', e); 
-                }
-            }
-            
-            const copyGlyph = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>`;
-            const checkGlyph = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>`;
-
-            function addCodeCopyButtons(container) {
-                const blocks = container.querySelectorAll('pre:not(.mermaid)');
-                blocks.forEach(pre => {
-                    if (pre.querySelector('.code-copy-btn')) return;
-                    const codeEl = pre.querySelector('code');
-                    if (!codeEl) return;
-                    const btn = document.createElement('button');
-                    btn.type = 'button';
-                    btn.className = 'code-copy-btn';
-                    btn.innerHTML = `${copyGlyph}<span>Copy</span>`;
-                    btn.onclick = (e) => {
-                        e.stopPropagation();
-                        navigator.clipboard.writeText(codeEl.innerText).then(() => {
-                            btn.innerHTML = `${checkGlyph}<span>Copied!</span>`;
-                            btn.classList.add('copied');
-                            setTimeout(() => {
-                                btn.innerHTML = `${copyGlyph}<span>Copy</span>`;
-                                btn.classList.remove('copied');
-                            }, 1500);
-                        });
-                    };
-                    pre.appendChild(btn);
-                });
-            }
-
-            // MathJax बग फिक्स - सुरक्षित रेंडरिंग
-            function runRendering(container, isProcessing) {
-                if (isProcessing) return; 
-                if (window.MathJax && MathJax.typesetPromise) {
-                    try { 
-                        MathJax.typesetClear([container]); 
-                        MathJax.typesetPromise([container]).catch(console.error); 
-                    } catch (e) {}
-                }
-                renderMermaid(container);
-            }
-
-            const TTSManager = {
-                cache: {}, 
-                currentAudio: null, 
-                selectedVoice: "M2", 
-                selectedLanguage: "English", 
-                isPlaying: false, 
-                currentMsgId: null, 
-                currentBtnElement: null, 
-                preparingSet: new Set(),
-                
-                voiceMap: { 
-                    "M1": "Aarav", "M2": "Kabir", "M3": "Vihaan", "M4": "Advik", "M5": "Rohan", 
-                    "F1": "Priya", "F2": "Ananya", "F3": "Diya", "F4": "Sneha", "F5": "Kavya" 
-                },
-                
-                languageMap: { 
-                    "English": "en", "Korean": "ko", "Japanese": "ja", "Arabic": "ar", "Bulgarian": "bg", 
-                    "Czech": "cs", "Danish": "da", "German": "de", "Greek": "el", "Spanish": "es", 
-                    "Estonian": "et", "Finnish": "fi", "French": "fr", "Hindi": "hi", "Croatian": "hr", 
-                    "Hungarian": "hu", "Indonesian": "id", "Italian": "it", "Lithuanian": "lt", "Latvian": "lv", 
-                    "Dutch": "nl", "Polish": "pl", "Portuguese": "pt", "Romanian": "ro", "Russian": "ru", 
-                    "Slovak": "sk", "Slovenian": "sl", "Swedish": "sv", "Turkish": "tr", "Ukrainian": "uk", 
-                    "Vietnamese": "vi" 
-                },
-                
-                initUI() {
-                    const list = document.getElementById('voiceOptionsList'); 
-                    list.innerHTML = '';
-                    
-                    for (const [code, name] of Object.entries(this.voiceMap)) {
-                        const isSelected = code === this.selectedVoice ? 'selected' : '';
-                        const checkIcon = isSelected ? `<svg style="width:16px;height:16px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>` : `<div></div>`;
-                        list.innerHTML += `<div class="dropdown-item ${isSelected}" onclick="TTSManager.setVoice('${code}')"><span>${name}</span>${checkIcon}</div>`;
-                    }
-                    
-                    const langList = document.getElementById('languageOptionsList'); 
-                    langList.innerHTML = '';
-                    
-                    for (const [name, code] of Object.entries(this.languageMap)) {
-                        const isSelected = name === this.selectedLanguage ? 'selected' : '';
-                        const checkIcon = isSelected ? `<svg style="width:16px;height:16px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>` : `<div></div>`;
-                        langList.innerHTML += `<div class="dropdown-item ${isSelected}" onclick="TTSManager.setLanguage('${name}')"><span>${name}</span>${checkIcon}</div>`;
-                    }
-                },
-                
-                toggleMenu() { 
-                    document.getElementById('voiceMenu').classList.toggle('active'); 
-                    document.getElementById('attachMenu').classList.remove('active'); 
-                    document.getElementById('thinkMenu').classList.remove('active'); 
-                },
-                
-                setVoice(code) { 
-                    Object.values(this.cache).forEach(url => URL.revokeObjectURL(url)); 
-                    this.cache = {}; 
-                    this.selectedVoice = code; 
-                    this.initUI(); 
-                    document.getElementById('voiceMenu').classList.remove('active'); 
-                },
-                
-                setLanguage(name) { 
-                    Object.values(this.cache).forEach(url => URL.revokeObjectURL(url)); 
-                    this.cache = {}; 
-                    this.selectedLanguage = name; 
-                    this.initUI(); 
-                    document.getElementById('voiceMenu').classList.remove('active'); 
-                },
-                
-                cleanTextForTTS(text) {
-                    let cleaned = text.replace(/\u0060{3}[\s\S]*?\u0060{3}/g, '')
-                                      .replace(/\u0060[^\u0060]*\u0060/g, '')
-                                      .replace(/<think>[\s\S]*?<\/think>/gi, '')
-                                      .replace(/https?:\/\/[^\s]+/g, '')
-                                      .replace(/[*_#\u0060~>]/g, '')
-                                      .replace(/<[^>]*>/g, '')
-                                      .replace(/\s+/g, ' ')
-                                      .trim();
-                                      
-                    cleaned = cleaned.replace(/[\u{1F600}-\u{1F64F}]/gu, '')
-                                     .replace(/[\u{1F300}-\u{1F5FF}]/gu, '')
-                                     .replace(/[\u{1F680}-\u{1F6FF}]/gu, '')
-                                     .replace(/[\u{2600}-\u{26FF}]/gu, '')
-                                     .replace(/[\u{2700}-\u{27BF}]/gu, '');
-                                     
-                    if (cleaned.length > 1500) {
-                        cleaned = cleaned.substring(0, 1500) + '...'; 
-                    }
-                    return cleaned;
-                },
-                
-                async autoPrepare(msgId, fullText, btnElement) {
-                    if (this.preparingSet.has(msgId)) return;
-                    
-                    const cleanText = this.cleanTextForTTS(fullText); 
-                    if (!cleanText) { 
-                        btnElement.style.display = 'none'; 
-                        return; 
-                    }
-                    
-                    this.preparingSet.add(msgId);
-                    btnElement.style.display = 'flex'; 
-                    btnElement.innerHTML = `<svg class="spin-icon" style="width:14px;height:14px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="2" x2="12" y2="6"></line><line x1="12" y1="18" x2="12" y2="22"></line><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"></line><line x1="2" y1="12" x2="6" y2="12"></line><line x1="18" y1="12" x2="22" y2="12"></line><line x1="4.93" y1="19.07" x2="7.76" y2="16.24"></line><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line></svg> Preparing...`;
-                    btnElement.style.pointerEvents = 'none';
-                    
-                    try {
-                        const response = await fetch('/api/tts', { 
-                            method: 'POST', 
-                            headers: {'Content-Type':'application/json'}, 
-                            body: JSON.stringify({ 
-                                text: cleanText, 
-                                voice: this.selectedVoice, 
-                                language_name: this.selectedLanguage 
-                            }) 
-                        });
-                        
-                        if (!response.ok) throw new Error('TTS service unavailable');
-                        
-                        const blob = await response.blob(); 
-                        this.cache[msgId] = URL.createObjectURL(blob);
-                        
-                        btnElement.innerHTML = `<svg style="width:14px;height:14px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg> Listen`;
-                        btnElement.style.pointerEvents = 'auto';
-                    } catch(e) { 
-                        btnElement.innerHTML = `<span style="color:var(--brand-danger);">⚠️ ${e.message}</span>`; 
-                        setTimeout(() => { btnElement.style.display = 'none'; }, 4000); 
-                    } finally { 
-                        this.preparingSet.delete(msgId); 
-                    }
-                },
-                
-                play(msgId, btnElement) {
-                    const audioUrl = this.cache[msgId];
-                    if (!audioUrl) { 
-                        this.autoPrepare(msgId, document.getElementById(`bot-content-${msgId}`).innerText, btnElement); 
-                        return; 
-                    }
-                    
-                    if (this.isPlaying && this.currentMsgId === msgId) {
-                        if (this.currentAudio) { 
-                            this.currentAudio.pause(); 
-                            this.currentAudio.currentTime = 0; 
-                        }
-                        this.isPlaying = false; 
-                        this.currentMsgId = null;
-                        btnElement.innerHTML = `<svg style="width:14px;height:14px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg> Listen`;
-                        btnElement.style.background = ''; 
-                        return;
-                    }
-                    
-                    if (this.currentAudio) { 
-                        this.currentAudio.pause(); 
-                        this.currentAudio.currentTime = 0; 
-                    }
-                    
-                    this.isPlaying = true; 
-                    this.currentMsgId = msgId; 
-                    this.currentBtnElement = btnElement;
-                    
-                    const originalHTML = btnElement.innerHTML;
-                    btnElement.innerHTML = `<svg style="width:14px;height:14px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg> Playing...`;
-                    btnElement.style.background = 'rgba(211, 227, 253, 0.9)';
-                    
-                    this.currentAudio = new Audio(audioUrl); 
-                    this.currentAudio.playbackRate = 1.15;
-                    
-                    this.currentAudio.onended = () => { 
-                        this.isPlaying = false; 
-                        this.currentMsgId = null; 
-                        btnElement.innerHTML = originalHTML; 
-                        btnElement.style.background = ''; 
-                    };
-                    
-                    this.currentAudio.onerror = () => { 
-                        this.isPlaying = false; 
-                        this.currentMsgId = null; 
-                        btnElement.innerHTML = originalHTML; 
-                        btnElement.style.background = ''; 
-                    };
-                    
-                    this.currentAudio.play();
-                }
-            };
-
-            const Chat = {
-                renderUser(txt, attachUI = '') {
-                    const c = document.getElementById('chatMessages'); 
-                    const w = document.createElement('div'); 
-                    w.className = 'message-wrapper';
-                    w.innerHTML = `<div class="user-message">${attachUI}${txt ? UI.escape(txt) : ''}</div>`;
-                    c.appendChild(w); 
-                    UI.autoScroll = true; 
-                    UI.scrollToBottom(true);
-                },
-                
-                renderBot(msgId) {
-                    const c = document.getElementById('chatMessages'); 
-                    const w = document.createElement('div'); 
-                    w.className = 'message-wrapper';
-                    const listenIcon = `<svg style="width:14px;height:14px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>`;
-                    const copyIcon = `<svg style="width:14px;height:14px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>`;
-                    
-                    w.innerHTML = `
-                    <div class="bot-message">
-                        <div class="bot-avatar"><img src="${Config.LOGO}"></div>
-                        <div class="bot-content-wrapper">
-                            <div class="bot-content" id="bot-content-${msgId}"></div>
-                            <div class="msg-actions">
-                                <button class="action-btn listen-btn" id="listen-btn-${msgId}" onclick="TTSManager.play('${msgId}', this)" style="display:none;">${listenIcon} Listen</button>
-                                <button class="action-btn" onclick="Chat.copyMsg('${msgId}')">${copyIcon} Copy</button>
-                            </div>
-                        </div>
-                    </div>`;
-                    
-                    c.appendChild(w); 
-                    UI.scrollToBottom();
-                    
-                    return { 
-                        contentDiv: document.getElementById(`bot-content-${msgId}`), 
-                        listenBtn: document.getElementById(`listen-btn-${msgId}`) 
-                    };
-                },
-                
-                preprocessMath(text) {
-                    let mathBlocks = {};
-                    let mathCounter = 0;
-                    
-                    function replacer(match) {
-                        const id = `MATHBLOCKPLACEHOLDER${mathCounter}ENDPLACEHOLDER`;
-                        mathBlocks[id] = match;
-                        mathCounter++;
-                        return id;
-                    }
-                    
-                    text = text.replace(/\$\$([\s\S]+?)\$\$/g, replacer);
-                    text = text.replace(/\\\[([\s\S]+?)\\\]/g, replacer);
-                    text = text.replace(/\$((?:\\.|[^$\\])+?)\$/g, replacer);
-                    text = text.replace(/\\\(([\s\S]+?)\\\)/g, replacer);
-                    
-                    return { text, mathBlocks };
-                },
-                
-                postprocessMath(html, mathBlocks) {
-                    for (const [id, mathStr] of Object.entries(mathBlocks)) {
-                        html = html.split(id).join(mathStr);
-                    }
-                    return html;
-                },
-                
-                parseAndRender(fullText, isProcessing, container) {
-                    let normalizedText = fullText
-                        .replace(/<\|channel\|>thought\s*<\|channel\|>/gi, "<think>\n")
-                        .replace(/<\|channel\|>answer\s*<\|channel\|>/gi, "\n</think>\n")
-                        .replace(/<\|im_start\|>thought/gi, "<think>\n")
-                        .replace(/<\|im_end\|>/gi, "\n</think>\n");
-
-                    const thinkRegex = /<think>([\s\S]*?)(?:<\/think>|$)/i;
-                    const thinkMatch = normalizedText.match(thinkRegex);
-                    let finalHtml = '';
-
-                    if (thinkMatch) {
-                        finalHtml += `
-                        <details class="qwen-think-box" ${isProcessing ? 'open' : ''}>
-                            <summary>
-                                <svg class="arrow" style="width:14px;height:14px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <polyline points="9 18 15 12 9 6"></polyline>
-                                </svg> 
-                                Thinking Process
-                            </summary>
-                            <div class="qwen-think-content">${marked.parse(thinkMatch[1].trim())}</div>
-                        </details>`;
-                    }
-
-                    let mainText = normalizedText.replace(thinkRegex, '').trim();
-
-                    if (mainText) {
-                        const { text: safeText, mathBlocks } = Chat.preprocessMath(mainText);
-                        let parsedHtml = marked.parse(safeText);
-                        parsedHtml = Chat.postprocessMath(parsedHtml, mathBlocks);
-                        finalHtml += `<div class="tex2jax_process">${parsedHtml}</div>`;
-                    }
-
-                    if (isProcessing) {
-                        finalHtml += `<span class="blinking-cursor"></span>`;
-                    }
-                    
-                    container.innerHTML = finalHtml;
-                    addCodeCopyButtons(container);
-                    runRendering(container, isProcessing);
-                },
-                
-                copyMsg(id) {
-                    const el = document.getElementById(`bot-content-${id}`);
-                    const clone = el.cloneNode(true);
-                    const thinkBox = clone.querySelector('.qwen-think-box');
-                    
-                    if (thinkBox) {
-                        thinkBox.remove();
-                    }
-                    
-                    navigator.clipboard.writeText(clone.innerText).then(() => {
-                        const btn = el.parentElement.querySelector('.action-btn:not(.listen-btn)');
-                        const original = btn.innerHTML;
-                        btn.innerHTML = `<svg style="width:14px;height:14px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Copied!`;
-                        setTimeout(() => btn.innerHTML = original, 1500);
-                    });
-                },
-                
-                stopGeneration() {
-                    if (State.abortController) { 
-                        State.abortController.abort(); 
-                        State.abortController = null; 
-                    }
-                    State.isProcessing = false; 
-                    document.getElementById('btnSend').disabled = false; 
-                    document.getElementById('btnSend').style.display = 'flex'; 
-                    document.getElementById('btnStop').classList.remove('active');
-                    if (document.getElementById('mainInput').value.trim() === '') {
-                        dockWrapper.classList.remove('expanded');
-                    }
-                },
-                
-                async handleSend() {
-                    if(State.isProcessing) return;
-                    
-                    if (!State.user && State.guestCount >= 10) { 
-                        Auth.openModal(); 
-                        UI.showAuthMsg("Guest limit reached (10/10). Please login or register to continue.", true); 
-                        return; 
-                    }
-                    
-                    const input = document.getElementById('mainInput'); 
-                    const text = input.value.trim();
-                    
-                    if(!text && !State.attachment) return;
-                    
-                    if (!State.user) {
-                        let count = parseInt(localStorage.getItem('codeved_guest') || '0', 10); 
-                        if (isNaN(count)) count = 0;
-                        count++; 
-                        State.guestCount = count; 
-                        localStorage.setItem('codeved_guest', count.toString()); 
-                        document.getElementById('uSub').innerText = `Queries: ${count}/10`;
-                    }
-                    
-                    State.isProcessing = true; 
-                    document.getElementById('btnSend').style.display = 'none'; 
-                    document.getElementById('btnStop').classList.add('active');
-                    State.lastUserMessage = text; 
-                    input.value = ''; 
-                    input.style.height = 'auto'; 
-                    UI.updateWelcomeScreen();
-                    
-                    let payloadStr = text, attachUI = '', mediaArray = [];
-                    
-                    if(State.attachment) {
-                        if(State.attachment.type === 'text') {
-                            payloadStr = `[File attached: ${State.attachment.name}]\n\n---DATA---\n${State.attachment.data}\n---END DATA---\n\nUser: ${text}`;
-                            attachUI = `<div class="chat-attachment-container"><div class="chat-file-pill"><svg style="width:14px;height:14px;color:var(--text-secondary);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path></svg> ${State.attachment.name}</div></div>`;
-                        } else {
-                            mediaArray.push(State.attachment); 
-                            attachUI = `<div class="chat-attachment-container"><img src="data:image/jpeg;base64,${State.attachment.data}" class="chat-img-preview"></div>`;
-                        }
-                    }
-                    
-                    let systemInjectedPayload = payloadStr;
-                    if(State.weatherContext) {
-                        systemInjectedPayload = `${payloadStr}\n\n[SYSTEM REAL-TIME WEATHER: ${State.weatherContext}]`;
-                    }
-                    
-                    Chat.renderUser(text, attachUI);
-                    State.history.push({ role: 'user', content: payloadStr }); 
-                    FileSys.discard();
-                    
-                    const msgId = Date.now().toString(); 
-                    const botObj = Chat.renderBot(msgId);
-                    Chat.parseAndRender("", true, botObj.contentDiv);
-                    
-                    State.abortController = new AbortController();
-                    let fullText = "";
-                    
-                    try {
-                        const res = await fetch(Config.API_ENDPOINT, {
-                            method: 'POST', 
-                            headers: {'Content-Type':'application/json'},
-                            body: JSON.stringify({ 
-                                message: systemInjectedPayload, 
-                                attachments: mediaArray, 
-                                is_search: State.searchEnabled, 
-                                location: State.location, 
-                                thinking_mode: State.thinkingMode, 
-                                thinking_effort: State.thinkingEffort, 
-                                history: State.history 
-                            }),
-                            signal: State.abortController.signal
-                        });
-                        
-                        if(!res.ok) {
-                            let errMsg = `Server error (${res.status})`;
-                            if (res.status === 404) {
-                                errMsg = 'Chat API endpoint not found (404). Please ensure the server is running.';
-                            } else if (res.status === 500) {
-                                errMsg = 'Internal server error (500). Please try again later.';
-                            }
-                            throw new Error(errMsg);
-                        }
-                        
-                        const reader = res.body.getReader(); 
-                        const decoder = new TextDecoder(); 
-                        let buffer = '';
-                        
-                        while(true) {
-                            const {done, value} = await reader.read();
-                            if(done) break;
-                            
-                            buffer += decoder.decode(value, {stream: true});
-                            const lines = buffer.split('\n'); 
-                            buffer = lines.pop();
-                            
-                            for(let line of lines) {
-                                if(line.startsWith('data: ')) {
-                                    const dataStr = line.substring(6).trim();
-                                    if(dataStr === '[DONE]') continue;
-                                    
-                                    try {
-                                        const json = JSON.parse(dataStr);
-                                        if (json.error) { 
-                                            botObj.contentDiv.innerHTML += `<br><span style="color:var(--brand-danger);">⚠️ ${UI.escape(json.error)}</span>`; 
-                                            return; 
-                                        }
-                                        if(json.choices && json.choices[0] && json.choices[0].delta && json.choices[0].delta.content) {
-                                            fullText += json.choices[0].delta.content;
-                                        }
-                                    } catch(e) {}
-                                    
-                                    Chat.parseAndRender(fullText, true, botObj.contentDiv);
-                                }
-                            }
-                        }
-                        
-                        Chat.parseAndRender(fullText, false, botObj.contentDiv);
-                        State.history.push({ role: 'assistant', content: fullText });
-                        HistoryManager.saveCurrent();
-                        
-                    } catch(e) {
-                        if (e.name === 'AbortError') {
-                            botObj.contentDiv.innerHTML += `<br><span style="color:var(--text-tertiary); font-style:italic;">⏹ Generation stopped.</span>`;
-                            if (fullText.trim()) { 
-                                State.history.push({ role: 'assistant', content: fullText }); 
-                                HistoryManager.saveCurrent(); 
-                            }
-                        } else {
-                            botObj.contentDiv.innerHTML += `<br><span style="color:var(--brand-danger);">⚠️ ${UI.escape(e.message || 'Connection Offline.')}</span>`;
-                        }
-                    } finally {
-                        State.isProcessing = false; 
-                        document.getElementById('btnSend').disabled = false; 
-                        document.getElementById('btnSend').style.display = 'flex'; 
-                        document.getElementById('btnStop').classList.remove('active');
-                        
-                        if (document.getElementById('mainInput').value.trim() === '') {
-                            dockWrapper.classList.remove('expanded');
-                        }
-                        
-                        if (UI.autoScroll) UI.scrollToBottom();
-                        if(botObj.listenBtn && fullText.trim().length > 0) {
-                            TTSManager.autoPrepare(msgId, fullText, botObj.listenBtn);
-                        }
-                    }
-                }
-            };
-
-            // ग्लोबल स्कोप में एक्सपोज़ करें
-            window.UI = UI; 
-            window.Auth = Auth; 
-            window.HistoryManager = HistoryManager; 
-            window.EnvironmentManager = EnvironmentManager; 
-            window.SearchManager = SearchManager;
-            window.ThinkingManager = ThinkingManager; 
-            window.FileSys = FileSys; 
-            window.Speech = Speech; 
-            window.TTSManager = TTSManager; 
-            window.Chat = Chat;
-
-            // मेरमेड इनिशियलाइज़ करें
-            initMermaid();
-            
-            // लोगो को हर जगह इनलाइन कर दें
-            document.getElementById('faviconLink').href = Config.LOGO;
-            document.getElementById('welcomeLogoImg').src = Config.LOGO;
-            document.getElementById('sidebarLogoImg').src = Config.LOGO;
-
-            // विंडो लोड होने पर इनिशियलाइज़ेशन
-            window.onload = () => { 
-                Auth.init(); 
-                TTSManager.initUI(); 
-                UI.updateWelcomeScreen(); 
-                if(window.innerWidth > 900) {
-                    document.getElementById('sidebar').classList.remove('collapsed'); 
-                }
-            };
-        })();
-    </script>
 </body>
 </html>
