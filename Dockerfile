@@ -1,17 +1,39 @@
-# Use the official, ultra-lightweight Nginx image
-FROM nginx:alpine
+# ================================================================================
+# CODE VED - PRODUCTION DOCKERFILE
+# Engineered by Divy Patel | Modular Architecture
+# ================================================================================
 
-# Remove the default Nginx configuration file
-RUN rm /etc/nginx/conf.d/default.conf
+# 1. Use a lightweight but compatible Python base image
+FROM python:3.10-slim
 
-# Copy our custom Nginx configuration
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+# 2. Set the working directory inside the container
+WORKDIR /app
 
-# Copy all project files (HTML, CSS, JS, Images) to the Nginx public directory
-COPY . /usr/share/nginx/html
+# 3. Install system-level dependencies
+# - git: Required to clone 'renderlib' from GitHub in requirements.txt
+# - ffmpeg & libsndfile1: Required by 'supertonic' and 'pydub' for audio processing
+# - build-essential: Sometimes needed for compiling C-extensions in Python packages
+RUN apt-get update && apt-get install -y \
+    git \
+    ffmpeg \
+    libsndfile1 \
+    build-essential \
+    && rm -rf /var/lib/apt/lists/*
 
-# Hugging Face Spaces requires the app to listen on port 7860
+# 4. Copy only requirements.txt first to leverage Docker cache
+# (If requirements don't change, Docker won't reinstall packages every time)
+COPY requirements.txt .
+
+# 5. Install Python dependencies
+# --no-cache-dir keeps the image size small
+RUN pip install --no-cache-dir --upgrade pip && \
+    pip install --no-cache-dir -r requirements.txt
+
+# 6. Copy the rest of the application code (HTML, CSS, JS, Python files)
+COPY . .
+
+# 7. Hugging Face Spaces requires the app to listen on port 7860
 EXPOSE 7860
 
-# Start Nginx in the foreground (Required for Docker containers)
-CMD ["nginx", "-g", "daemon off;"]
+# 8. Command to run the Flask application
+CMD ["python", "app.py"]
